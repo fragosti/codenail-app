@@ -1,7 +1,7 @@
 import React from 'react';
 import AceEditor from 'react-ace';
 
-const languages = [
+export const languages = [
   'javascript',
   'java',
   'python',
@@ -20,7 +20,7 @@ const languages = [
   'css'
 ];
 
-const themes = [
+export const themes = [
   'monokai',
   'github',
   'tomorrow',
@@ -41,34 +41,28 @@ themes.forEach((theme) => {
   require(`brace/theme/${theme}`)
 })
 
-const Editor = ({languange, theme, showGutter, showLineNumbers, height, width}) => {
-  return <AceEditor
-    mode={languange}
-    height={height}
-    width={width}
-    theme={theme}
-    showGutter={showGutter}
-    showPrintMargin={false}
-    highlightActiveLine={false}
-    name="editor"
-    setOptions={{
-      enableBasicAutocompletion: false,
-      enableLiveAutocompletion: false,
-      enableSnippets: false,
-      showLineNumbers: showLineNumbers,
-      useWorker: false,
-    }}
-  />
-}
+const Editor = ({language, theme, showGutter, showLineNumbers, height, width}) => {
+  return (
+    <AceEditor
+      mode={language}
+      height={height}
+      width={width}
+      theme={theme}
+      showGutter={showGutter}
+      showPrintMargin={false}
+      highlightActiveLine={false}
+      name="editor"
+      setOptions={{
+        showLineNumbers: showLineNumbers,
+        useWorker: false,
+      }}
+    />
+  )
+};
 
 Editor.defaultProps = {
-  languange: 'javascript',
-  theme: 'monokai',
-  showLineNumbers: true,
-  showGutter: true,
-  showPrintMargin: true,
   width: '700px',
   height: '800px',
-}
+};
 
 export default Editor
