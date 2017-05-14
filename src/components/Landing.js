@@ -1,26 +1,12 @@
 import React from 'react';
+import {
+  Link
+} from 'react-router-dom';
 
 const Landing = () => {
   return (
     <div>
-      <header className="header">
-        <div className="container-lrg">
-          <div className="col-12 spread">
-            <div>
-              <a className="logo">
-                Codenail
-              </a>
-            </div>
-            <div>
-              <a className="nav-link" href="#">
-                Twitter
-              </a>
-              <a className="nav-link" href="#">
-                Facebook
-              </a>
-            </div>
-          </div>
-        </div>
+      <section>
         <div className="container-sml text-center">
           <div className="col-12">
             <h1 className="heading">
@@ -35,16 +21,14 @@ const Landing = () => {
             </h2>
             <div className="ctas">
               <input className="ctas-input" type="text" placeholder="Your Email Address" />
-              <button className="ctas-button">
-                Sign Up
-              </button>
+                <Link className="ctas-button" to="/create"> Order </Link>
             </div>
           </div>
           <div className="col-6 sidedevices">
             
           </div>
         </div>
-      </header>
+      </section>
       <section className="feature3">
         <div className="container-lrg flex">
           <div className="col-4">
