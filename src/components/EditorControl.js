@@ -3,12 +3,15 @@ import Select from 'react-select';
 import styled from 'styled-components';
 
 import { languages, themes } from './Editor';
+import { zIndex } from '../style/utils';
+
 import 'react-select/dist/react-select.css';
 
 const EditorControlContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  z-index: ${zIndex.aboveEditor};
 `
 
 const StyledSelect = styled(Select)`

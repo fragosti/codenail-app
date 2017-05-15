@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Editor from './Editor';
 import EditorControl from './EditorControl';
 
+
 const EditorContainer = styled.div`
   display: flex;
   align-items: center;
