@@ -41,13 +41,15 @@ themes.forEach((theme) => {
   require(`brace/theme/${theme}`)
 })
 
-const Editor = ({language, theme, showGutter, showLineNumbers, height, width}) => {
+const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, height, width}) => {
   return (
     <AceEditor
       mode={language}
       height={height}
       width={width}
       theme={theme}
+      value={value}
+      onChange={onChange}
       showGutter={showGutter}
       showPrintMargin={false}
       highlightActiveLine={false}

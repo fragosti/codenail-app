@@ -13,6 +13,7 @@ const EditorContainer = styled.div`
 
 const EditorWrapper = styled.div`
   padding: 32px;
+  border-radius: 3px;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
 `
 
@@ -24,27 +25,39 @@ class Create extends Component {
       mode: 'monokai',
       showLineNumbers: true,
       showGutter: true,
+      value: '',
     }
   }
 
-  onChange = (key, value) => {
+  onSettingsChange = (key, value) => {
     this.setState({
       [key]: value,
     })
   }
 
+  onValueChange = (value) => {
+    this.setState({ value })
+  }
+
   render() {
-    const { language, mode, showLineNumbers, showGutter } = this.state
+    const { language, mode, showLineNumbers, showGutter, value } = this.state
     return (
       <EditorContainer>
         <EditorControl 
-          onChange={this.onChange}
-          editorProps={this.state}
+          onChange={this.onSettingsChange}
+          editorProps={{
+            language,
+            mode,
+            showLineNumbers,
+            showGutter,
+          }}
         />
         <EditorWrapper> 
           <Editor 
             language={language}
             theme={mode}
+            value={value}
+            onChange={this.onValueChange}
             showLineNumbers={showLineNumbers}
             showGutter={showGutter}
           />
