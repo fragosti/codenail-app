@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
 
-import { languages, themes } from './Editor';
+import { languages, themes, fontSizes } from './Editor';
 import { zIndex } from '../style/utils';
 
 import 'react-select/dist/react-select.css';
@@ -36,6 +36,7 @@ const boolOption = [
 const optionsForKey = {
   language: languages.map(lan => ({ value: lan, label: lan })),
   mode: themes.map(theme => ({ value: theme, label: theme })),
+  fontSize: fontSizes.map(size => ({value: size, label: size})),
   showLineNumbers: boolOption,
   showGutter: boolOption,
 }
@@ -44,7 +45,8 @@ const labelForKey = {
   language: 'Language',
   mode: 'Theme',
   showLineNumbers: 'Line Numbers?',
-  showGutter: 'Show Gutter?'
+  showGutter: 'Show Gutter?',
+  fontSize: 'Font Size',
 }
 
 const EditorControl = ({editorProps, onChange}) => {

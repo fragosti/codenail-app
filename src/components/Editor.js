@@ -33,6 +33,8 @@ export const themes = [
   'terminal',
 ];
 
+export const fontSizes = [8,10,12,14,16,18,20,22,24,26,28,30,32];
+
 languages.forEach((lang) => {
   require(`brace/mode/${lang}`)
 })
@@ -41,7 +43,7 @@ themes.forEach((theme) => {
   require(`brace/theme/${theme}`)
 })
 
-const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, height, width}) => {
+const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, fontSize, height, width}) => {
   return (
     <AceEditor
       mode={language}
@@ -49,6 +51,7 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
       width={width}
       theme={theme}
       value={value}
+      fontSize={fontSize}
       onChange={onChange}
       showGutter={showGutter}
       showPrintMargin={false}

@@ -27,6 +27,7 @@ class Create extends Component {
       showLineNumbers: true,
       showGutter: true,
       value: '',
+      fontSize: 12,
     }
   }
 
@@ -41,7 +42,7 @@ class Create extends Component {
   }
 
   render() {
-    const { language, mode, showLineNumbers, showGutter, value } = this.state
+    const { language, fontSize, mode, showLineNumbers, showGutter, value } = this.state
     return (
       <EditorContainer>
         <EditorControl 
@@ -51,6 +52,7 @@ class Create extends Component {
             mode,
             showLineNumbers,
             showGutter,
+            fontSize
           }}
         />
         <EditorWrapper> 
@@ -58,6 +60,7 @@ class Create extends Component {
             language={language}
             theme={mode}
             value={value}
+            fontSize={fontSize}
             onChange={this.onValueChange}
             showLineNumbers={showLineNumbers}
             showGutter={showGutter}
