@@ -1,5 +1,6 @@
 // these sizes are arbitrary and you can set them to whatever you wish
-import { css } from 'styled-components'
+import { css } from 'styled-components';
+import { modularScale } from 'polished';
 
 const sizes = {
   giant: 1170,
@@ -24,3 +25,7 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
 export const zIndex = {
   aboveEditor: 5,
 };
+
+export const lineHeight = {
+  text: `${modularScale(2)}`,
+}

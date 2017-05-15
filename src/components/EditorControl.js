@@ -49,9 +49,9 @@ const labelForKey = {
   fontSize: 'Font Size',
 }
 
-const EditorControl = ({editorProps, onChange}) => {
+const EditorControl = ({editorProps, onChange, className}) => {
   return (
-    <EditorControlContainer>
+    <EditorControlContainer className={className}>
       {Object.keys(editorProps).map((key, index) => {
         return (
           <OptionContainer key={index}>
