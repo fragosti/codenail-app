@@ -15,8 +15,17 @@ const EditorControlContainer = styled.div`
 `
 
 const StyledSelect = styled(Select)`
-  width: 150px;
+  width: 130px;
+`
+
+const OptionContainer = styled.div`
   margin: 10px 15px;
+`
+
+const SelectLabel = styled.label`
+  font-weight: 700;
+  padding: 6px 3px;
+  display: inline-block;
 `
 
 const boolOption = [
@@ -31,19 +40,28 @@ const optionsForKey = {
   showGutter: boolOption,
 }
 
+const labelForKey = {
+  language: 'Language',
+  mode: 'Theme',
+  showLineNumbers: 'Line Numbers?',
+  showGutter: 'Show Gutter?'
+}
+
 const EditorControl = ({editorProps, onChange}) => {
   return (
     <EditorControlContainer>
       {Object.keys(editorProps).map((key, index) => {
         return (
-          <StyledSelect
-            key={index} 
-            name={key}
-            clearable={false}
-            value={editorProps[key]}
-            options={optionsForKey[key]}
-            onChange={({value}) => onChange(key, value)}
-          />
+          <OptionContainer key={index}>
+            <SelectLabel>{labelForKey[key]}</SelectLabel>
+            <StyledSelect 
+              name={key}
+              clearable={false}
+              value={editorProps[key]}
+              options={optionsForKey[key]}
+              onChange={({value}) => onChange(key, value)}
+            />
+          </OptionContainer>
         )
       })}
     </EditorControlContainer>
