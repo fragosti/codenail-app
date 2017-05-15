@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Landing from './Landing';
 import Create from './Create';
 import Header from './Header';
+import Footer from './Footer';
 import {
   BrowserRouter as Router,
   Route,
@@ -15,6 +16,7 @@ class App extends Component {
           <Header/>
           <Route exact path="/" component={Landing}/>
           <Route path="/create" component={Create}/>
+          <Footer/>
         </div>
       </Router>
     )
