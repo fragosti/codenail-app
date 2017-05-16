@@ -90,6 +90,7 @@ const optionsForKey = {
   size: sizes.map(size => ({value: size, label: size})),
   showLineNumbers: boolOption,
   showGutter: boolOption,
+  framed: boolOption,
 }
 
 const labelForKey = {
@@ -98,7 +99,8 @@ const labelForKey = {
   showLineNumbers: 'Line Numbers?',
   showGutter: 'Show Gutter?',
   fontSize: 'Font Size',
-  size: 'Size (in)'
+  size: 'Size (in)',
+  framed: 'Framed?',
 }
 
 const EditorControl = ({editorProps, onChange, className}) => {

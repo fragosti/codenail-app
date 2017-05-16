@@ -58,6 +58,7 @@ class Create extends Component {
       value: '// Paste your code here!',
       fontSize: 12,
       size: '12x16',
+      framed: false,
     }
   }
 
@@ -72,7 +73,7 @@ class Create extends Component {
   }
 
   render() {
-    const { language, fontSize, size, mode, showLineNumbers, showGutter, value } = this.state
+    const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
     return (
       <Container>
         <Description> 
@@ -97,6 +98,7 @@ class Create extends Component {
               showGutter,
               fontSize,
               size,
+              framed,
             }}
           />
           <EditorWrapper> 
