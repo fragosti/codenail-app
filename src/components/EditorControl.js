@@ -1,8 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
+import { modularScale } from 'polished';
 
 import { zIndex } from '../style/utils';
+
 
 import 'react-select/dist/react-select.css';
 
@@ -62,7 +64,7 @@ const EditorControlContainer = styled.div`
 `
 
 const StyledSelect = styled(Select)`
-  width: 130px;
+  width: 100px;
   input {
     color: transparent;
   }
@@ -70,6 +72,7 @@ const StyledSelect = styled(Select)`
 
 const OptionContainer = styled.div`
   margin: 10px 15px;
+  font-size: ${modularScale(-1)};
 `
 
 const SelectLabel = styled.label`
