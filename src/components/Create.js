@@ -5,6 +5,7 @@ import Editor from './Editor';
 import EditorControl from './EditorControl';
 import Button from './Button';
 import { lineHeight, colors } from '../style/utils';
+import { priceForSize } from '../lib/price';
 
 
 const EditorContainer = styled.div`
@@ -81,11 +82,11 @@ class Create extends Component {
           <p> 
             Copy & paste your code, specify the language, theme, font size and more.
             You'll see the print preview live update as you go. 
-            Price will vary with print size.
+            Price will vary with print size and whether you would like it framed.
             Press order once you're ready! 
           </p>
           <p>
-            <Button color={colors.green}> Order for $50 </Button>
+            <Button color={colors.green}>{`Order for $${priceForSize(size, framed)*3 + 10}`}</Button>
           </p>
         </Description>
         <EditorContainer>
