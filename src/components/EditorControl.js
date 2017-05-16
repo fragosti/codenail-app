@@ -63,6 +63,9 @@ const EditorControlContainer = styled.div`
 
 const StyledSelect = styled(Select)`
   width: 130px;
+  input {
+    color: transparent;
+  }
 `
 
 const OptionContainer = styled.div`
