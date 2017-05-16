@@ -11,7 +11,10 @@ const Button = styled.a`
   width: ${props => props.width};
   background: ${props => props.color};
   &:hover {
-    background: ${props => darken(0.3, props.color)}
+    background: ${props => darken(0.2, props.color)};
+  }
+  &:active {
+    background: ${props => darken(0.4, props.color)};
   }
 `
 Button.defaultProps = {

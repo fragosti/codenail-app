@@ -82,7 +82,7 @@ class Create extends Component {
           <p> 
             Copy & paste your code, specify the language, theme, font size and more.
             You'll see the print preview live update as you go. 
-            Price will vary with print size and whether you would like it framed.
+            Price will vary with print size and whether you would like it framed in black.
             Press order once you're ready! 
           </p>
           <p>
