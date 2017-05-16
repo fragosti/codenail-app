@@ -14,7 +14,7 @@ const EditorContainer = styled.div`
 `
 
 const EditorWrapper = styled.div`
-  padding: 32px;
+  padding: 16px;
   border-radius: 3px;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
 `
@@ -38,6 +38,12 @@ const PaddedControl = styled(EditorControl)`
   padding: 20px 0px;
 `
 
+const aspectRatioForSize = (size) => { // 12x16 for example
+  return size.split('x').map(x => parseInt(x)).reduce((x, y) => y / x)
+}
+
+const EDITOR_WIDTH = 700;
+
 class Create extends Component {
   constructor(props) {
     super(props)
@@ -46,8 +52,9 @@ class Create extends Component {
       mode: 'monokai',
       showLineNumbers: true,
       showGutter: true,
-      value: '',
+      value: '// Paste your code here!',
       fontSize: 12,
+      size: '12x16',
     }
   }
 
@@ -62,7 +69,7 @@ class Create extends Component {
   }
 
   render() {
-    const { language, fontSize, mode, showLineNumbers, showGutter, value } = this.state
+    const { language, fontSize, size, mode, showLineNumbers, showGutter, value } = this.state
     return (
       <Container>
         <Description> 
@@ -77,7 +84,8 @@ class Create extends Component {
               mode,
               showLineNumbers,
               showGutter,
-              fontSize
+              fontSize,
+              size,
             }}
           />
           <EditorWrapper> 
@@ -89,6 +97,8 @@ class Create extends Component {
               onChange={this.onValueChange}
               showLineNumbers={showLineNumbers}
               showGutter={showGutter}
+              width={`${EDITOR_WIDTH}px`}
+              height={`${aspectRatioForSize(size)*EDITOR_WIDTH}px`}
             />
           </EditorWrapper>
         </EditorContainer>

@@ -33,7 +33,7 @@ export const themes = [
   'terminal',
 ];
 
-export const fontSizes = [8,10,12,14,16,18,20,22,24,26,28,30,32];
+export const fontSizes = [6,8,10,12,14,16,18,20,22,24,26,28,30,32];
 
 languages.forEach((lang) => {
   require(`brace/mode/${lang}`)
@@ -57,6 +57,7 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
       showPrintMargin={false}
       highlightActiveLine={false}
       name="editor"
+      editorProps={{$blockScrolling: true}}
       setOptions={{
         showLineNumbers: showLineNumbers,
         useWorker: false,
@@ -67,7 +68,7 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
 
 Editor.defaultProps = {
   width: '700px',
-  height: '800px',
+  height: '990px',
 };
 
 export default Editor

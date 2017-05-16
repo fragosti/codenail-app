@@ -2,10 +2,57 @@ import React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
 
-import { languages, themes, fontSizes } from './Editor';
 import { zIndex } from '../style/utils';
 
 import 'react-select/dist/react-select.css';
+
+export const languages = [
+  'javascript',
+  'java',
+  'python',
+  'xml',
+  'ruby',
+  'sass',
+  'markdown',
+  'mysql',
+  'json',
+  'html',
+  'handlebars',
+  'golang',
+  'csharp',
+  'elixir',
+  'typescript',
+  'css'
+];
+
+export const themes = [
+  'monokai',
+  'github',
+  'tomorrow',
+  'kuroir',
+  'twilight',
+  'xcode',
+  'textmate',
+  'solarized_dark',
+  'solarized_light',
+  'terminal',
+];
+
+export const fontSizes = [6,8,10,12,14,16,18,20,22,24,26,28,30,32];
+
+export const sizes = [
+  '8x10',
+  '10x10',
+  '12x12',
+  '12x16',
+  '12x18',
+  '14x14',
+  '16x16',
+  '16x20',
+  '18x18',
+  '18x24',
+  '24x36',
+];
 
 const EditorControlContainer = styled.div`
   display: flex;
@@ -37,6 +84,7 @@ const optionsForKey = {
   language: languages.map(lan => ({ value: lan, label: lan })),
   mode: themes.map(theme => ({ value: theme, label: theme })),
   fontSize: fontSizes.map(size => ({value: size, label: size})),
+  size: sizes.map(size => ({value: size, label: size})),
   showLineNumbers: boolOption,
   showGutter: boolOption,
 }
@@ -47,6 +95,7 @@ const labelForKey = {
   showLineNumbers: 'Line Numbers?',
   showGutter: 'Show Gutter?',
   fontSize: 'Font Size',
+  size: 'Size (in)'
 }
 
 const EditorControl = ({editorProps, onChange, className}) => {
