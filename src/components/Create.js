@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import StripeCheckout from 'react-stripe-checkout';
 
 import Editor from './Editor';
 import EditorControl from './EditorControl';
@@ -75,6 +76,8 @@ class Create extends Component {
 
   render() {
     const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
+    const price = priceForSize(size, framed)*3 + 10
+    const description = framed ? `Framed ${size} poster` : `${size} poster`
     return (
       <Container>
         <Description> 
@@ -85,9 +88,17 @@ class Create extends Component {
             Price will vary with print size and whether you would like it framed in black.
             Press order once you're ready! 
           </p>
-          <p>
-            <Button color={colors.green}>{`Order for $${priceForSize(size, framed)*3 + 10}`}</Button>
-          </p>
+          <StripeCheckout 
+            token={()=>{}}
+            name="Codenail.com"
+            description={description}
+            ComponentClass="p"
+            amount={price*100}
+            shippingAddress={true}
+            stripeKey='pk_test_lQYC49aP6fT12LuZv8ejgghF'
+          >
+            <Button color={colors.green}>{`Order for $${price}`}</Button>
+          </StripeCheckout>
         </Description>
         <EditorContainer>
           <PaddedControl 

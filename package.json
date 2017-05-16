@@ -9,6 +9,7 @@
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.4",
+    "react-stripe-checkout": "^2.2.5",
     "styled-components": "^1.4.6"
   },
   "devDependencies": {
