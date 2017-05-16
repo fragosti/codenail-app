@@ -9,6 +9,12 @@ const sizes = {
   phone: 376
 }
 
+
+export const colors = {
+  gray: '#ccc',
+  green: 'rgba(160, 255, 113, 0.3)'
+}
+
 // iterate through the sizes and create a media template
 export const media = Object.keys(sizes).reduce((accumulator, label) => {
   // use em in breakpoints to work properly cross-browser and support users

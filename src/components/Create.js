@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 import Editor from './Editor';
 import EditorControl from './EditorControl';
-import { lineHeight } from '../style/utils';
+import Button from './Button';
+import { lineHeight, colors } from '../style/utils';
 
 
 const EditorContainer = styled.div`
@@ -27,10 +28,12 @@ const Container = styled.div`
 
 const Description = styled.section`
   max-width: 800px;
-  padding: 20px 0px;
   line-height: ${lineHeight.text};
   h1 {
     font-weight: 700;
+  }
+  p {
+    padding: 15px 0px;
   }
 `
 
@@ -39,7 +42,7 @@ const PaddedControl = styled(EditorControl)`
 `
 
 const aspectRatioForSize = (size) => { // 12x16 for example
-  return size.split('x').map(x => parseInt(x)).reduce((x, y) => y / x)
+  return size.split('x').map(x => parseInt(x, 10)).reduce((x, y) => y / x)
 }
 
 const EDITOR_WIDTH = 700;
@@ -73,8 +76,16 @@ class Create extends Component {
     return (
       <Container>
         <Description> 
-          <h1> Welcome to the editor! </h1> Copy & paste your code, specify the language, theme, font size and more. 
-          You'll see the print preview live update as you go. Press continue once you're ready!
+          <h1> Welcome to the editor! </h1> 
+          <p> 
+            Copy & paste your code, specify the language, theme, font size and more.
+            You'll see the print preview live update as you go. 
+            Price will vary with print size.
+            Press order once you're ready! 
+          </p>
+          <p>
+            <Button color={colors.green}> Order for $50 </Button>
+          </p>
         </Description>
         <EditorContainer>
           <PaddedControl 
