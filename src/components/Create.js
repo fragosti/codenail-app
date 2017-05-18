@@ -95,6 +95,7 @@ class Create extends Component {
             ComponentClass="p"
             amount={price*100}
             shippingAddress={true}
+            billingAddress={true}
             stripeKey='pk_test_lQYC49aP6fT12LuZv8ejgghF'
           >
             <Button color={colors.green}>{`Order for $${price}`}</Button>
