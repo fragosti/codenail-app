@@ -3,7 +3,7 @@ const getEndpoint = (env) => {
     case 'staging':
       return ''
     case 'production':
-      return 'https://t46e391x1a.execute-api.us-west-2.amazonaws.com/production/'
+      return 'https://t46e391x1a.execute-api.us-west-2.amazonaws.com/production'
     default:
     case 'development':
       return 'http://localhost:8000/dev'
