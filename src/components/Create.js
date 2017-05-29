@@ -7,7 +7,7 @@ import EditorControl from './EditorControl';
 import Button from './Button';
 import { lineHeight, colors } from '../style/utils';
 import { priceForSize } from '../lib/price';
-import { createOrder } from '../lib/api';
+import { createOrder, STRIPE_KEY } from '../lib/api';
 
 
 const EditorContainer = styled.div`
@@ -115,7 +115,7 @@ class Create extends Component {
             amount={price*100}
             shippingAddress={true}
             billingAddress={true}
-            stripeKey='pk_test_lQYC49aP6fT12LuZv8ejgghF'
+            stripeKey={STRIPE_KEY}
           >
             <Button color={colors.green}>{`Order for $${price}`}</Button>
           </StripeCheckout>
