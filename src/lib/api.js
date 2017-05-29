@@ -17,3 +17,7 @@ export const createOrder = (order) => {
     body: JSON.stringify(order),
   })
 }
+
+export const getOrder = (id) => {
+  return fetch(`${API_ENDPOINT}/order/${id}`)
+}

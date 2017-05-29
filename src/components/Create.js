@@ -95,7 +95,7 @@ class Create extends Component {
             token={(token) => {
               createOrder({
                 token, 
-                price,
+                price: price*100,
                 description,
                 options: {
                   language,
