@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Landing from './Landing';
 import Create from './Create';
-import Header from './Header';
-import Footer from './Footer';
+import withHeaderFooter from '../HOCs/withHeaderFooter';
+import Render from './Render';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,10 +13,9 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Header/>
-          <Route exact path="/" component={Landing}/>
-          <Route path="/create" component={Create}/>
-          <Footer/>
+          <Route exact path="/" component={withHeaderFooter(Landing)}/>
+          <Route path="/create" component={withHeaderFooter(Create)}/>
+          <Route path="/render/:id" component={Render}/>
         </div>
       </Router>
     )

@@ -7,6 +7,7 @@ import EditorControl from './EditorControl';
 import Button from './Button';
 import { lineHeight, colors } from '../style/utils';
 import { priceForSize } from '../lib/price';
+import { createOrder } from '../lib/api';
 
 
 const EditorContainer = styled.div`
@@ -78,6 +79,8 @@ class Create extends Component {
     const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
     const price = priceForSize(size, framed)*3 + 10
     const description = framed ? `Framed ${size} poster` : `${size} poster`
+    const width = `${EDITOR_WIDTH}px`
+    const height = `${aspectRatioForSize(size)*EDITOR_WIDTH}px`
     return (
       <Container>
         <Description> 
@@ -89,7 +92,23 @@ class Create extends Component {
             Press order once you're ready! 
           </p>
           <StripeCheckout 
-            token={()=>{}}
+            token={(token) => {
+              createOrder({
+                token, 
+                price,
+                description,
+                options: {
+                  language,
+                  mode,
+                  value,
+                  fontSize,
+                  showLineNumbers,
+                  showGutter,
+                  width,
+                  height,
+                }
+              })
+            }}
             name="Codenail.com"
             description={description}
             ComponentClass="p"
@@ -123,8 +142,8 @@ class Create extends Component {
               onChange={this.onValueChange}
               showLineNumbers={showLineNumbers}
               showGutter={showGutter}
-              width={`${EDITOR_WIDTH}px`}
-              height={`${aspectRatioForSize(size)*EDITOR_WIDTH}px`}
+              width={width}
+              height={height}
             />
           </EditorWrapper>
         </EditorContainer>
