@@ -17,7 +17,9 @@ class Render extends Component {
   render() {
     const { language, mode, value, fontSize, showLineNumbers, showGutter, width, height } = this.state 
     if (!language) {
-      return '...Loading'
+      return (
+        <div> ...Loading </div>
+      )
     }
     return (
       <Editor 
