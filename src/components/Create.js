@@ -6,6 +6,7 @@ import Editor from './Editor';
 import EditorControl from './EditorControl';
 import Button from './Button';
 import { lineHeight, colors } from '../style/utils';
+import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import { createOrder, STRIPE_KEY } from '../lib/api';
 
@@ -44,10 +45,6 @@ const PaddedControl = styled(EditorControl)`
   padding: 20px 0px;
 `
 
-const aspectRatioForSize = (size) => { // 12x16 for example
-  return size.split('x').map(x => parseInt(x, 10)).reduce((x, y) => y / x)
-}
-
 const EDITOR_WIDTH = 700;
 
 class Create extends Component {
@@ -79,8 +76,8 @@ class Create extends Component {
     const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
     const price = priceForSize(size, framed)*3 + 10
     const description = framed ? `Framed ${size} poster` : `${size} poster`
-    const width = `${EDITOR_WIDTH}px`
-    const height = `${aspectRatioForSize(size)*EDITOR_WIDTH}px`
+    const width = EDITOR_WIDTH
+    const height =  aspectRatioForSize(size)*EDITOR_WIDTH
     return (
       <Container>
         <Description> 

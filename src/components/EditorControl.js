@@ -5,7 +5,6 @@ import { modularScale } from 'polished';
 
 import { zIndex } from '../style/utils';
 
-
 import 'react-select/dist/react-select.css';
 
 export const languages = [

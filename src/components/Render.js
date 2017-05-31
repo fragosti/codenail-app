@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Editor from './Editor';
 import { getOrder } from '../lib/api';
 
+const ZOOM = 3
+
 class Render extends Component {
   constructor(props) {
     super(props)
@@ -26,12 +28,12 @@ class Render extends Component {
         language={language}
         theme={mode}
         value={value}
-        fontSize={fontSize}
+        fontSize={fontSize*ZOOM}
         onChange={() => {}}
         showLineNumbers={showLineNumbers}
         showGutter={showGutter}
-        width={width}
-        height={height}
+        width={width*ZOOM}
+        height={height*ZOOM}
       />
     )
   }
