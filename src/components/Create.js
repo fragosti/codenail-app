@@ -74,6 +74,7 @@ class Create extends Component {
 
   render() {
     const { location } = this.props
+    const isTest = location.search.includes('test')
     const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
     const price = priceForSize(size, framed)*3 + 10
     const description = framed ? `Framed ${size} poster` : `${size} poster`
@@ -92,9 +93,10 @@ class Create extends Component {
           <StripeCheckout 
             token={(token) => {
               createOrder({
-                token, 
+                token,
                 price: price*100,
                 description,
+                isTest,
                 options: {
                   language,
                   mode,
@@ -113,7 +115,7 @@ class Create extends Component {
             amount={price*100}
             shippingAddress={true}
             billingAddress={true}
-            stripeKey={location.search.includes('test') ? TEST_STRIPE_KEY :STRIPE_KEY}
+            stripeKey={isTest ? TEST_STRIPE_KEY :STRIPE_KEY}
           >
             <Button color={colors.green}>{`Order for $${price}`}</Button>
           </StripeCheckout>
