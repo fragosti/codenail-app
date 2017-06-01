@@ -10,13 +10,15 @@ const getEndpoint = (env) => {
   }
 }
 
+export const LIVE_STRIPE_KEY = 'pk_live_xpo15faMQsO3EETkaR8jqQ8H'
+export const TEST_STRIPE_KEY = 'pk_test_lQYC49aP6fT12LuZv8ejgghF'
 const getStripeKey = (env) => {
   switch(env) {
     case 'production':
-      return 'pk_live_xpo15faMQsO3EETkaR8jqQ8H'
+      return LIVE_STRIPE_KEY
     default:
     case 'development':
-      return 'pk_test_lQYC49aP6fT12LuZv8ejgghF'
+      return TEST_STRIPE_KEY
   }
 }
 

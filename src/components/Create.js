@@ -8,7 +8,7 @@ import Button from './Button';
 import { lineHeight, colors } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
-import { createOrder, STRIPE_KEY } from '../lib/api';
+import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
 
 
 const EditorContainer = styled.div`
@@ -73,6 +73,7 @@ class Create extends Component {
   }
 
   render() {
+    const { location } = this.props
     const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
     const price = priceForSize(size, framed)*3 + 10
     const description = framed ? `Framed ${size} poster` : `${size} poster`
@@ -112,7 +113,7 @@ class Create extends Component {
             amount={price*100}
             shippingAddress={true}
             billingAddress={true}
-            stripeKey={STRIPE_KEY}
+            stripeKey={location.search.includes('test') ? TEST_STRIPE_KEY :STRIPE_KEY}
           >
             <Button color={colors.green}>{`Order for $${price}`}</Button>
           </StripeCheckout>
