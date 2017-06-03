@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Editor from './Editor';
 import { getOrder } from '../lib/api';
+import { getQueryParams } from '../lib/utils';
 
 const ZOOM = 3
 
@@ -18,6 +19,8 @@ class Render extends Component {
 
   render() {
     const { language, mode, value, fontSize, showLineNumbers, showGutter, width, height } = this.state 
+    const params = getQueryParams(this.props.location.search)
+    const zoom = parseInt(params.zoom, 10) || ZOOM
     if (!language) {
       return (
         <div> ...Loading </div>
@@ -28,12 +31,12 @@ class Render extends Component {
         language={language}
         theme={mode}
         value={value}
-        fontSize={fontSize*ZOOM}
+        fontSize={fontSize*zoom}
         onChange={() => {}}
         showLineNumbers={showLineNumbers}
         showGutter={showGutter}
-        width={width*ZOOM}
-        height={height*ZOOM}
+        width={width*zoom}
+        height={height*zoom}
       />
     )
   }
