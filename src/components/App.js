@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+
+import { compose } from '../lib/utils';
 import Landing from './Landing';
 import Create from './Create';
-import withHeaderFooter from '../HOCs/withHeaderFooter';
 import Render from './Render';
+import ThankYou from './ThankYou';
+import withHeaderFooter from '../HOCs/withHeaderFooter';
+import withLoading from '../HOCs/withLoading';
 import {
   BrowserRouter as Router,
   Route,
@@ -14,7 +18,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={withHeaderFooter(Landing)}/>
-          <Route path="/create" component={withHeaderFooter(Create)}/>
+          <Route path="/create" component={compose(withLoading, withHeaderFooter)(Create)}/>
+          <Route path="/thankyou" component={withHeaderFooter(ThankYou)}/>
           <Route path="/render/:id" component={Render}/>
         </div>
       </Router>

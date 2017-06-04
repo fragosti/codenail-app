@@ -1,5 +1,5 @@
 // these sizes are arbitrary and you can set them to whatever you wish
-import { css } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 import { modularScale } from 'polished';
 
 const sizes = {
@@ -30,8 +30,19 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
 
 export const zIndex = {
   aboveEditor: 5,
+  overlay: 6,
 };
 
 export const lineHeight = {
   text: `${modularScale(2)}`,
 }
+
+export const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;

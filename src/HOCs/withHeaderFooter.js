@@ -8,8 +8,8 @@ export default (Component) => (
     render() {
       return (
         <div>
-          <Header/>,
-          <Component {...this.props}/>,
+          <Header/>
+          <Component {...this.props}/>
           <Footer/>
         </div>
       )

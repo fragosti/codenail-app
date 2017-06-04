@@ -5,6 +5,8 @@ import StripeCheckout from 'react-stripe-checkout';
 import Editor from './Editor';
 import EditorControl from './EditorControl';
 import Button from './Button';
+import Overlay from './Overlay';
+import Spinner from './Spinner';
 import { lineHeight, colors } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
@@ -73,7 +75,7 @@ class Create extends Component {
   }
 
   render() {
-    const { location } = this.props
+    const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
     const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
     const price = priceForSize(size, framed)*3 + 10
@@ -82,6 +84,12 @@ class Create extends Component {
     const height =  aspectRatioForSize(size)*EDITOR_WIDTH
     return (
       <Container>
+        {isLoading && (
+          <Overlay> 
+            <Spinner scale={6}/>
+          </Overlay>
+          )
+        }
         <Description> 
           <h1> Welcome to the editor! </h1> 
           <p> 
@@ -92,6 +100,7 @@ class Create extends Component {
           </p>
           <StripeCheckout 
             token={(token) => {
+              startLoading()
               createOrder({
                 token,
                 price: price*100,
@@ -108,6 +117,10 @@ class Create extends Component {
                   height,
                 }
               })
+              .then(() => {
+                stopLoading()
+                history.push('/thankyou')
+              })
             }}
             name="Codenail.com"
             description={description}
@@ -115,7 +128,7 @@ class Create extends Component {
             amount={price*100}
             shippingAddress={true}
             billingAddress={true}
-            stripeKey={isTest ? TEST_STRIPE_KEY :STRIPE_KEY}
+            stripeKey={isTest ? TEST_STRIPE_KEY : STRIPE_KEY}
           >
             <Button color={colors.green}>{`Order for $${price}`}</Button>
           </StripeCheckout>
@@ -150,7 +163,6 @@ class Create extends Component {
       </Container>
     )
   }
-
 }
 
 export default Create
