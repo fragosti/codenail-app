@@ -7,6 +7,7 @@ import EditorControl from './EditorControl';
 import Button from './Button';
 import Overlay from './Overlay';
 import Spinner from './Spinner';
+import { Container, Description } from './Page';
 import { lineHeight, colors } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
@@ -26,23 +27,6 @@ const EditorWrapper = styled.div`
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
 `
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-const Description = styled.section`
-  max-width: 800px;
-  line-height: ${lineHeight.text};
-  h1 {
-    font-weight: 700;
-  }
-  p {
-    padding: 15px 0px;
-  }
-`
-
 const PaddedControl = styled(EditorControl)`
   padding: 20px 0px;
 `
@@ -53,6 +37,7 @@ class Create extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      errorMessage: null,
       language: 'javascript',
       mode: 'monokai',
       showLineNumbers: true,
@@ -77,7 +62,7 @@ class Create extends Component {
   render() {
     const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
-    const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value } = this.state
+    const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value, errorMessage } = this.state
     const price = priceForSize(size, framed)*3 + 10
     const description = framed ? `Framed ${size} poster` : `${size} poster`
     const width = EDITOR_WIDTH
@@ -91,6 +76,7 @@ class Create extends Component {
           )
         }
         <Description> 
+          {errorMessage && <p><i> {errorMessage} </i></p>}
           <h1> Welcome to the editor! </h1> 
           <p> 
             Copy & paste your code, specify the language, theme, font size and more.
@@ -117,9 +103,14 @@ class Create extends Component {
                   height,
                 }
               })
-              .then(() => {
+              .then(res => res.json())
+              .then(({ id }) => {
                 stopLoading()
-                history.push('/thankyou')
+                history.push(`/thankyou/${id}`)
+              })
+              .catch(() => {
+                stopLoading()
+                this.setState({ errorMessage: 'Sorry! Something went wrong please try again later.'})
               })
             }}
             name="Codenail.com"

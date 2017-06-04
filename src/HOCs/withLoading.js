@@ -4,12 +4,12 @@ import React from 'react';
   Use this HOC whenever you need a component with a simple loading state
   and want to keep things DRY.
 */
-export default (Component) => (
+export default (Component, isLoading = false) => (
   class extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        isLoading: false,
+        isLoading: isLoading,
       }
     }
 
