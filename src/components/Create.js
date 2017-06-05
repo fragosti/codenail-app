@@ -8,7 +8,7 @@ import Button from './Button';
 import Overlay from './Overlay';
 import Spinner from './Spinner';
 import { Container, Description } from './Page';
-import { lineHeight, colors } from '../style/utils';
+import { colors } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';

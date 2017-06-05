@@ -18,8 +18,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={withHeaderFooter(Landing)}/>
-          <Route path="/create" component={compose(withLoading, withHeaderFooter)(Create, true)}/>
-          <Route path="/thankyou/:id" component={compose(withLoading, withHeaderFooter)(ThankYou)}/>
+          <Route path="/create" component={compose(withLoading, withHeaderFooter)(Create)}/>
+          <Route path="/thankyou/:id" component={withLoading(withHeaderFooter(ThankYou), true)}/>
           <Route path="/render/:id" component={Render}/>
         </div>
       </Router>
