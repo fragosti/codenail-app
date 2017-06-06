@@ -29,6 +29,7 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
       setOptions={{
         showLineNumbers: showLineNumbers,
         useWorker: false,
+        fontFamily: 'Menlo',
       }}
     />
   )
