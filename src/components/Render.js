@@ -4,7 +4,6 @@ import Editor from './Editor';
 import { getOrder } from '../lib/api';
 import { getQueryParams } from '../lib/utils';
 
-const ZOOM = 3
 
 class Render extends Component {
   constructor(props) {
@@ -17,10 +16,14 @@ class Render extends Component {
     getOrder(id).then(res => res.json()).then(({ options }) => this.setState(options))
   }
 
+  componentDidMount() {
+    window.callPhantom && window.callPhantom('takeShot')
+  }
+
   render() {
     const { language, mode, value, fontSize, showLineNumbers, showGutter, width, height } = this.state 
     const params = getQueryParams(this.props.location.search)
-    const zoom = parseInt(params.zoom, 10) || ZOOM
+    const zoom = parseInt(params.zoom, 10) || 1
     if (!language) {
       return (
         <div> ...Loading </div>
