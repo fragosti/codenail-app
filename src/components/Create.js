@@ -31,6 +31,10 @@ const PaddedControl = styled(EditorControl)`
   padding: 20px 0px;
 `
 
+const OverlayMessage = styled.div`
+  margin-top: 20px;
+`
+
 const EDITOR_WIDTH = 700;
 
 class Create extends Component {
@@ -71,7 +75,10 @@ class Create extends Component {
       <Container>
         {isLoading && (
           <Overlay> 
-            <Spinner scale={6}/>
+            <div>          
+              <Spinner scale={6}/>
+            </div>
+            <OverlayMessage> Processing your order... </OverlayMessage>
           </Overlay>
           )
         }

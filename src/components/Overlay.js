@@ -9,6 +9,7 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   color: white;
   align-items: center;
   justify-content: center;
