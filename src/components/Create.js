@@ -115,7 +115,7 @@ class Create extends Component {
             }}
             name="Codenail.com"
             description={description}
-            ComponentClass="p"
+            ComponentClass="span"
             amount={price*100}
             shippingAddress={true}
             billingAddress={true}
