@@ -6,9 +6,8 @@ const sizes = {
   giant: 1170,
   desktop: 992,
   tablet: 768,
-  phone: 376
+  phone: 420
 }
-
 
 export const colors = {
   gray: '#ccc',

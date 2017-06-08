@@ -1,16 +1,14 @@
 import React from 'react';
-import {
-  Link
-} from 'react-router-dom';
+import Logo from './Logo';
 
 const Header = () => (
   <header className="header">
     <div className="container-lrg">
       <div className="col-12 spread">
         <div>
-          <Link to="/" className="logo">
+          <Logo to="/">
             Codenail
-          </Link>
+          </Logo>
         </div>
         <div>
           <a className="nav-link" href="#">
