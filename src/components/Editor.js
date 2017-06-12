@@ -47,8 +47,8 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
 Editor.defaultProps = {
   width: 700,
   height: 990,
-  verPadding: 20,
-  horPadding: 100,
+  verPadding: 0,
+  horPadding: 0,
 };
 
 export default Editor

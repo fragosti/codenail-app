@@ -7,6 +7,7 @@ import EditorControl from './EditorControl';
 import Button from './Button';
 import Overlay from './Overlay';
 import Spinner from './Spinner';
+import Frame from './Frame';
 import { Container, Description } from './Page';
 import { colors } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
@@ -24,7 +25,9 @@ const EditorContainer = styled.div`
 const EditorWrapper = styled.div`
   padding: 1px;
   border-radius: 3px;
+  position: relative;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
+  margin-top: ${props => props.framed ? 35 : 0}px;
 `
 
 const PaddedControl = styled(EditorControl)`
@@ -89,7 +92,7 @@ class Create extends Component {
           {errorMessage && <p><i> {errorMessage} </i></p>}
           <h1> Welcome to the editor! </h1> 
           <p> 
-            Copy & paste your code, specify the language, theme, font size and more.
+            Add your code, specify the language, theme, font size and more.
             You'll see the print preview live update as you go. 
             Price will vary with print size and whether you would like it framed in black.
             Press order once you're ready! 
@@ -153,7 +156,16 @@ class Create extends Component {
               paddingColor,
             }}
           />
-          <EditorWrapper> 
+          <EditorWrapper framed={framed}> 
+            {framed && ( 
+              <Frame 
+                width={width} 
+                height={height} 
+                thickness={70}
+                borderColor1='#767676'
+                borderColor2='#666666'
+              />
+            )}
             <Editor 
               language={language}
               theme={mode}

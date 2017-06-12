@@ -3,6 +3,8 @@ import {
   Link
 } from 'react-router-dom';
 
+import Editor from './Editor';
+
 const Landing = () => {
   return (
     <div>
@@ -15,17 +17,20 @@ const Landing = () => {
           </div>
         </div>
         <div className="container-lrg flex">
-          <div className="col-6 centervertical">
+          <div className="col-12 centervertical">
+            <div className="ctas text-center">
+              <Link className="ctas-button" to="/create"> Order </Link>
+            </div>
+            <div>
+              <Editor
+                theme='monokai'
+                language='javascript'
+                width={500}
+              />
+            </div>
             <h2 className="paragraph">
               We're creating the best place to go when starting a new business or company. With Launchaco you can instantly search domain names, social media handles, and see your logo in beautiful logotypes.
             </h2>
-            <div className="ctas">
-              <input className="ctas-input" type="text" placeholder="Your Email Address" />
-                <Link className="ctas-button" to="/create"> Order </Link>
-            </div>
-          </div>
-          <div className="col-6 sidedevices">
-            
           </div>
         </div>
       </section>
