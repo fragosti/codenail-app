@@ -61,8 +61,9 @@ export const sizes = [
 
 const EditorControlContainer = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: center;
+  max-width: 750px;
+  flex-wrap: wrap;
+  justify-content: space-between;
   z-index: ${zIndex.aboveEditor};
 `
 
