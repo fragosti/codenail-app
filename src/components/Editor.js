@@ -1,6 +1,7 @@
 import React from 'react';
 import AceEditor from 'react-ace';
 
+import styled from 'styled-components';
 import { languages, themes } from './EditorControl';
 
 languages.forEach((lang) => {
@@ -11,33 +12,43 @@ themes.forEach((theme) => {
   require(`brace/theme/${theme}`)
 })
 
-const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, fontSize, height, width}) => {
+const Container = styled.div`
+  padding: ${props => props.verPadding}px ${props => props.horPadding}px;
+  ${props => props.paddingColor !== 'none' && `background-color: ${props.paddingColor} !important;`} 
+  border: 1px solid #f5f5f5;
+`
+
+const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor}) => {
   return (
-    <AceEditor
-      mode={language}
-      height={`${height}px`}
-      width={`${width}px`}
-      theme={theme}
-      value={value}
-      fontSize={fontSize}
-      onChange={onChange}
-      showGutter={showGutter}
-      showPrintMargin={false}
-      highlightActiveLine={false}
-      name="editor"
-      editorProps={{$blockScrolling: true}}
-      setOptions={{
-        showLineNumbers: showLineNumbers,
-        useWorker: false,
-        fontFamily: 'Menlo',
-      }}
-    />
+    <Container paddingColor={paddingColor} horPadding={horPadding} verPadding={verPadding} className={`ace-${theme.replace('_', '-')}`}>
+      <AceEditor
+        mode={language}
+        height={`${height-verPadding*2}px`}
+        width={`${width-horPadding*2}px`}
+        theme={theme}
+        value={value}
+        fontSize={fontSize}
+        onChange={onChange}
+        showGutter={showGutter}
+        showPrintMargin={false}
+        highlightActiveLine={false}
+        name="editor"
+        editorProps={{$blockScrolling: true}}
+        setOptions={{
+          showLineNumbers: showLineNumbers,
+          useWorker: false,
+          fontFamily: 'Menlo',
+        }}
+      />
+    </Container>
   )
 };
 
 Editor.defaultProps = {
   width: 700,
   height: 990,
+  verPadding: 20,
+  horPadding: 100,
 };
 
 export default Editor

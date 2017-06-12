@@ -21,7 +21,7 @@ class Render extends Component {
   }
 
   render() {
-    const { language, mode, value, fontSize, showLineNumbers, showGutter, width, height } = this.state 
+    const { language, mode, value, fontSize, showLineNumbers, showGutter, width, height, horPadding, verPadding } = this.state 
     const params = getQueryParams(this.props.location.search)
     const zoom = parseInt(params.zoom, 10) || 1
     if (!language) {
@@ -40,6 +40,8 @@ class Render extends Component {
         showGutter={showGutter}
         width={width*zoom}
         height={height*zoom}
+        horPadding={horPadding}
+        verPadding={verPadding}
       />
     )
   }

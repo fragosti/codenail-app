@@ -22,7 +22,7 @@ const EditorContainer = styled.div`
 `
 
 const EditorWrapper = styled.div`
-  padding: 16px;
+  padding: 1px;
   border-radius: 3px;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
 `
@@ -50,6 +50,9 @@ class Create extends Component {
       fontSize: 12,
       size: '12x16',
       framed: false,
+      horPadding: 0,
+      verPadding: 0,
+      paddingColor: 'none',
     }
   }
 
@@ -66,7 +69,7 @@ class Create extends Component {
   render() {
     const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
-    const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value, errorMessage } = this.state
+    const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value, horPadding, verPadding, paddingColor, errorMessage } = this.state
     const price = priceForSize(size, framed)*3 + 10
     const description = framed ? `Framed ${size} poster` : `${size} poster`
     const width = EDITOR_WIDTH
@@ -108,6 +111,9 @@ class Create extends Component {
                   showGutter,
                   width,
                   height,
+                  horPadding,
+                  verPadding,
+                  paddingColor,
                 }
               })
               .then(res => res.json())
@@ -142,6 +148,9 @@ class Create extends Component {
               fontSize,
               size,
               framed,
+              horPadding,
+              verPadding,
+              paddingColor,
             }}
           />
           <EditorWrapper> 
@@ -155,6 +164,9 @@ class Create extends Component {
               showGutter={showGutter}
               width={width}
               height={height}
+              horPadding={horPadding}
+              verPadding={verPadding}
+              paddingColor={paddingColor}
             />
           </EditorWrapper>
         </EditorContainer>

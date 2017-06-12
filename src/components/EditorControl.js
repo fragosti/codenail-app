@@ -39,7 +39,11 @@ export const themes = [
   'terminal',
 ];
 
-export const fontSizes = [6,7,8,9,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32];
+export const fontSizes = [6,7,8,9,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,34,36];
+
+export const paddingOptions = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200];
+
+export const paddingColors = ['none', 'white', 'black'];
 
 export const sizes = [
   '8x10',
@@ -93,6 +97,9 @@ const optionsForKey = {
   showLineNumbers: boolOption,
   showGutter: boolOption,
   framed: boolOption,
+  horPadding: paddingOptions.map(size => ({value: size, label: size})),
+  verPadding: paddingOptions.map(size => ({value: size, label: size})),
+  paddingColor: paddingColors.map(color => ({value: color, label: color}))
 }
 
 const labelForKey = {
@@ -103,6 +110,9 @@ const labelForKey = {
   fontSize: 'Font Size',
   size: 'Size (in)',
   framed: 'Framed?',
+  horPadding: 'Horizontal Padding',
+  verPadding: 'Vertical Padding',
+  paddingColor: 'Padding Color',
 }
 
 const EditorControl = ({editorProps, onChange, className}) => {

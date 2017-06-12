@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { modularScale } from 'polished';
 
 import Icon from './Icon';
-import { media } from '../style/utils';
 
 const LogoIcon = styled(Icon)`
   margin-left: 5px;
