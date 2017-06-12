@@ -1,9 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   Link
 } from 'react-router-dom';
 
 import Editor from './Editor';
+
+const EditorDemo = styled.div`
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
+  margin: 30px 0px;
+`
+
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
 
 const Landing = () => {
   return (
@@ -21,13 +35,26 @@ const Landing = () => {
             <div className="ctas text-center">
               <Link className="ctas-button" to="/create"> Order </Link>
             </div>
-            <div>
-              <Editor
-                theme='monokai'
-                language='javascript'
-                width={500}
-              />
-            </div>
+            <Center>
+              <EditorDemo width={500}>
+                <Editor
+                  value={`
+
+const tryItOut = () => {
+    console.log('Press Order')
+}`}
+                  theme='monokai'
+                  language='javascript'
+                  fontSize={25}
+                  showLineNumbers={false}
+                  showGutter={false}
+                  width={500}
+                  height={300}
+                  horPadding={25}
+                  verPadding={30}
+                />
+              </EditorDemo>
+            </Center>
             <h2 className="paragraph">
               We're creating the best place to go when starting a new business or company. With Launchaco you can instantly search domain names, social media handles, and see your logo in beautiful logotypes.
             </h2>

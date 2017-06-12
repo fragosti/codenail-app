@@ -60,16 +60,6 @@ body {
 p.paragraph {
   color: rgba(0,0,0,.5);
 }
-.logo {
-  font-size: 30px;
-  line-height: 30px;
-  font-weight: 900;
-}
-@media (max-width: 420px) {
-  .logo {
-    font-size: 22px;
-  }
-}
 .nav-link2,
 .nav-link {
   text-decoration: none;
