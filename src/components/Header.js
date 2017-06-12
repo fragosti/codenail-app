@@ -11,10 +11,10 @@ const Header = () => (
           </Logo>
         </div>
         <div>
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="https://twitter.com/codenail">
             Twitter
           </a>
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="https://www.facebook.com/codenail">
             Facebook
           </a>
         </div>

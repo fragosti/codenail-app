@@ -5,17 +5,17 @@ const Footer = () => (
     <div className="container-sml">
       <div className="col-12 text-center">
         <div>
-          <a className="nav-link">
+          <a className="nav-link" href="https://twitter.com/codenail">
             Twitter
           </a>
-          <a className="nav-link">
+          <a className="nav-link" href="https://www.facebook.com/codenail">
             Facebook
           </a>
           <a className="nav-link">
             Contact
           </a>
           <a className="nav-link">
-            TOS
+            FAQ
           </a>
           <a className="nav-link">
             Privacy
@@ -24,7 +24,7 @@ const Footer = () => (
         <br/>
         <div>
           <span>
-            © 2016 Compute Studios.
+            © 2017 Codenail
           </span>
         </div>
       </div>
