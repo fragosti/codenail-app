@@ -6,18 +6,17 @@ import {
 
 import Editor from './Editor';
 import { CTA } from './Button'; 
-
-const EditorDemo = styled.div`
-  padding: 10px;
-  border-radius: 3px;
-  box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
-  margin: 30px 0px;
-`
+import Sample from './Sample';
+import samples from '../lib/samples';
+import { PosterBack } from './Page';
 
 const Center = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+`
+const EditorDemo = PosterBack.extend`
+  margin: 35px 0px;
 `
 
 const CTALink = CTA.withComponent(Link)
@@ -39,7 +38,7 @@ const Landing = () => {
               <CTALink fontScale={1} to="/create"> Try it! </CTALink>
             </div>
             <Center>
-              <EditorDemo width={500}>
+              <EditorDemo>
                 <Editor
                   value={`
 
@@ -59,7 +58,8 @@ const tryItOut = () => {
               </EditorDemo>
             </Center>
             <h2 className="paragraph">
-              We're creating the best place to go when starting a new business or company. With Launchaco you can instantly search domain names, social media handles, and see your logo in beautiful logotypes.
+              Whether you've written code you're proud of, are a fan of a famous algorithm, stumbled upon some funny comments, or even just like all the pretty colors: 
+              this is the place to order a poster of it!
             </h2>
           </div>
         </div>
@@ -68,35 +68,35 @@ const tryItOut = () => {
         <div className="container-lrg flex">
           <div className="col-4">
             <b className="emoji">
-              🎓
+              💻
             </b>
             <h3 className="subheading">
-              Choose any language
+              Choose any language or theme 
             </h3>
             <p className="paragraph">
-              Launchaco instantly shows you the most relevant domain names. Followed by hundreds of new gtlds. Get your .gold domain name today!
+              We support many programming languages and syntax highlighting themes out of the box, and are constantly adding more. 
             </p>
           </div>
           <div className="col-4">
             <b className="emoji">
-              💐
+              💅🏼
             </b>
             <h3 className="subheading">
-              Hundreds of syntax highlight themes
+              Tons of options and sizes
             </h3>
             <p className="paragraph">
-              Naming your brand has never been soooo easy! With Launchaco you can instantly search for twitter, facebook, medium, and instagram handles.
+              Add line numbers, choose the poster dimensions, font-size and adjust it all with padding. We provide the tools you need to create the poster you want!
             </p>
           </div>
           <div className="col-4">
             <b className="emoji">
-              🚀
+              🖼
             </b>
             <h3 className="subheading">
-              Frame or no frame&nbsp;
+              With or without a frame
             </h3>
             <p className="paragraph">
-              We've hand travelled the depths of the internet to bring you gorgeous logotypes. Featuring the beautiful fonts of Connary Fagen.
+              Have your poster delivered framed and ready to be mounted on a wall. Every poster dimension can optionally be framed in a gorgeous black wood frame.
             </p>
           </div>
         </div>
@@ -105,15 +105,15 @@ const tryItOut = () => {
         <div className="container-sml">
           <div className="col-12 text-center">
             <h3 className="heading">
-              Brilliant Domain Names.
+              Need Some Inspiration?
             </h3>
             <p className="paragraph">
-              Launchaco instantly shows you the most relevant domain names. Followed by hundreds of new gtlds. Get your .gold domain name today!
+              Check out these samples!
             </p>
           </div>
         </div>
         <div className="container-lrg centerdevices col-12">
-          
+          {samples.map(({id}) => <Sample key={id} id={id}/>)}
         </div>
       </section>
       <section className="socialproof">
@@ -121,7 +121,7 @@ const tryItOut = () => {
           <div className="text-center">
             <div className="col-12">
               <h4 className="heading">
-                Some people think we're pretty neat.
+                Join the crowd.
               </h4>
             </div>
           </div>

@@ -19,3 +19,10 @@ export const Description = styled.section`
     padding: 15px 0px;
   }
 `
+
+export const PosterBack = styled.div`
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
+  display: inline-block;
+`
