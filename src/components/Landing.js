@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 import Editor from './Editor';
+import { CTA } from './Button'; 
 
 const EditorDemo = styled.div`
   padding: 10px;
@@ -18,6 +19,8 @@ const Center = styled.div`
   align-items: center;
   flex-direction: column;
 `
+
+const CTALink = CTA.withComponent(Link)
 
 const Landing = () => {
   return (
@@ -33,7 +36,7 @@ const Landing = () => {
         <div className="container-lrg flex">
           <div className="col-12 centervertical">
             <div className="ctas text-center">
-              <Link className="ctas-button" to="/create"> Order </Link>
+              <CTALink fontScale={1} to="/create"> Try it! </CTALink>
             </div>
             <Center>
               <EditorDemo width={500}>
@@ -41,7 +44,7 @@ const Landing = () => {
                   value={`
 
 const tryItOut = () => {
-    console.log('Press Order')
+    console.log('A Poster!');
 }`}
                   theme='monokai'
                   language='javascript'
