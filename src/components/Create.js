@@ -12,6 +12,8 @@ import { Container, Description } from './Page';
 import { colors } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
+import samples from '../lib/samples';
+import { getQueryParams } from '../lib/utils';
 import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
 
 
@@ -43,7 +45,8 @@ const EDITOR_WIDTH = 700;
 class Create extends Component {
   constructor(props) {
     super(props)
-    this.state = {
+    const { sampleId } = getQueryParams(props.location.search)
+    this.state = Object.assign({
       errorMessage: null,
       language: 'javascript',
       mode: 'monokai',
@@ -56,7 +59,7 @@ class Create extends Component {
       horPadding: 0,
       verPadding: 0,
       paddingColor: 'none',
-    }
+    }, samples[sampleId] || {})
   }
 
   onSettingsChange = (key, value) => {
@@ -76,7 +79,7 @@ class Create extends Component {
     const price = priceForSize(size, framed)*3 + 10
     const description = framed ? `Framed ${size} poster` : `${size} poster`
     const width = EDITOR_WIDTH
-    const height =  aspectRatioForSize(size)*EDITOR_WIDTH
+    const height =  aspectRatioForSize(size)*EDITOR_WIDTH 
     return (
       <Container>
         {isLoading && (

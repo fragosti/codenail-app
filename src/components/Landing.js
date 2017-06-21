@@ -113,7 +113,7 @@ const tryItOut = () => {
           </div>
         </div>
         <div className="container-lrg centerdevices col-12">
-          {samples.map(({id}) => <Sample key={id} id={id}/>)}
+          {Object.keys(samples).map((id) => <Sample key={id} id={id}/>)}
         </div>
       </section>
       <section className="socialproof">

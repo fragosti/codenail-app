@@ -1,6 +1,5 @@
-const samples = [
-  {
-    id: 'SykrlbpMW',
+const samples = {
+  'SykrlbpMW': {
     value: `
 class Graph:
   def __init__(self):
@@ -46,12 +45,12 @@ def dijsktra(graph, initial):
 
   return visited, path
     `,
-    theme: 'solarized_dark',
+    mode: 'solarized_dark',
     language: 'python',
     fontSize: 16,
     showLineNumbers: true,
     showGutter: true,
   }
-];
+};
 
 export default samples;

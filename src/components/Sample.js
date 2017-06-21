@@ -56,7 +56,7 @@ class Sample extends Component {
         }
         <Image src={url}/>
         <CTAWrap>
-          <CTALink to="/create"> See in Editor </CTALink>
+          <CTALink to={`/create?sampleId=${id}`}> See in Editor </CTALink>
         </CTAWrap>
       </SampleWrap>
     )
