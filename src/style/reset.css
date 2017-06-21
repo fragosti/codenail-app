@@ -30,8 +30,6 @@ footer, header, hgroup, menu, nav, section {
 }
 a {
   text-decoration: none;
-}
-a:visited {
   color: inherit;
 }
 body {
