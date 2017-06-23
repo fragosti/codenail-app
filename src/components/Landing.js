@@ -6,7 +6,7 @@ import {
 
 import Editor from './Editor';
 import { CTA } from './Button'; 
-import Sample from './Sample';
+import Samples from './Sample';
 import samples from '../lib/samples';
 import { PosterBack } from './Page';
 
@@ -113,7 +113,7 @@ const tryItOut = () => {
           </div>
         </div>
         <div className="container-lrg centerdevices col-12">
-          {Object.keys(samples).map((id) => <Sample key={id} id={id}/>)}
+          <Samples samples={samples}/>
         </div>
       </section>
       <section className="socialproof">

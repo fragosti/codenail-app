@@ -24,6 +24,12 @@ const CTAWrap = styled.div`
 
 const CTALink = CTA.withComponent(Link)
 
+const Samples = ({ samples }) => (
+  <div>
+    {Object.keys(samples).map((id) => <Sample key={id} id={id}/>)}
+  </div>
+)
+
 class Sample extends Component {
   constructor(props) {
     super(props)
@@ -63,4 +69,4 @@ class Sample extends Component {
   }
 }
 
-export default Sample
+export default Samples
