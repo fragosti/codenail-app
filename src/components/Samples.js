@@ -21,13 +21,19 @@ const CTAWrap = styled.div`
   width: 100%;
   text-align: center;
 `
+const SampleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
 
 const CTALink = CTA.withComponent(Link)
 
 const Samples = ({ samples }) => (
-  <div>
+  <SampleContainer>
     {Object.keys(samples).map((id) => <Sample key={id} id={id}/>)}
-  </div>
+  </SampleContainer>
 )
 
 class Sample extends Component {

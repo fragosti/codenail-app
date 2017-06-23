@@ -51,6 +51,16 @@ def dijsktra(graph, initial):
     showLineNumbers: true,
     showGutter: true,
   },
+  'BJ0op-9QW': {
+    value: 
+  `\n\n\n\n\n\npublic class Me {\n    private Boolean alive = true;\n    public void run() {\n        while (this.alive) {\n            this.love(new You());\n        }\n    }\n}\n`,
+    showGutter: false,
+    mode: 'eclipse',
+    fontSize: 30,
+    horPadding: 50,
+    language: 'java',
+    size: '10x10',
+  },
 
   'rJqG7YwQW': {
     value: 

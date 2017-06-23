@@ -6,7 +6,7 @@ import {
 
 import Editor from './Editor';
 import { CTA } from './Button'; 
-import Samples from './Sample';
+import Samples from './Samples';
 import samples from '../lib/samples';
 import { PosterBack } from './Page';
 
