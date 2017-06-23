@@ -10,6 +10,7 @@ import 'react-select/dist/react-select.css';
 export const languages = [
   'javascript',
   'java',
+  'swift',
   'python',
   'xml',
   'ruby',
@@ -23,7 +24,23 @@ export const languages = [
   'csharp',
   'elixir',
   'typescript',
-  'css'
+  'objectivec',
+  'css',
+  'perl',
+  'ruby',
+  'scala',
+  'sql',
+  'yaml',
+  'diff',
+  'elm',
+  'haskell',
+  'jsx',
+  'kotlin',
+  'makefile',
+  'matlab',
+  'php',
+  'rust',
+
 ];
 
 export const themes = [
@@ -37,6 +54,10 @@ export const themes = [
   'solarized_dark',
   'solarized_light',
   'terminal',
+  'chrome',
+  'eclipse',
+  'dawn',
+  'textmate',
 ];
 
 export const fontSizes = [6,7,8,9,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,34,36];

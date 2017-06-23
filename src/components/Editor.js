@@ -38,6 +38,7 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
           showLineNumbers: showLineNumbers,
           useWorker: false,
           fontFamily: 'Menlo',
+          cursorStyle: 'slim',
         }}
       />
     </Container>
