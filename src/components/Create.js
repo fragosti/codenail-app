@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import StripeCheckout from 'react-stripe-checkout';
+import { Link } from 'react-router-dom';
 
 import Editor from './Editor';
 import EditorControl from './EditorControl';
@@ -99,6 +100,7 @@ class Create extends Component {
             You'll see the print preview live update as you go. 
             <strong> Price will vary with print size</strong> and whether you would like it <strong>framed</strong> in black.
             <strong> Shipping is free and takes 1-3 business days</strong> after fulfillment. 
+            More questions? Visit our <Link to='/faq'><strong>FAQ</strong></Link> page. 
             Press order once you're ready! 
           </p>
           <StripeCheckout 

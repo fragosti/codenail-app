@@ -6,6 +6,7 @@ import Create from './Create';
 import Render from './Render';
 import ThankYou from './ThankYou';
 import Privacy from './Privacy';
+import FAQ from './FAQ';
 import withHeaderFooter from '../HOCs/withHeaderFooter';
 import withLoading from '../HOCs/withLoading';
 import {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/thankyou/:id" component={withLoading(withHeaderFooter(ThankYou), true)}/>
           <Route path="/render/:id" component={Render}/>
           <Route path="/privacy" component={withHeaderFooter(Privacy)}/>
+          <Route path="/faq" component={withHeaderFooter(FAQ)}/>
         </div>
       </Router>
     )
