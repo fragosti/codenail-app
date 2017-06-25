@@ -6,6 +6,7 @@ import Spinner from './Spinner';
 import { getOrder } from '../lib/api';
 import { Container, Description } from './Page';
 
+/* eslint-disable jsx-a11y/accessible-emoji */
 const Emoji = styled.span`
   font-size: 1.8em;
   margin: 10px;
@@ -55,5 +56,5 @@ class ThankYou extends Component {
     )
   }
 }
-
+/* eslint-enable */
 export default ThankYou

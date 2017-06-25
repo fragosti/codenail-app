@@ -68,7 +68,7 @@ const tryItOut = () => {
         <div className="container-lrg flex">
           <div className="col-4">
             <b className="emoji">
-              💻
+              <span role='img' aria-label='laptop'>💻</span>
             </b>
             <h3 className="subheading">
               Choose any language or theme 
@@ -79,7 +79,7 @@ const tryItOut = () => {
           </div>
           <div className="col-4">
             <b className="emoji">
-              💅🏼
+              <span role='img' aria-label='decorations'>💅</span>
             </b>
             <h3 className="subheading">
               Tons of options and sizes
@@ -90,7 +90,7 @@ const tryItOut = () => {
           </div>
           <div className="col-4">
             <b className="emoji">
-              🖼
+              <span role='img' aria-label='frame'>🖼</span>
             </b>
             <h3 className="subheading">
               With or without a frame
