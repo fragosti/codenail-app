@@ -28,6 +28,7 @@ const EditorContainer = styled.div`
 const EditorWrapper = styled.div`
   padding: 1px;
   border-radius: 3px;
+  border: 2px solid #f5f5f5;
   position: relative;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
   margin-top: ${props => props.framed ? 35 : 0}px;

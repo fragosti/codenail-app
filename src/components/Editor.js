@@ -15,7 +15,6 @@ themes.forEach((theme) => {
 const Container = styled.div`
   padding: ${props => props.verPadding}px ${props => props.horPadding}px;
   ${props => props.paddingColor !== 'none' && `background-color: ${props.paddingColor} !important;`} 
-  border: 1px solid #f5f5f5;
 `
 
 const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor}) => {

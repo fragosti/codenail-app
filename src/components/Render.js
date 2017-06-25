@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import Editor from './Editor';
 import { getOrder } from '../lib/api';
 import { getQueryParams } from '../lib/utils';
 
+const Container = styled.div`
+  padding: 4px;
+  width: ${props => props.width}px;
+`
 
 class Render extends Component {
   constructor(props) {
@@ -30,19 +35,21 @@ class Render extends Component {
       )
     }
     return (
-      <Editor 
-        language={language}
-        theme={mode}
-        value={value}
-        fontSize={fontSize*zoom}
-        onChange={() => {}}
-        showLineNumbers={showLineNumbers}
-        showGutter={showGutter}
-        width={width*zoom}
-        height={height*zoom}
-        horPadding={horPadding}
-        verPadding={verPadding}
-      />
+      <Container width={width*zoom}>
+        <Editor 
+          language={language}
+          theme={mode}
+          value={value}
+          fontSize={fontSize*zoom}
+          onChange={() => {}}
+          showLineNumbers={showLineNumbers}
+          showGutter={showGutter}
+          width={width*zoom}
+          height={height*zoom}
+          horPadding={horPadding}
+          verPadding={verPadding}
+        />
+      </Container>
     )
   }
 }
