@@ -5,6 +5,7 @@ import Landing from './Landing';
 import Create from './Create';
 import Render from './Render';
 import ThankYou from './ThankYou';
+import Privacy from './Privacy';
 import withHeaderFooter from '../HOCs/withHeaderFooter';
 import withLoading from '../HOCs/withLoading';
 import {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/create" component={compose(withLoading, withHeaderFooter)(Create)}/>
           <Route path="/thankyou/:id" component={withLoading(withHeaderFooter(ThankYou), true)}/>
           <Route path="/render/:id" component={Render}/>
+          <Route path="/privacy" component={withHeaderFooter(Privacy)}/>
         </div>
       </Router>
     )

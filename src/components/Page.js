@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 import { lineHeight } from '../style/utils';
+import { modularScale } from 'polished';
+
 
 
 export const Container = styled.div`
@@ -14,9 +16,14 @@ export const Description = styled.section`
   line-height: ${lineHeight.text};
   h1 {
     font-weight: 700;
+    font-size: ${modularScale(2)};
+    padding: 15px 0px;
+  }
+  h2 {
+    font-weight: 600;
   }
   p {
-    padding: 15px 0px;
+    padding-bottom: 20px;
   }
 `
 
