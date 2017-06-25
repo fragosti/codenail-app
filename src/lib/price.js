@@ -26,6 +26,6 @@ export const framedPrintPrices = {
   '18x18': 46,
   '18x24': 54,
   '24x36': 89,
-}
+};
 
 export const priceForSize = (size, framed) => framed ? framedPrintPrices[size] : printPrices[size]
