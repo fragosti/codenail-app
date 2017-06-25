@@ -11,7 +11,7 @@ const Footer = () => (
           <a className="nav-link" href="https://www.facebook.com/codenail">
             Facebook
           </a>
-          <a className="nav-link">
+          <a className="nav-link" href="mailto:support@codenail.com">
             Contact
           </a>
           <a className="nav-link">

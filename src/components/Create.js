@@ -97,8 +97,8 @@ class Create extends Component {
           <p> 
             Add your code, specify the language, theme, font size and more.
             You'll see the print preview live update as you go. 
-            <strong> Price will vary with print size</strong> and whether you would like it <strong>framed in black</strong>.
-            <strong> Shipping takes 1-3 business days</strong> after fulfillment. 
+            <strong> Price will vary with print size</strong> and whether you would like it <strong>framed</strong> in black.
+            <strong> Shipping is free and takes 1-3 business days</strong> after fulfillment. 
             Press order once you're ready! 
           </p>
           <StripeCheckout 
