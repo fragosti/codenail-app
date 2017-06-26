@@ -7,7 +7,7 @@ const FAQ = () => (
     <Description>
       <h1> Frequently Asked Questions </h1>
       <h2> How long does shipping take?</h2>
-      <p> Shipping takes 1-3 business days after fulfillment.
+      <p> Shipping takes 3-5 business days after fulfillment.
           Fulfillment usually takes 3 business days or less, 
           but can take as long as 5. 
       </p>
