@@ -17,6 +17,8 @@ import samples from '../lib/samples';
 import { getQueryParams } from '../lib/utils';
 import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
 
+import logo from '../img/logo.png';
+
 
 const EditorContainer = styled.div`
   padding-bottom: 30px;
@@ -139,6 +141,7 @@ class Create extends Component {
               })
             }}
             name="Codenail.com"
+            image={logo}
             description={description}
             ComponentClass="span"
             amount={price*100}
