@@ -56,7 +56,7 @@ class Sample extends Component {
   render() {
     const { isOpen } = this.state
     const { id } = this.props
-    const url = `https://s3-us-west-2.amazonaws.com/codenail-order-previews/${id}.png`
+    const url = `https://s3-us-west-2.amazonaws.com/codenail-order-samples/${id}.png`
     return (
       <SampleWrap onClick={this.open}>
         {isOpen && 
