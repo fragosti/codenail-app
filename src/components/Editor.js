@@ -15,6 +15,15 @@ themes.forEach((theme) => {
 const Container = styled.div`
   padding: ${props => props.verPadding}px ${props => props.horPadding}px;
   ${props => props.paddingColor !== 'none' && `background-color: ${props.paddingColor} !important;`} 
+
+  .ace_scrollbar-h, .ace_scrollbar-v {
+    display: none;
+  }
+
+  .ace_scroller {
+    right: 0px !important;
+    bottom: 0px !important;
+  }
 `
 
 const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor}) => {
@@ -38,6 +47,9 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
           useWorker: false,
           fontFamily: 'Menlo',
           cursorStyle: 'slim',
+          hScrollBarAlwaysVisible: false,
+          vScrollBarAlwaysVisible: false,
+          // displayIndentGuides: false,
         }}
       />
     </Container>
