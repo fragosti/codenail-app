@@ -221,6 +221,9 @@ p.paragraph {
 }.socialproof {
   padding: 90px 0;
 }
+.socialproof .container-lrg {
+  margin-top: 30px;
+}
 .testimonial-content {
   margin-top: 15px;
 }

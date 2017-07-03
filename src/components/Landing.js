@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Tweet } from 'react-twitter-widgets';
 
 import Editor from './Editor';
 import { CTA } from './Button'; 
 import Samples from './Samples';
-import { PosterBack } from './Page';
+import { PosterBack, DisplayContainer } from './Page';
 import samples from '../lib/samples';
 import { viewPort } from '../style/utils';
 
@@ -122,75 +121,22 @@ const tryItOut = () => {
         <div className="container-sml">
           <div className="text-center">
             <div className="col-12">
-              <h4 className="heading">
+              <h3 className="heading">
                 Join the crowd.
-              </h4>
+              </h3>
+              <p> </p>
             </div>
           </div>
         </div>
         <div className="container-lrg">
-          <div className="tweets flex">
-            <div className="col-4">
-              <div className="testimonial">
-                <div className="flex flexvert">
-                  <div>
-                    <b>
-                      Username
-                    </b>
-                    <br/>
-                    <span>
-                      @justcreative
-                    </span>
-                  </div>
-                </div>
-                <div className="testimonial-content">
-                  <p className="paragraph">
-                    Launchaco is a handy tool to help name your business. It checks domains & social media handles for you :)!
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="testimonial">
-                <div className="flex flexvert">
-                  <div>
-                    <b>
-                      Username
-                    </b>
-                    <br/>
-                    <span>
-                      @KurtisAmundson
-                    </span>
-                  </div>
-                </div>
-                <div className="testimonial-content">
-                  <p className="paragraph">
-                    Check out http://launchaco.com  when you br/and your social and internet presence. Great work @launchaco
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="testimonial">
-                <div className="flex flexvert">
-                  <div>
-                    <b>
-                      Username
-                    </b>
-                    <br/>
-                    <span>
-                      @namli
-                    </span>
-                  </div>
-                </div>
-                <div className="testimonial-content">
-                  <p className="paragraph">
-                    hey @launchaco you do perfect service for non creative us. Thx a lot  : )
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <DisplayContainer>
+            <Tweet 
+              tweetId="882008531225817089"
+              options={{
+                width: 350,
+              }}
+            />
+          </DisplayContainer>
         </div>
       </section>
     </div>

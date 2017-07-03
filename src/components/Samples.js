@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import Overlay from './Overlay';
-import { PosterBack } from './Page';
+import { PosterBack, DisplayContainer as SamplesContainer } from './Page';
 import { CTA } from './Button';
 
 const Image = styled.img`
@@ -22,13 +22,6 @@ const CTAWrap = styled.div`
   left: 0;
   width: 100%;
   text-align: center;
-`
-const SamplesContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
 `
 
 const CTALink = CTA.withComponent(Link)

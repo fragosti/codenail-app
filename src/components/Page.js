@@ -27,6 +27,14 @@ export const Description = styled.section`
   }
 `
 
+export const DisplayContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+`
+
 export const PosterBack = styled.div`
   padding: 10px;
   border-radius: 3px;

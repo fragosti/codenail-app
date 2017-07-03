@@ -10,6 +10,7 @@
     "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.4",
     "react-stripe-checkout": "^2.2.5",
+    "react-twitter-widgets": "^1.4.0",
     "styled-components": "^2.0.0"
   },
   "devDependencies": {
