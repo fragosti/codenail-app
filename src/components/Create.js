@@ -128,6 +128,7 @@ class Create extends Component {
                   verPadding,
                   paddingColor,
                   size,
+                  framed,
                 }
               })
               .then(res => res.json())
