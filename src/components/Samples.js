@@ -13,6 +13,8 @@ const Image = styled.img`
 const SampleWrap = PosterBack.extend`
   cursor: pointer;
   position: relative;
+  padding: 1em;
+  margin: 1em;
 `
 const CTAWrap = styled.div`
   position: absolute;
@@ -21,19 +23,20 @@ const CTAWrap = styled.div`
   width: 100%;
   text-align: center;
 `
-const SampleContainer = styled.div`
+const SamplesContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
 `
 
 const CTALink = CTA.withComponent(Link)
 
 const Samples = ({ samples }) => (
-  <SampleContainer>
+  <SamplesContainer>
     {Object.keys(samples).map((id) => <Sample key={id} id={id}/>)}
-  </SampleContainer>
+  </SamplesContainer>
 )
 
 class Sample extends Component {

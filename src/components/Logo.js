@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { modularScale } from 'polished';
 
+import { media } from '../style/utils';
+
 import Icon from './Icon';
 
 const LogoIcon = styled(Icon)`
@@ -15,6 +17,9 @@ const LogoContainer = styled(Link)`
   font-weight: 900;
   font-family: 'Menlo', 'Monaco', monospace;
   padding: 6px;
+  ${media.phone`
+    font-size: ${modularScale(1)};
+  `}
 `
 
 const Logo = ({children, to}) => (

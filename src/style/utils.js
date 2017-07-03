@@ -9,6 +9,11 @@ const sizes = {
   phone: 420
 }
 
+export const viewPort = {
+  width: () => Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+  height: () => Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+}
+
 export const colors = {
   gray: '#ccc',
   green: 'rgba(160, 255, 113, 0.3)'

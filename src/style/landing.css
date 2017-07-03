@@ -131,6 +131,7 @@ p.paragraph {
 .col-12 {width: 100%;}
 
 /*containers*/
+.container-x-lrg,
 .container-lrg,
 .container-sml {
   margin: auto;
@@ -138,6 +139,9 @@ p.paragraph {
 }
 .container-lrg {
   max-width: 1080px;
+}
+.container-x-lrg {
+  max-width: 1200px;
 }
 .container-sml {
   max-width: 700px;

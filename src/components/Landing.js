@@ -7,8 +7,9 @@ import {
 import Editor from './Editor';
 import { CTA } from './Button'; 
 import Samples from './Samples';
-import samples from '../lib/samples';
 import { PosterBack } from './Page';
+import samples from '../lib/samples';
+import { viewPort } from '../style/utils';
 
 const Center = styled.div`
   display: flex;
@@ -22,6 +23,7 @@ const EditorDemo = PosterBack.extend`
 const CTALink = CTA.withComponent(Link)
 
 const Landing = () => {
+  const isPhone = viewPort.width() < 500;
   return (
     <div>
       <section>
@@ -47,13 +49,13 @@ const tryItOut = () => {
 }`}
                   theme='monokai'
                   language='javascript'
-                  fontSize={25}
+                  fontSize={isPhone ? 18 : 25}
                   showLineNumbers={false}
                   showGutter={false}
-                  width={500}
+                  width={Math.min(500, viewPort.width() - 50)}
                   height={300}
-                  horPadding={25}
-                  verPadding={30}
+                  horPadding={isPhone ? 5 : 25}
+                  verPadding={isPhone ? 70: 30}
                 />
               </EditorDemo>
             </Center>
@@ -112,7 +114,7 @@ const tryItOut = () => {
             </p>
           </div>
         </div>
-        <div className="container-lrg centerdevices col-12">
+        <div className="container-x-lrg centerdevices col-12">
           <Samples samples={samples}/>
         </div>
       </section>
