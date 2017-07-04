@@ -150,6 +150,14 @@ class Create extends Component {
             shippingAddress={true}
             billingAddress={true}
             stripeKey={isTest ? TEST_STRIPE_KEY : STRIPE_KEY}
+            opened={() => {
+              if (location.search) {
+                history.push(`/create${location.search}&overlay=checkout`)
+              } else {
+                history.push(`/create?overlay=checkout`)
+              }
+            }}
+            closed={() => history.goBack()}
           >
             <Button color={colors.green}>{`Order for $${price}`}</Button>
           </StripeCheckout>
