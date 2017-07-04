@@ -28,4 +28,14 @@ export const framedPrintPrices = {
   '24x36': 89,
 };
 
-export const priceForSize = (size, framed) => framed ? framedPrintPrices[size] : printPrices[size]
+export const costForSize = (size, framed) => framed ? framedPrintPrices[size] : printPrices[size];
+
+export const priceForSize = (size, framed, couponCode) => {
+  const price = Math.pow((costForSize(size, framed)*10), .75)
+  switch (couponCode) {
+    case '40off':
+      return Math.ceil((6/10)*price)
+    default:
+      return Math.ceil(price)
+  }
+}

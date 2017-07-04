@@ -80,7 +80,8 @@ class Create extends Component {
     const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
     const { language, fontSize, size, framed, mode, showLineNumbers, showGutter, value, horPadding, verPadding, paddingColor, errorMessage } = this.state
-    const price = Math.ceil(Math.pow((priceForSize(size, framed)*10), .75))
+    const { coupon } = getQueryParams(location.search)
+    const price = priceForSize(size, framed, coupon)
     const description = framed ? `Framed ${size} poster` : `${size} poster`
     const width = EDITOR_WIDTH
     const height =  aspectRatioForSize(size)*EDITOR_WIDTH 
