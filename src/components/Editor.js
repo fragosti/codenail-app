@@ -49,7 +49,7 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
           cursorStyle: 'slim',
           hScrollBarAlwaysVisible: false,
           vScrollBarAlwaysVisible: false,
-          // displayIndentGuides: false,
+          displayIndentGuides: false,
         }}
       />
     </Container>
