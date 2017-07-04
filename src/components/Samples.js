@@ -7,7 +7,7 @@ import { PosterBack, DisplayContainer as SamplesContainer } from './Page';
 import { CTA } from './Button';
 
 const Image = styled.img`
-  width: ${props => props.width || 300}px;
+  width: ${props => props.width || 350}px;
 `
 
 const SampleWrap = PosterBack.extend`

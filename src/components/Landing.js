@@ -113,7 +113,7 @@ const tryItOut = () => {
             </p>
           </div>
         </div>
-        <div className="container-x-lrg centerdevices col-12">
+        <div className="container-lrg centerdevices col-12">
           <Samples samples={samples}/>
         </div>
       </section>
