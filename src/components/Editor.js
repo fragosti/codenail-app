@@ -26,7 +26,7 @@ const Container = styled.div`
   }
 `
 
-const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor}) => {
+const Editor = ({value, onChange, language, theme, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor}) => {
   return (
     <Container paddingColor={paddingColor} horPadding={horPadding} verPadding={verPadding} className={`ace-${theme.replace('_', '-')}`}>
       <AceEditor
@@ -37,7 +37,7 @@ const Editor = ({value, onChange, language, theme, showGutter, showLineNumbers, 
         value={value}
         fontSize={fontSize}
         onChange={onChange}
-        showGutter={showGutter}
+        showGutter={showLineNumbers}
         showPrintMargin={false}
         highlightActiveLine={false}
         name="editor"
