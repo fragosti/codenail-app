@@ -120,6 +120,7 @@ const optionsForKey = {
   horPadding: defaultOptionsForKey(paddingOptions),
   verPadding: defaultOptionsForKey(paddingOptions),
   paddingColor: defaultOptionsForKey(paddingColors),
+  wrapEnabled: boolOption,
 }
 
 const labelForKey = {
@@ -132,6 +133,7 @@ const labelForKey = {
   horPadding: 'Horizontal Padding',
   verPadding: 'Vertical Padding',
   paddingColor: 'Padding Color',
+  wrapEnabled: 'Wrap lines?',
 }
 
 const EditorControl = ({editorProps, onChange, className}) => {

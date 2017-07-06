@@ -55,6 +55,7 @@ class Create extends Component {
       language: 'javascript',
       mode: 'monokai',
       showLineNumbers: true,
+      wrapEnabled: false,
       value: '// Paste your code here!',
       fontSize: 12,
       size: '12x16',
@@ -78,7 +79,7 @@ class Create extends Component {
   render() {
     const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
-    const { language, fontSize, size, framed, mode, showLineNumbers, value, horPadding, verPadding, paddingColor, errorMessage } = this.state
+    const { language, fontSize, size, framed, mode, showLineNumbers, wrapEnabled, value, horPadding, verPadding, paddingColor, errorMessage } = this.state
     const { coupon } = getQueryParams(location.search)
     const price = priceForSize(size, framed, coupon)
     const description = framed ? `Framed ${size} poster` : `${size} poster`
@@ -121,6 +122,7 @@ class Create extends Component {
                   value,
                   fontSize,
                   showLineNumbers,
+                  wrapEnabled,
                   width,
                   height,
                   horPadding,
@@ -166,8 +168,9 @@ class Create extends Component {
             editorProps={{
               language,
               mode,
-              showLineNumbers,
               fontSize,
+              showLineNumbers,
+              wrapEnabled,
               size,
               framed,
               horPadding,
@@ -192,6 +195,7 @@ class Create extends Component {
               fontSize={fontSize}
               onChange={this.onValueChange}
               showLineNumbers={showLineNumbers}
+              wrapEnabled={wrapEnabled}
               width={width}
               height={height}
               horPadding={horPadding}

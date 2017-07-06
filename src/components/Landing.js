@@ -50,7 +50,6 @@ const tryItOut = () => {
                   language='javascript'
                   fontSize={isPhone ? 18 : 25}
                   showLineNumbers={false}
-                  showGutter={false}
                   width={Math.min(500, viewPort.width() - 50)}
                   height={300}
                   horPadding={isPhone ? 5 : 25}

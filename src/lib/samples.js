@@ -49,12 +49,11 @@ def dijsktra(graph, initial):
     language: 'python',
     fontSize: 16,
     showLineNumbers: true,
-    showGutter: true,
   },
   'BJ0op-9QW': {
     value: 
   `\n\n\n\n\n\npublic class Me {\n    private Boolean alive = true;\n    public void run() {\n        while (this.alive) {\n            this.love(new You());\n        }\n    }\n}\n`,
-    showGutter: false,
+    showLineNumbers: false,
     mode: 'eclipse',
     fontSize: 30,
     horPadding: 50,
@@ -85,7 +84,7 @@ for X in j('BM'+P(M,v*x*3+26,26,12,v,x,1,24))or C:
                                       [:9]])
                                         /9)
                                        )   )`,
-    showGutter: false,
+    showLineNumbers: false,
     mode: 'solarized_light',
     size: '10x10',
     language: 'python',
@@ -155,7 +154,7 @@ u.call(e,i)&&!c.hasOwnProperty(i)&&(s[i]=e[i])}var d=arguments.length-2;if(1===d
     mode: 'monokai',
     fontSize: 14,
     language: 'javascript',
-    showGutter: false,
+    showLineNumbers: false,
   }
 };
 
