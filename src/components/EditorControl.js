@@ -27,7 +27,6 @@ export const languages = [
   'objectivec',
   'css',
   'perl',
-  'ruby',
   'scala',
   'sql',
   'yaml',
@@ -110,17 +109,18 @@ const boolOption = [
   { value: false, label: 'No'},
 ]
 
+const defaultOptionsForKey = (keys) => keys.map(x => ({ value: x, label: x}))
 const optionsForKey = {
-  language: languages.map(lan => ({ value: lan, label: lan })),
-  mode: themes.map(theme => ({ value: theme, label: theme })),
-  fontSize: fontSizes.map(size => ({value: size, label: size})),
-  size: sizes.map(size => ({value: size, label: size})),
+  language: defaultOptionsForKey(languages),
+  mode: defaultOptionsForKey(themes),
+  fontSize: defaultOptionsForKey(fontSizes),
+  size: defaultOptionsForKey(sizes),
   showLineNumbers: boolOption,
   showGutter: boolOption,
   framed: boolOption,
-  horPadding: paddingOptions.map(size => ({value: size, label: size})),
-  verPadding: paddingOptions.map(size => ({value: size, label: size})),
-  paddingColor: paddingColors.map(color => ({value: color, label: color}))
+  horPadding: defaultOptionsForKey(paddingOptions),
+  verPadding: defaultOptionsForKey(paddingOptions),
+  paddingColor: defaultOptionsForKey(paddingColors),
 }
 
 const labelForKey = {
