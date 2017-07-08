@@ -9,5 +9,8 @@ export const getQueryParams = (queryString) => {
   }, {})
 }
 
+export const concatMap = (arr, fn) => {
+  return arr.concat(arr.map(fn))
+}
 
 export const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)))

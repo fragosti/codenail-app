@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { modularScale } from 'polished';
 
 import { zIndex } from '../style/utils';
+import { concatMap } from '../lib/utils';
 
 import 'react-select/dist/react-select.css';
 
@@ -66,7 +67,7 @@ export const paddingOptions = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,
 
 export const paddingColors = ['none', 'white', 'black'];
 
-export const sizes = [
+export const sizes = concatMap([
   '8x10',
   '10x10',
   '12x12',
@@ -78,7 +79,13 @@ export const sizes = [
   '18x18',
   '18x24',
   '24x36',
-];
+], (dim) => {
+  let sDim = dim.split('x')
+  if (sDim[1] === sDim[0]) {
+    return null
+  }
+  return `${sDim[1]}x${sDim[0]}`
+}).filter(x => x !== null);
 
 const EditorControlContainer = styled.div`
   display: flex;
