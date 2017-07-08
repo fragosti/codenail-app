@@ -39,6 +39,8 @@ export const languages = [
   'matlab',
   'php',
   'rust',
+  'clojure',
+  'c_cpp',
 ].sort();
 
 export const themes = [
