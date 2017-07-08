@@ -1,4 +1,5 @@
 // Printful prices ($)
+import { flipAround } from './utils'
 
 export const printPrices = {
   '8x10': 9,
@@ -28,7 +29,11 @@ export const framedPrintPrices = {
   '24x36': 89,
 };
 
-export const costForSize = (size, framed) => framed ? framedPrintPrices[size] : printPrices[size];
+export const costForSize = (size, framed) => {
+  return framed ? 
+    (framedPrintPrices[size] || framedPrintPrices[flipAround(size, 'x')]) : 
+    (printPrices[size] || printPrices[flipAround(size, 'x')]);
+}
 
 export const priceForSize = (size, framed, couponCode) => {
   const price = Math.pow((costForSize(size, framed)*10), .75)

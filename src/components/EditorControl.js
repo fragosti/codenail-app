@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { modularScale } from 'polished';
 
 import { zIndex } from '../style/utils';
-import { concatMap } from '../lib/utils';
+import { concatMap, flipAround } from '../lib/utils';
 
 import 'react-select/dist/react-select.css';
 
@@ -80,11 +80,8 @@ export const sizes = concatMap([
   '18x24',
   '24x36',
 ], (dim) => {
-  let sDim = dim.split('x')
-  if (sDim[1] === sDim[0]) {
-    return null
-  }
-  return `${sDim[1]}x${sDim[0]}`
+  const flipDim = flipAround(dim, 'x')
+  return flipDim === dim ? null : flipDim
 }).filter(x => x !== null);
 
 const EditorControlContainer = styled.div`

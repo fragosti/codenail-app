@@ -13,4 +13,9 @@ export const concatMap = (arr, fn) => {
   return arr.concat(arr.map(fn))
 }
 
+export const flipAround = (str, char) => {
+  const sStr = str.split(char)
+  return `${sStr[1]}${char}${sStr[0]}`
+} 
+
 export const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)))
