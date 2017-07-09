@@ -20,6 +20,10 @@ const Container = styled.div`
     display: none;
   }
 
+  .ace_editor .ace_marker-layer .ace_bracket { 
+    display: none;
+  }
+
   .ace_scroller {
     right: 0px !important;
     bottom: 0px !important;
