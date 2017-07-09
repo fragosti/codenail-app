@@ -8,6 +8,9 @@ import { getQueryParams } from '../lib/utils';
 const Container = styled.div`
   margin: ${props => `${props.yMargin}px ${props.xMargin}px`};
   width: ${props => props.width}px;
+  .ace_cursor-layer {
+    display: none;
+  }
 `
 
 class Render extends Component {
