@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={withTitle(LandingPage, 'Codenail')}/>
+          <Route exact path="/" component={withTitle(LandingPage, 'Codenail - Order a poster of your code in seconds!')}/>
           <Route path="/create" component={withTitle(CreatePage, 'Codenail - Create your poster')}/>
           <Route path="/thankyou/:id" component={withTitle(ThankYouPage, 'Codenail - Thank you for ordering')}/>
           <Route path="/render/:id" component={Render}/>
