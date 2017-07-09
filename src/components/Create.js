@@ -84,7 +84,7 @@ class Create extends Component {
     const price = priceForSize(size, framed, coupon)
     const description = framed ? `Framed ${size} poster` : `${size} poster`
     const width = EDITOR_WIDTH
-    const height =  aspectRatioForSize(size)*EDITOR_WIDTH 
+    const height = aspectRatioForSize(size)*EDITOR_WIDTH 
     return (
       <Container>
         {isLoading && (

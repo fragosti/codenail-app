@@ -6,8 +6,7 @@ import { getOrder } from '../lib/api';
 import { getQueryParams } from '../lib/utils';
 
 const Container = styled.div`
-  padding: ${props => props.padding}px;
-  background: white;
+  margin: ${props => `${props.yMargin}px ${props.xMargin}px`};
   width: ${props => props.width}px;
 `
 
@@ -29,14 +28,14 @@ class Render extends Component {
   render() {
     const { language, mode, value, fontSize, showLineNumbers, wrapEnabled, width, height, horPadding, verPadding } = this.state 
     const params = getQueryParams(this.props.location.search)
-    const padding = params.padding || 5
+    const margin = params.margin || 4
     if (!language) {
       return (
         <div> ...Loading </div>
       )
     }
     return (
-      <Container padding={padding} width={width}>
+      <Container xMargin={margin} yMargin={(height/width)*margin} width={width}>
         <Editor 
           language={language}
           theme={mode}
@@ -45,8 +44,8 @@ class Render extends Component {
           onChange={() => {}}
           showLineNumbers={showLineNumbers}
           wrapEnabled={wrapEnabled}
-          width={width-padding*2}
-          height={height-padding*2}
+          width={width}
+          height={height}
           horPadding={horPadding}
           verPadding={verPadding}
         />
