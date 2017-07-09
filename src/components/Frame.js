@@ -27,6 +27,7 @@ const Frame = styled.div`
   border: 1px solid;
   border-color: #bbb #999;
   z-index: 1;
+  pointer-events: none;
   box-shadow: 
     0 2px 5px hsla(0,0%,0%,.4),
     ${props => generateBoxShadowCSS(props.thickness, props.borderColor1, props.borderColor2)}
