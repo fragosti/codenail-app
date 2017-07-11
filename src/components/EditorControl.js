@@ -9,6 +9,7 @@ import { concatMap, flipAround } from '../lib/utils';
 import 'react-select/dist/react-select.css';
 
 export const languages = [
+  'plain_text',
   'javascript',
   'java',
   'swift',
@@ -58,10 +59,9 @@ export const themes = [
   'chrome',
   'eclipse',
   'dawn',
-  'textmate',
 ].sort();
 
-export const fontSizes = [6,7,8,9,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,34,36,38,40];
+export const fontSizes = [6,7,8,9,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50];
 
 export const paddingOptions = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200];
 

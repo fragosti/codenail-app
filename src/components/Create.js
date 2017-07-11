@@ -44,6 +44,10 @@ const OverlayMessage = styled.div`
   margin-top: 20px;
 `
 
+const FAQLink = styled(Link)`
+  text-decoration: underline;
+`
+
 const EDITOR_WIDTH = 700;
 
 class Create extends Component {
@@ -104,7 +108,7 @@ class Create extends Component {
             You'll see the print preview live update as you go. 
             <strong> Price will vary with print size</strong> and whether you would like it <strong>framed</strong> in black.
             <strong> Shipping is free and takes 3-5 business days</strong> after fulfillment. 
-            More questions? Visit our <Link to='/faq'><strong>FAQ</strong></Link> page. 
+            More questions? Visit our <FAQLink to='/faq'><strong>FAQ</strong></FAQLink> page. 
             Press order once you're ready! 
           </p>
           <StripeCheckout 

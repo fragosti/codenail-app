@@ -27,7 +27,7 @@ const FAQ = () => (
           damaged or incorrectly printed.
       </p>
       <h2> What is your cancellation policy?</h2>
-      <p> You have 24 hours to cancel an order once you have made it.</p>
+      <p> You may cancel an order any time before it is printed. This is usually 1 business day before it ships, so approximately 2 days from your order.</p>
       <h2> When do you charge my credit card?</h2>
       <p> We execute the charge immediately after your order, but it can take a few days to process.
       </p>
@@ -35,6 +35,9 @@ const FAQ = () => (
       <p> As soon as your order ships you will receive a notification email with more information, including a tracking number. 
           If you have received an order confirmation email but no shipping confirmation e-mail, 
           your order is still being fulfilled. 
+      </p>
+      <h2> What if I don't want any syntax highlighting?</h2>
+      <p> Select <i>plain_text</i> in the language selection dropdown to disable syntax highlighting.
       </p>
       <h2> Can you add <i>*insert feature here*</i>?</h2>
       <p> Absolutely! Please email use at <i> support@codenail.com</i> with any requests.</p>

@@ -25,7 +25,7 @@ const Footer = () => (
         <br/>
         <div>
           <span>
-            © 2017 Codenail
+            Copyright © 2017 Codenail
           </span>
         </div>
       </div>
