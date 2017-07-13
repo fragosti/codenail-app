@@ -10,19 +10,8 @@ const getEndpoint = (env) => {
   }
 }
 
-export const LIVE_STRIPE_KEY = 'pk_live_xpo15faMQsO3EETkaR8jqQ8H'
 export const TEST_STRIPE_KEY = 'pk_test_lQYC49aP6fT12LuZv8ejgghF'
-const getStripeKey = (env) => {
-  switch(env) {
-    case 'production':
-      return LIVE_STRIPE_KEY
-    default:
-    case 'development':
-      return TEST_STRIPE_KEY
-  }
-}
-
-export const STRIPE_KEY = getStripeKey(process.env.NODE_ENV)
+export const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY
 export const API_ENDPOINT = getEndpoint(process.env.NODE_ENV)
 
 export const createOrder = (order) => {
