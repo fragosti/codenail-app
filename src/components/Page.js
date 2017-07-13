@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { lineHeight } from '../style/utils';
 import { modularScale } from 'polished';
 
-
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
