@@ -54,6 +54,7 @@ class Create extends Component {
   constructor(props) {
     super(props)
     const { sampleId } = getQueryParams(props.location.search)
+    const savedState = JSON.parse(window.sessionStorage.getItem('createState'))
     this.state = Object.assign({
       errorMessage: null,
       language: 'javascript',
@@ -67,12 +68,15 @@ class Create extends Component {
       horPadding: 0,
       verPadding: 0,
       paddingColor: 'none',
-    }, samples[sampleId] || {})
+    }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
   onSettingsChange = (key, value) => {
     this.setState({
       [key]: value,
+    }, () => {
+      const { errorMessage, ...editorState} = this.state
+      window.sessionStorage.setItem('createState', JSON.stringify(editorState))
     })
   }
 
