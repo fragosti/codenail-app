@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Container, Description } from './Page';
 
@@ -14,8 +15,8 @@ const FAQ = () => (
       <h2> How much is shipping?</h2>
       <p> Shipping is free world-wide, but will take longer if outside the United States. </p>
       <h2> What kind of shipping do you use?</h2>
-      <p> We use whichever shipping is necessary to get the order to you in 3 days or less after fulfillment. 
-          This usually ends up being USPS Priority Mail.
+      <p> We use whichever shipping is necessary to get the order to you in 3-5 days or less after fulfillment. 
+          This usually ends up being USPS Priority Mail or DHL Expedited.
       </p>
       <h2> What kind of paper do you use?</h2>
       <p> 
@@ -38,6 +39,9 @@ const FAQ = () => (
       </p>
       <h2> What if I don't want any syntax highlighting?</h2>
       <p> Select <i>plain_text</i> in the language selection dropdown to disable syntax highlighting.
+      </p>
+      <h2> How do I strip out new lines and extra space?</h2>
+      <p> At the bottom of the editor on the <Link to='create'><u>/create</u></Link> page you'll see an option to do that!
       </p>
       <h2> Can you add <i>*insert feature here*</i>?</h2>
       <p> Absolutely! Please email use at <i> support@codenail.com</i> with any requests.</p>

@@ -33,7 +33,7 @@ const EditorWrapper = styled.div`
   border: 2px solid #f5f5f5;
   position: relative;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
-  margin-top: ${props => props.framed ? 35 : 0}px;
+  margin: ${props => props.framed ? 35 : 0}px 0px;
 `
 
 const PaddedControl = styled(EditorControl)`
@@ -44,8 +44,8 @@ const OverlayMessage = styled.div`
   margin-top: 20px;
 `
 
-const FAQLink = styled(Link)`
-  text-decoration: underline;
+const Action = styled.u`
+  cursor: pointer;
 `
 
 const EDITOR_WIDTH = 700;
@@ -112,7 +112,7 @@ class Create extends Component {
             You'll see the print preview live update as you go. 
             <strong> Price will vary with print size</strong> and whether you would like it <strong>framed</strong> in black.
             <strong> Shipping is free and takes 3-5 business days</strong> after fulfillment. 
-            More questions? Visit our <FAQLink to='/faq'><strong>FAQ</strong></FAQLink> page. 
+            More questions? Visit our <Link to='/faq'><strong><u>FAQ</u></strong></Link> page. 
             Press order once you're ready! 
           </p>
           <StripeCheckout 
@@ -212,6 +212,7 @@ class Create extends Component {
             />
           </EditorWrapper>
         </EditorContainer>
+        <i>Want to remove new lines and extra space? <Action onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Press Here.</Action></i>
       </Container>
     )
   }
