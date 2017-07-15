@@ -37,6 +37,9 @@ const FAQ = () => (
           If you have received an order confirmation email but no shipping confirmation e-mail, 
           your order is still being fulfilled. 
       </p>
+      <h2> What happens if my code doesn't fit into the editor and I can scroll?</h2>
+      <p> We will clip the image as if you were scrolled all the way up. We don't take your scroll position into account.
+      </p>
       <h2> What if I don't want any syntax highlighting?</h2>
       <p> Select <i>plain_text</i> in the language selection dropdown to disable syntax highlighting.
       </p>
