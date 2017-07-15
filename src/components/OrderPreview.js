@@ -6,7 +6,7 @@ const Image = styled.img`
 `
 
 const OrderPreview = ({id}) => (
-  <Image src={`https://s3-us-west-2.amazonaws.com/codenail-order-previews/${id}.png`}/>
+  <Image alt='Order preview' src={`https://s3-us-west-2.amazonaws.com/codenail-order-previews/${id}.png`}/>
 )
 
 export default OrderPreview

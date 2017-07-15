@@ -62,7 +62,7 @@ class Sample extends Component {
           </PosterBack>
         </Overlay>
         }
-        <Image src={url}/>
+        <Image src={url} alt='A code poster sample.'/>
         <CTAWrap>
           <CTALink to={`/create?sampleId=${id}`}> See in Editor </CTALink>
         </CTAWrap>
