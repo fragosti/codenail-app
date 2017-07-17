@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { modularScale } from 'polished';
 
 import { Container, Description } from './Page';
 import { printPrices, framedPrintPrices } from '../lib/price';

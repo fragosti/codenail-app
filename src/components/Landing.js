@@ -6,6 +6,7 @@ import { Tweet } from 'react-twitter-widgets';
 import Editor from './Editor';
 import { CTA } from './Button'; 
 import Samples from './Samples';
+import Gallery from './Gallery';
 import { PosterBack, DisplayContainer } from './Page';
 import samples from '../lib/samples';
 import { viewPort } from '../style/utils';
@@ -114,6 +115,21 @@ const tryItOut = () => {
         </div>
         <div className="container-lrg centerdevices col-12">
           <Samples samples={samples}/>
+        </div>
+      </section>
+      <section className="feature1">
+        <div className="container-sml">
+          <div className="col-12 text-center">
+            <h3 className="heading">
+              Check out these pictures!
+            </h3>
+            <p className="paragraph">
+              One of our samples printed on a 16x20 poster and framed.
+            </p>
+          </div>
+        </div>
+        <div className="container-lrg centerdevices col-12">
+          <Gallery/>
         </div>
       </section>
       <section className="socialproof">

@@ -2,7 +2,7 @@
 import { css, keyframes } from 'styled-components';
 import { modularScale } from 'polished';
 
-const sizes = {
+export const sizes = {
   giant: 1170,
   desktop: 992,
   tablet: 768,
