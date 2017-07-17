@@ -1,7 +1,7 @@
 // Printful prices ($)
 import { flipAround } from './utils'
 
-export const printPrices = {
+export const printCosts = {
   '8x10': 9,
   '10x10': 10,
   '12x12': 11,
@@ -15,7 +15,7 @@ export const printPrices = {
   '24x36': 22,
 };
 
-export const framedPrintPrices = {
+export const framedPrintCosts = {
   '8x10': 23,
   '10x10': 25,
   '12x12': 29,
@@ -31,12 +31,12 @@ export const framedPrintPrices = {
 
 export const costForSize = (size, framed) => {
   return framed ? 
-    (framedPrintPrices[size] || framedPrintPrices[flipAround(size, 'x')]) : 
-    (printPrices[size] || printPrices[flipAround(size, 'x')]);
+    (framedPrintCosts[size] || framedPrintCosts[flipAround(size, 'x')]) : 
+    (printCosts[size] || printCosts[flipAround(size, 'x')]);
 }
 
 export const priceForSize = (size, framed, couponCode) => {
-  const price = Math.pow((costForSize(size, framed)*10), .75)
+  const price = Math.pow((costForSize(size, framed)*10), .73)
   switch (couponCode) {
     case '40off':
       return Math.ceil((6/10)*price)
@@ -44,3 +44,13 @@ export const priceForSize = (size, framed, couponCode) => {
       return Math.ceil(price)
   }
 }
+
+export const printPrices = Object.keys(printCosts).reduce((acc, size) => {
+  acc[size] = priceForSize(size, false)
+  return acc
+}, {})
+
+export const framedPrintPrices = Object.keys(framedPrintCosts).reduce((acc, size) => {
+  acc[size] = priceForSize(size, true)
+  return acc
+}, {})

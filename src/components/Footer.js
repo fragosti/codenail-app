@@ -15,6 +15,9 @@ const Footer = () => (
           <a className="nav-link" href="mailto:support@codenail.com">
             Contact
           </a>
+          <Link to="/pricing" className="nav-link">
+            Pricing
+          </Link>
           <Link to="/faq" className="nav-link">
             FAQ
           </Link>
