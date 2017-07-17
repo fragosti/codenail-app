@@ -31,7 +31,7 @@ class Render extends Component {
   render() {
     const { language, mode, value, fontSize, showLineNumbers, wrapEnabled, width, height, horPadding, verPadding } = this.state 
     const params = getQueryParams(this.props.location.search)
-    const margin = params.margin || 4
+    const margin = params.margin || 6
     if (!language) {
       return (
         <div> ...Loading </div>
