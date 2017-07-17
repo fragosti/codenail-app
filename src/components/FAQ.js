@@ -37,6 +37,9 @@ const FAQ = () => (
           If you have received an order confirmation email but no shipping confirmation e-mail, 
           your order is still being fulfilled. 
       </p>
+      <h2> How much does it cost?</h2>
+      <p> In the footer of the page you'll see a link to the <Link to='pricing'><u>Pricing</u></Link> page which provides all the prices for our posters.
+      </p>
       <h2> What happens if my code doesn't fit into the editor and I can scroll?</h2>
       <p> We will clip the image as if you were scrolled all the way up. We don't take your scroll position into account.
       </p>
