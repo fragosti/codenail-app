@@ -9,6 +9,25 @@ export const getQueryParams = (queryString) => {
   }, {})
 }
 
+export const removeQueryParams = (search, paramList) => {
+  let currentParams = getQueryParams(search)
+  paramList.forEach((key) => {
+    delete currentParams[key] 
+  })
+  return addQueryParams(null, currentParams)
+}
+
+export const addQueryParams = (search, paramObject) => {
+  const stringParams = Object.keys(paramObject).reduce((acc, key) => {
+    acc += `${key}=${paramObject[key]}`
+    return acc
+  }, '')
+  if (search) {
+    return `${search}&${stringParams}`
+  }
+  return `?${stringParams}`
+}
+
 export const concatMap = (arr, fn) => {
   return arr.concat(arr.map(fn))
 }

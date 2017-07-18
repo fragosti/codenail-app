@@ -14,7 +14,7 @@ import { colors } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import samples from '../lib/samples';
-import { getQueryParams } from '../lib/utils';
+import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
 
 import logo from '../img/logo.png';
@@ -54,7 +54,7 @@ class Create extends Component {
   constructor(props) {
     super(props)
     const { sampleId } = getQueryParams(props.location.search)
-    const savedState = JSON.parse(window.sessionStorage.getItem('createState'))
+    const savedState = JSON.parse(window.sessionStorage ? window.sessionStorage.getItem('createState') : null)
     this.state = Object.assign({
       errorMessage: null,
       language: 'javascript',
@@ -71,17 +71,24 @@ class Create extends Component {
     }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
+  saveState = () => {
+    const { errorMessage, ...editorState} = this.state
+    const { history, location } = this.props
+    const { sampleId } = getQueryParams(location.search)
+    window.sessionStorage && window.sessionStorage.setItem('createState', JSON.stringify(editorState))
+    if (sampleId) {
+      history.push(`/create${removeQueryParams(location.search, ['sampleId'])}`)
+    }
+  }
+
   onSettingsChange = (key, value) => {
     this.setState({
       [key]: value,
-    }, () => {
-      const { errorMessage, ...editorState} = this.state
-      window.sessionStorage.setItem('createState', JSON.stringify(editorState))
-    })
+    }, this.saveState)
   }
 
   onValueChange = (value) => {
-    this.setState({ value })
+    this.setState({ value }, this.saveState)
   }
 
   render() {
