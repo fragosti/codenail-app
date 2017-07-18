@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 
 import styled from 'styled-components';
@@ -30,36 +30,58 @@ const Container = styled.div`
   }
 `
 
-const Editor = ({value, onChange, language, theme, wrapEnabled, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor}) => {
-  return (
-    <Container paddingColor={paddingColor} horPadding={horPadding} verPadding={verPadding} className={`ace-${theme.replace('_', '-')}`}>
-      <AceEditor
-        mode={language}
-        height={`${height-verPadding*2}px`}
-        width={`${width-horPadding*2}px`}
-        theme={theme}
-        value={value}
-        fontSize={fontSize}
-        onChange={onChange}
-        showGutter={showLineNumbers}
-        wrapEnabled={wrapEnabled}
-        showPrintMargin={false}
-        highlightActiveLine={false}
-        name="editor"
-        editorProps={{$blockScrolling: true}}
-        setOptions={{
-          showLineNumbers: showLineNumbers,
-          useWorker: false,
-          fontFamily: 'Menlo',
-          cursorStyle: 'slim',
-          hScrollBarAlwaysVisible: false,
-          vScrollBarAlwaysVisible: false,
-          displayIndentGuides: false,
-        }}
-      />
-    </Container>
-  )
-};
+class Editor extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasForceUpdated: false,
+    }
+  }
+
+  render() {
+    const { hasForceUpdated } = this.state
+    const { value, onChange, language, theme, wrapEnabled, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor } = this.props
+    return (
+      <Container paddingColor={paddingColor} horPadding={horPadding} verPadding={verPadding} className={`ace-${theme.replace('_', '-')}`}>
+        <AceEditor
+          ref={(ref) => {
+            if (ref) {
+              this.editor = ref.editor
+              // Hack to allow cases where people want a very long continuous line with small font.
+              if (fontSize < 9 && !hasForceUpdated) {
+                ref.editor.session.bgTokenizer.tokenizer.$setMaxTokenCount(3000)
+                ref.editor.setValue(value, 1)
+                this.setState({ hasForceUpdated: true })
+              }
+            }
+          }}
+          mode={language}
+          height={`${height-verPadding*2}px`}
+          width={`${width-horPadding*2}px`}
+          theme={theme}
+          value={value}
+          fontSize={fontSize}
+          onChange={onChange}
+          showGutter={showLineNumbers}
+          wrapEnabled={wrapEnabled}
+          showPrintMargin={false}
+          highlightActiveLine={false}
+          name="editor"
+          editorProps={{$blockScrolling: Infinity}}
+          setOptions={{
+            showLineNumbers: showLineNumbers,
+            useWorker: false,
+            fontFamily: 'Menlo',
+            cursorStyle: 'slim',
+            hScrollBarAlwaysVisible: false,
+            vScrollBarAlwaysVisible: false,
+            displayIndentGuides: false,
+          }}
+        />
+      </Container>
+    )
+  }
+}
 
 Editor.defaultProps = {
   width: 700,
