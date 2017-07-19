@@ -145,12 +145,18 @@ const tryItOut = () => {
         </div>
         <div className="container-lrg">
           <DisplayContainer>
-            <Tweet 
-              tweetId="882008531225817089"
-              options={{
-                width: 350,
+            {["882008531225817089",
+              "887544000575553536",
+              "887556054447382528",
+            ].map(id => (
+              <Tweet 
+                key={id}
+                tweetId={id}
+                options={{
+                  width: 350,
               }}
             />
+            ))}
           </DisplayContainer>
         </div>
       </section>

@@ -19,6 +19,7 @@ export const languages = [
   'sass',
   'markdown',
   'mysql',
+  'prolog',
   'json',
   'html',
   'handlebars',
