@@ -71,7 +71,7 @@ class Editor extends Component {
           setOptions={{
             showLineNumbers: showLineNumbers,
             useWorker: false,
-            fontFamily: 'Menlo',
+            fontFamily: "'Menlo', 'Monaco', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace",
             cursorStyle: 'slim',
             hScrollBarAlwaysVisible: false,
             vScrollBarAlwaysVisible: false,
