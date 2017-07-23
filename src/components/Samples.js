@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import Overlay from './Overlay';
+import Image from './Image';
 import { PosterBack, DisplayContainer as SamplesContainer } from './Page';
 import { CTA } from './Button';
 
-const Image = styled.img`
-  width: ${props => props.width || 350}px;
-`
 
 const SampleWrap = PosterBack.extend`
   cursor: pointer;
