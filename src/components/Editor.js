@@ -17,11 +17,11 @@ const Container = styled.div`
   ${props => props.paddingColor !== 'none' && `background-color: ${props.paddingColor} !important;`} 
 
   .ace_scrollbar-h, .ace_scrollbar-v {
-    display: none;
+    visibility: hidden;
   }
 
   .ace_editor .ace_marker-layer .ace_bracket { 
-    display: none;
+    visibility: hidden;
   }
 
   .ace_scroller {
@@ -38,15 +38,24 @@ class Editor extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    // Hack to fix scrolling issues after a resize
+    if (prevProps.height !== this.props.height && this.ace) {
+      window.dispatchEvent(new Event('resize'));
+    }
+  }
+
   render() {
     const { hasForceUpdated } = this.state
     const { value, onChange, language, theme, wrapEnabled, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor } = this.props
+    const adjustedHeight = height-verPadding*2
+    const adjustedWidth = width-horPadding*2
     return (
       <Container paddingColor={paddingColor} horPadding={horPadding} verPadding={verPadding} className={`ace-${theme.replace('_', '-')}`}>
         <AceEditor
           ref={(ref) => {
             if (ref) {
-              this.editor = ref.editor
+              this.ace = ref
               // Hack to allow cases where people want a very long continuous line with small font.
               if (fontSize < 9 && !hasForceUpdated) {
                 ref.editor.session.bgTokenizer.tokenizer.$setMaxTokenCount(3000)
@@ -56,8 +65,8 @@ class Editor extends Component {
             }
           }}
           mode={language}
-          height={`${height-verPadding*2}px`}
-          width={`${width-horPadding*2}px`}
+          height={`${adjustedHeight}px`}
+          width={`${adjustedWidth}px`}
           theme={theme}
           value={value}
           fontSize={fontSize}
