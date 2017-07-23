@@ -9,7 +9,7 @@ import Samples from './Samples';
 import Gallery from './Gallery';
 import { PosterBack, DisplayContainer } from './Page';
 import samples from '../lib/samples';
-import { viewPort } from '../style/utils';
+import { isPhone, viewPort } from '../style/utils';
 
 const Center = styled.div`
   display: flex;
@@ -23,7 +23,6 @@ const EditorDemo = PosterBack.extend`
 const CTALink = CTA.withComponent(Link)
 
 const Landing = () => {
-  const isPhone = viewPort.width() < 500;
   return (
     <div>
       <section>
@@ -49,12 +48,12 @@ const tryItOut = () => {
 }`}
                   theme='monokai'
                   language='javascript'
-                  fontSize={isPhone ? 18 : 25}
+                  fontSize={isPhone() ? 18 : 25}
                   showLineNumbers={false}
                   width={Math.min(500, viewPort.width() - 50)}
                   height={300}
-                  horPadding={isPhone ? 5 : 25}
-                  verPadding={isPhone ? 70: 30}
+                  horPadding={isPhone() ? 5 : 25}
+                  verPadding={isPhone() ? 70: 30}
                 />
               </EditorDemo>
             </Center>

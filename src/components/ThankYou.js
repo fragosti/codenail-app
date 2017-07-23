@@ -13,9 +13,10 @@ const { FacebookShareButton, TwitterShareButton } = ShareButtons
 /* eslint-disable jsx-a11y/accessible-emoji */
 const Emoji = styled.span`
   font-size: 1.8em;
-  margin: 10px;
+  margin: 20px 10px;
   position: relative;
   top: 3px;
+  display: inline-block;
 `
 
 const SocialShares = styled.div`
@@ -74,7 +75,9 @@ class ThankYou extends Component {
         <Description>
           <h1> Thank you for your order! <Emoji>🎉</Emoji><Emoji>🎉</Emoji><Emoji>🎉</Emoji></h1>
           {isLoading ? <Spinner/> : (
-            <p> Hi {firstName}, your {description} will be arriving shortly. A confirmation e-mail has been sent to <strong>{email}</strong>. </p>
+            <p> 
+              Hi {firstName}, your {description} will be arriving shortly. A confirmation e-mail has been sent to <strong>{email}</strong>. 
+            </p>
           )}
           <SocialShares>
             <FacebookShareButton 

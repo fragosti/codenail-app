@@ -9,9 +9,15 @@ export const sizes = {
   phone: 420
 }
 
-export const viewPort = {
+const viewPortDimensions = {
   width: () => Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
   height: () => Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+}
+
+export const viewPort = viewPortDimensions
+
+export const isPhone = () => {
+  return viewPortDimensions.width() < 500;
 }
 
 export const colors = {

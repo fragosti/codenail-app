@@ -143,8 +143,8 @@ const labelForKey = {
   fontSize: 'Font Size',
   size: 'Size (in)',
   framed: 'Framed?',
-  horPadding: 'Horizontal Padding',
-  verPadding: 'Vertical Padding',
+  horPadding: 'X-Axis Padding',
+  verPadding: 'Y-Axis Padding',
   paddingColor: 'Padding Color',
   wrapEnabled: 'Wrap lines?',
 }

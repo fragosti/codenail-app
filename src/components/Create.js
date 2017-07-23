@@ -10,7 +10,7 @@ import Overlay from './Overlay';
 import Spinner from './Spinner';
 import Frame from './Frame';
 import { Container, Description } from './Page';
-import { colors } from '../style/utils';
+import { colors, isPhone } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import samples from '../lib/samples';
@@ -48,7 +48,7 @@ const Action = styled.u`
   cursor: pointer;
 `
 
-const EDITOR_WIDTH = 700;
+const EDITOR_WIDTH = isPhone() ? 350 :700;
 
 class Create extends Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class Create extends Component {
       showLineNumbers: true,
       wrapEnabled: false,
       value: '// Paste your code here!',
-      fontSize: 12,
+      fontSize: isPhone() ? 8 : 12,
       size: '12x16',
       framed: false,
       horPadding: 0,
@@ -198,7 +198,7 @@ class Create extends Component {
               <Frame 
                 width={width} 
                 height={height} 
-                thickness={70}
+                thickness={isPhone() ? 35 : 70}
                 borderColor1='#767676'
                 borderColor2='#666666'
               />
