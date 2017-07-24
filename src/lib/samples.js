@@ -1,4 +1,24 @@
-const samples = {
+import { isPhone } from '../style/utils';
+
+const adjustForPhone = (samples) => {
+  const shouldAdjust = isPhone()
+  return Object.keys(samples).reduce((acc, key) => {
+    if (shouldAdjust) {
+      const sample = samples[key]
+      const { fontSize, horPadding, verPadding } = sample
+      acc[key] = Object.assign({}, sample, {
+        fontSize: fontSize ? fontSize / 2 : undefined,
+        horPadding: horPadding ? horPadding / 2 : undefined,
+        verPadding: verPadding ? verPadding / 2 : undefined,
+      })
+      return acc
+    }
+    acc[key] = samples[key]
+    return acc
+  }, {})
+}
+
+const samples = adjustForPhone({
   'SykrlbpMW': {
     value: `
 class Graph:
@@ -156,6 +176,6 @@ u.call(e,i)&&!c.hasOwnProperty(i)&&(s[i]=e[i])}var d=arguments.length-2;if(1===d
     language: 'javascript',
     showLineNumbers: false,
   }
-};
+});
 
 export default samples;
