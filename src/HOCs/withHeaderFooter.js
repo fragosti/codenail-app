@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 export default (Component) => (
   class extends React.Component {
     render() {
+      window.ga('send', 'pageview')
       return (
         <div>
           <Header/>
