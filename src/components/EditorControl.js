@@ -28,6 +28,7 @@ export const languages = [
   'elixir',
   'typescript',
   'objectivec',
+  'lisp',
   'css',
   'perl',
   'scala',
