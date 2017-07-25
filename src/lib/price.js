@@ -36,12 +36,13 @@ export const costForSize = (size, framed) => {
 }
 
 export const priceForSize = (size, framed, couponCode) => {
-  const price = Math.pow((costForSize(size, framed)*10), .73)
+  // const price = Math.pow((costForSize(size, framed)*10), .7)
+  const price = costForSize(size, framed) + 25
   switch (couponCode) {
     case '40off':
-      return Math.ceil((6/10)*price)
+      return Math.round((6/10)*price)
     default:
-      return Math.ceil(price)
+      return Math.round(price)
   }
 }
 
