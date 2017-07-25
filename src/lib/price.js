@@ -36,7 +36,6 @@ export const costForSize = (size, framed) => {
 }
 
 export const priceForSize = (size, framed, couponCode) => {
-  // const price = Math.pow((costForSize(size, framed)*10), .7)
   const price = costForSize(size, framed) + 25
   switch (couponCode) {
     case '40off':

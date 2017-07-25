@@ -29,14 +29,14 @@ const Landing = () => {
         <div className="container-sml text-center">
           <div className="col-12">
             <h1 className="heading">
-              Order a poster of your code in seconds
+              Create a poster of your code in seconds
             </h1>
           </div>
         </div>
         <div className="container-lrg flex">
           <div className="col-12 centervertical">
             <div className="ctas text-center">
-              <CTALink fontScale={1} to="/create"> Try it! </CTALink>
+              <CTALink fontScale={1} to="/create"> Try it now </CTALink>
             </div>
             <Center>
               <EditorDemo>
@@ -158,6 +158,11 @@ const tryItOut = () => {
             ))}
           </DisplayContainer>
         </div>
+        <DisplayContainer>
+          <div className="ctas text-center">
+            <CTALink fontScale={1} to="/create"> Create your own </CTALink>
+          </div>
+        </DisplayContainer>
       </section>
     </div>
   )
