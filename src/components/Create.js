@@ -54,7 +54,7 @@ class Create extends Component {
   constructor(props) {
     super(props)
     const { sampleId } = getQueryParams(props.location.search)
-    const savedState = JSON.parse(window.sessionStorage ? window.sessionStorage.getItem('createState') : null)
+    const savedState = JSON.parse(window.localStorage ? window.localStorage.getItem('createState') : null)
     this.state = Object.assign({
       errorMessage: null,
       language: 'javascript',
@@ -75,7 +75,7 @@ class Create extends Component {
     const { errorMessage, ...editorState} = this.state
     const { history, location } = this.props
     const { sampleId } = getQueryParams(location.search)
-    window.sessionStorage && window.sessionStorage.setItem('createState', JSON.stringify(editorState))
+    window.localStorage && window.localStorage.setItem('createState', JSON.stringify(editorState))
     if (sampleId) {
       history.push(`/create${removeQueryParams(location.search, ['sampleId'])}`)
     }
