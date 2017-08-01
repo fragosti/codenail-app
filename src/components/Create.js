@@ -5,12 +5,14 @@ import { modularScale } from 'polished';
 
 import Editor from './Editor';
 import { controls } from './EditorControl';
+import { Tab, Tabs, TabList, TabPanel } from './Tabs';
 import { CTA } from './Button';
 import Overlay from './Overlay';
 import Spinner from './Spinner';
 import Frame from './Frame';
+import Flex from './Flex';
 import { Container } from './Page';
-import { colors, isPhone } from '../style/utils';
+import { colors, isPhone, media } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import samples from '../lib/samples';
@@ -24,7 +26,8 @@ const LayoutContainer = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
 `
 
 const SectionContainer = styled.div`
@@ -33,6 +36,19 @@ const SectionContainer = styled.div`
   flex-direction: column;
   margin: 0px 15px;
   height: 100%;
+  width: ${props => props.width};
+  ${media.giant`
+    width: ${props => props.giantWidth};
+  `}
+  ${media.desktop`
+    width: ${props => props.desktopWidth};
+  `}
+  ${media.tablet`
+    width: ${props => props.tabletWidth};
+  `}
+  ${media.phone`
+    width: ${props => props.phoneWidth};
+  `}
 `
 
 const ControlSection = styled.div`
@@ -42,21 +58,13 @@ const ControlSection = styled.div`
     font-weight: 600;
     border-bottom: 1px solid rgba(0,0,0,.1);
     padding: 5px 0px;
+    margin-bottom: 20px;
   }
+  margin-bottom: 20px;
 `
 
 const ButtonPanel = styled.div`
-  margin-top: 50px;
-`
-
-const Controls = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  padding: 20px 0px;
-  justify-content: flex-start;
-  max-width: 700px;
-  flex-wrap: wrap;
+  margin-top: 30px;
 `
 
 const EditorWrapper = styled.div`
@@ -169,38 +177,64 @@ class Create extends Component {
             </EditorWrapper>
             <i>Want to remove new lines and extra space? <Action onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Press Here.</Action></i>
           </SectionContainer>
-          <SectionContainer>
+          <SectionContainer 
+            width='575px'
+            giantWidth='350px'
+            desktopWidth='275px'
+            tabletWidth='420px'
+            phoneWidth='350px'
+          >
             <ControlSection>
               <h3> Shape it like a logo? </h3>
-              <Controls>
+              <Flex>
                 <div> 1</div>
                 <div> 2</div>
                 <div> 3</div>
-              </Controls>
+              </Flex>
             </ControlSection>
             <ControlSection>
               <h3> Style</h3>
-              <Controls>
-                {controls({
-                  language,
-                  mode,
-                  fontSize,
-                  showLineNumbers,
-                  wrapEnabled,
-                  horPadding,
-                  verPadding,
-                  paddingColor,
-                }, this.onSettingsChange)}
-              </Controls>
+              <Flex wrap={true} alignItems='baseline'>
+                <Flex maxWidth='275px'>
+                  <Tabs>
+                    <TabList>
+                      <Tab>Editor Color</Tab>
+                      <Tab>Custom Color</Tab>
+                    </TabList>
+                    <TabPanel>
+                      {controls({
+                        language,
+                        mode,
+                      }, this.onSettingsChange)}
+                    </TabPanel>
+                    <TabPanel>
+                      {controls({
+                        fontSize,
+                        mode,
+                      }, this.onSettingsChange)}
+                    </TabPanel>
+                  </Tabs>
+                </Flex>
+                <Flex maxWidth='275px' wrap={true}>
+                  {controls({
+                    fontSize,
+                    showLineNumbers,
+                    wrapEnabled,
+                    horPadding,
+                    verPadding,
+                    paddingColor,
+                  }, this.onSettingsChange)}
+                </Flex>
+              </Flex>
             </ControlSection>
             <ControlSection>
               <h3> Dimensions and Frame</h3>
-              <Controls>
+              <Flex>
                 {controls({
                   size, 
                   framed,
                 }, this.onSettingsChange)}
-              </Controls>
+              </Flex>
             </ControlSection>
             <ButtonPanel> 
               <StripeCheckout 
