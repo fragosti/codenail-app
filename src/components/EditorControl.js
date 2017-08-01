@@ -153,22 +153,26 @@ const labelForKey = {
 const EditorControl = ({editorProps, onChange, className}) => {
   return (
     <EditorControlContainer className={className}>
-      {Object.keys(editorProps).map((key, index) => {
-        return (
-          <OptionContainer key={index}>
-            <SelectLabel>{labelForKey[key]}</SelectLabel>
-            <StyledSelect 
-              name={key}
-              clearable={false}
-              value={editorProps[key]}
-              options={optionsForKey[key]}
-              onChange={({value}) => onChange(key, value)}
-            />
-          </OptionContainer>
-        )
-      })}
+      {controls(editorProps, onChange)}
     </EditorControlContainer>
   )
+}
+
+export const controls = (editorProps, onChange) => {
+  return Object.keys(editorProps).map((key, index) => {
+    return (
+      <OptionContainer key={index}>
+        <SelectLabel>{labelForKey[key]}</SelectLabel>
+        <StyledSelect 
+          name={key}
+          clearable={false}
+          value={editorProps[key]}
+          options={optionsForKey[key]}
+          onChange={({value}) => onChange(key, value)}
+        />
+      </OptionContainer>
+    )
+  })
 }
 
 export default EditorControl

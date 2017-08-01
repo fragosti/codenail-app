@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import StripeCheckout from 'react-stripe-checkout';
-import { Link } from 'react-router-dom';
+import { modularScale } from 'polished';
 
 import Editor from './Editor';
-import EditorControl from './EditorControl';
-import Button from './Button';
+import { controls } from './EditorControl';
+import { CTA } from './Button';
 import Overlay from './Overlay';
 import Spinner from './Spinner';
 import Frame from './Frame';
-import { Container, Description } from './Page';
+import { Container } from './Page';
 import { colors, isPhone } from '../style/utils';
 import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
@@ -19,11 +19,44 @@ import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
 
 import logo from '../img/logo.png';
 
-const EditorContainer = styled.div`
+const LayoutContainer = styled.div`
   padding-bottom: 30px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+const SectionContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
   flex-direction: column;
+  margin: 0px 15px;
+  height: 100%;
+`
+
+const ControlSection = styled.div`
+  width: 100%;
+  h3 {
+    font-size: ${modularScale(1)};
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 5px 0px;
+  }
+`
+
+const ButtonPanel = styled.div`
+  margin-top: 50px;
+`
+
+const Controls = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px 0px;
+  justify-content: flex-start;
+  max-width: 700px;
+  flex-wrap: wrap;
 `
 
 const EditorWrapper = styled.div`
@@ -35,10 +68,6 @@ const EditorWrapper = styled.div`
   margin: ${props => props.framed ? 35 : 0}px 0px;
 `
 
-const PaddedControl = styled(EditorControl)`
-  padding: 20px 0px;
-`
-
 const OverlayMessage = styled.div`
   margin-top: 20px;
 `
@@ -47,7 +76,7 @@ const Action = styled.u`
   cursor: pointer;
 `
 
-const EDITOR_WIDTH = isPhone() ? 350 :700;
+const EDITOR_WIDTH = isPhone() ? 350 : 500;
 
 class Create extends Component {
   constructor(props) {
@@ -110,115 +139,127 @@ class Create extends Component {
           </Overlay>
           )
         }
-        <Description> 
-          {errorMessage && <p><i> {errorMessage} </i></p>}
-          <h1> Welcome to the editor! </h1> 
-          <p> 
-            Add your code, specify the language, theme, font size and more.
-            You'll see the print preview live update as you go. 
-            <strong> Price will vary with print size</strong> and whether you would like it <strong>framed</strong> in black.
-            <strong> Shipping is free and takes 3-5 business days</strong> after fulfillment. 
-            More questions? Visit our <Link to='/faq'><strong><u>FAQ</u></strong></Link> page. 
-            Press order once you're ready! 
-          </p>
-          <StripeCheckout 
-            token={(token, addresses) => {
-              startLoading()
-              createOrder({
-                token,
-                addresses,
-                price: price*100,
-                description,
-                isTest,
-                options: {
+        {errorMessage && <p><i> {errorMessage} </i></p>}
+        <LayoutContainer>
+          <SectionContainer>
+            <EditorWrapper framed={framed}> 
+              {framed && ( 
+                <Frame 
+                  width={width} 
+                  height={height} 
+                  thickness={isPhone() ? 35 : 70}
+                  borderColor1='#767676'
+                  borderColor2='#666666'
+                />
+              )}
+              <Editor 
+                language={language}
+                theme={mode}
+                value={value}
+                fontSize={fontSize}
+                onChange={this.onValueChange}
+                showLineNumbers={showLineNumbers}
+                wrapEnabled={wrapEnabled}
+                width={width}
+                height={height}
+                horPadding={horPadding}
+                verPadding={verPadding}
+                paddingColor={paddingColor}
+              />
+            </EditorWrapper>
+            <i>Want to remove new lines and extra space? <Action onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Press Here.</Action></i>
+          </SectionContainer>
+          <SectionContainer>
+            <ControlSection>
+              <h3> Shape it like a logo? </h3>
+              <Controls>
+                <div> 1</div>
+                <div> 2</div>
+                <div> 3</div>
+              </Controls>
+            </ControlSection>
+            <ControlSection>
+              <h3> Style</h3>
+              <Controls>
+                {controls({
                   language,
                   mode,
-                  value,
                   fontSize,
                   showLineNumbers,
                   wrapEnabled,
-                  width,
-                  height,
                   horPadding,
                   verPadding,
                   paddingColor,
-                  size,
+                }, this.onSettingsChange)}
+              </Controls>
+            </ControlSection>
+            <ControlSection>
+              <h3> Dimensions and Frame</h3>
+              <Controls>
+                {controls({
+                  size, 
                   framed,
-                }
-              })
-              .then(res => res.json())
-              .then(({ id }) => {
-                stopLoading()
-                history.push(`/thankyou/${id}`)
-              })
-              .catch(() => {
-                stopLoading()
-                this.setState({ errorMessage: 'Sorry! Something went wrong please try again later.'})
-              })
-            }}
-            name="Codenail.com"
-            image={logo}
-            description={description}
-            ComponentClass="span"
-            amount={price*100}
-            shippingAddress={true}
-            billingAddress={true}
-            stripeKey={isTest ? TEST_STRIPE_KEY : STRIPE_KEY}
-            opened={() => {
-              if (location.search) {
-                history.push(`/create${location.search}&overlay=checkout`)
-              } else {
-                history.push(`/create?overlay=checkout`)
-              }
-            }}
-            closed={() => history.goBack()}
-          >
-            <Button color={colors.green}>{`Order for $${price}`}</Button>
-          </StripeCheckout>
-        </Description>
-        <EditorContainer>
-          <PaddedControl 
-            onChange={this.onSettingsChange}
-            editorProps={{
-              language,
-              mode,
-              fontSize,
-              showLineNumbers,
-              wrapEnabled,
-              size,
-              framed,
-              horPadding,
-              verPadding,
-              paddingColor,
-            }}
-          />
-          <EditorWrapper framed={framed}> 
-            {framed && ( 
-              <Frame 
-                width={width} 
-                height={height} 
-                thickness={isPhone() ? 35 : 70}
-                borderColor1='#767676'
-                borderColor2='#666666'
-              />
-            )}
-            <Editor 
-              language={language}
-              theme={mode}
-              value={value}
-              fontSize={fontSize}
-              onChange={this.onValueChange}
-              showLineNumbers={showLineNumbers}
-              wrapEnabled={wrapEnabled}
-              width={width}
-              height={height}
-              horPadding={horPadding}
-              verPadding={verPadding}
-              paddingColor={paddingColor}
-            />
-          </EditorWrapper>
-        </EditorContainer>
-        <i>Want to remove new lines and extra space? <Action onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Press Here.</Action></i>
+                }, this.onSettingsChange)}
+              </Controls>
+            </ControlSection>
+            <ButtonPanel> 
+              <StripeCheckout 
+                token={(token, addresses) => {
+                  startLoading()
+                  createOrder({
+                    token,
+                    addresses,
+                    price: price*100,
+                    description,
+                    isTest,
+                    options: {
+                      language,
+                      mode,
+                      value,
+                      fontSize,
+                      showLineNumbers,
+                      wrapEnabled,
+                      width,
+                      height,
+                      horPadding,
+                      verPadding,
+                      paddingColor,
+                      size,
+                      framed,
+                    }
+                  })
+                  .then(res => res.json())
+                  .then(({ id }) => {
+                    stopLoading()
+                    history.push(`/thankyou/${id}`)
+                  })
+                  .catch(() => {
+                    stopLoading()
+                    this.setState({ errorMessage: 'Sorry! Something went wrong please try again later.'})
+                  })
+                }}
+                name="Codenail.com"
+                image={logo}
+                description={description}
+                ComponentClass="span"
+                amount={price*100}
+                shippingAddress={true}
+                billingAddress={true}
+                stripeKey={isTest ? TEST_STRIPE_KEY : STRIPE_KEY}
+                opened={() => {
+                  if (location.search) {
+                    history.push(`/create${location.search}&overlay=checkout`)
+                  } else {
+                    history.push(`/create?overlay=checkout`)
+                  }
+                }}
+                closed={() => history.goBack()}
+              >
+                <CTA color={colors.green}>{`Order for $${price}`}</CTA>
+              </StripeCheckout>
+            </ButtonPanel>
+          </SectionContainer>
+        </LayoutContainer>
       </Container>
     )
   }
