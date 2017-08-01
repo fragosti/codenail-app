@@ -33,7 +33,6 @@ export const CTA = ButtonBase.extend`
   border: 2px solid black;
   border-radius: 4px;
   font-weight: 600;
-  height: 40px;
   text-transform: uppercase;
   padding: 10px 30px;
   letter-spacing: .3px;

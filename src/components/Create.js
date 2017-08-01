@@ -19,7 +19,6 @@ import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
 
 import logo from '../img/logo.png';
 
-
 const EditorContainer = styled.div`
   padding-bottom: 30px;
   display: flex;

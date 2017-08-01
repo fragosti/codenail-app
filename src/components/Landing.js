@@ -7,6 +7,7 @@ import Editor from './Editor';
 import { CTA } from './Button'; 
 import Samples from './Samples';
 import Gallery from './Gallery';
+import SubscribeForm from './SubscribeForm';
 import { PosterBack, DisplayContainer } from './Page';
 import samples from '../lib/samples';
 import { isPhone, viewPort } from '../style/utils';
@@ -163,6 +164,29 @@ const tryItOut = () => {
             <CTALink fontScale={1} to="/create"> Create your own </CTALink>
           </div>
         </DisplayContainer>
+      </section>
+      <section className="socialproof">
+        <div className="container-sml">
+          <div className="col-12 text-center">
+            <h3 className="heading">
+              <b className="emoji">
+                <span role='img' aria-label='party'>🎉 </span>
+              </b>
+              Sign up for updates.
+              <b className="emoji">
+                <span role='img' aria-label='star'> 💫</span>
+              </b>
+            </h3>
+            <p className="paragraph">
+              We will only send you emails to update you about our products and features.
+            </p>
+          </div>
+        </div>
+        <div className="container-lrg centerdevices col-12">
+          <div className="ctas text-center">
+            <SubscribeForm/>
+          </div>
+        </div>
       </section>
     </div>
   )
