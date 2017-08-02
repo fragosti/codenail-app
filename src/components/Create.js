@@ -21,35 +21,32 @@ import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
 
 import logo from '../img/logo.png';
 
-const LayoutContainer = styled.div`
+
+const LayoutContainer = Flex.extend`
   padding-bottom: 30px;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
 `
 
 const SectionContainer = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   flex-direction: column;
   margin: 0px 15px;
   height: 100%;
   width: ${props => props.width};
   ${media.giant`
-    width: ${props => props.giantWidth};
+    max-width: ${props => props.giantMaxWidth};
   `}
   ${media.desktop`
-    width: ${props => props.desktopWidth};
+    max-width: ${props => props.desktopMaxWidth};
   `}
   ${media.tablet`
-    width: ${props => props.tabletWidth};
+    max-width: ${props => props.tabletMaxWidth};
   `}
   ${media.phone`
-    width: ${props => props.phoneWidth};
+    max-width: ${props => props.phoneMaxWidth};
   `}
-`
+` 
 
 const ControlSection = styled.div`
   width: 100%;
@@ -148,7 +145,12 @@ class Create extends Component {
           )
         }
         {errorMessage && <p><i> {errorMessage} </i></p>}
-        <LayoutContainer>
+        <LayoutContainer 
+          maxWidth='1170px' 
+          direction='row' 
+          wrap={true}
+          justifyContent='center'
+        >
           <SectionContainer>
             <EditorWrapper framed={framed}> 
               {framed && ( 
@@ -179,10 +181,10 @@ class Create extends Component {
           </SectionContainer>
           <SectionContainer 
             width='575px'
-            giantWidth='350px'
-            desktopWidth='275px'
-            tabletWidth='420px'
-            phoneWidth='350px'
+            giantMaxWidth='350px'
+            desktopMaxWidth='275px'
+            tabletMaxWidth='420px'
+            phoneMaxWidth='350px'
           >
             <ControlSection>
               <h3> Shape it like a logo? </h3>
