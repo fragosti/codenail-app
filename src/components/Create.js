@@ -6,7 +6,7 @@ import { modularScale } from 'polished';
 import Editor from './Editor';
 import { controls } from './EditorControl';
 import { Tab, Tabs, TabList, TabPanel } from './Tabs';
-import { CTA } from './Button';
+import Button, { CTA } from './Button';
 import Overlay from './Overlay';
 import Spinner from './Spinner';
 import Frame from './Frame';
@@ -69,8 +69,9 @@ const EditorWrapper = styled.div`
   border-radius: 3px;
   border: 2px solid #f5f5f5;
   position: relative;
+  margin-bottom: 30px;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
-  margin: ${props => props.framed ? 35 : 0}px 0px;
+  margin-right: ${props => props.framed ? 35 : 0}px;
 `
 
 const OverlayMessage = styled.div`
@@ -177,7 +178,7 @@ class Create extends Component {
                 paddingColor={paddingColor}
               />
             </EditorWrapper>
-            <i>Want to remove new lines and extra space? <Action onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Press Here.</Action></i>
+            <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
           </SectionContainer>
           <SectionContainer 
             width='575px'
@@ -222,9 +223,9 @@ class Create extends Component {
                     fontSize,
                     showLineNumbers,
                     wrapEnabled,
-                    horPadding,
-                    verPadding,
                     paddingColor,
+                    verPadding,
+                    horPadding,
                   }, this.onSettingsChange)}
                 </Flex>
               </Flex>
