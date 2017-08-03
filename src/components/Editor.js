@@ -28,6 +28,21 @@ const Container = styled.div`
     right: 0px !important;
     bottom: 0px !important;
   }
+  .ace_content .ace_line {
+    .ace_keyword, 
+    .ace_identifier, 
+    .ace_paren,
+    .ace_symbol,
+    .ace_paren,
+    .ace_constant,
+    .ace_string,
+    .ace_regexp {
+      color: ${props => props.textColor} !important;
+    }
+  }
+  .ace_content {
+    background-color: ${props => props.backgroundColor} !important;
+  }
 `
 
 class Editor extends Component {
@@ -47,11 +62,35 @@ class Editor extends Component {
 
   render() {
     const { hasForceUpdated } = this.state
-    const { value, onChange, language, theme, wrapEnabled, showLineNumbers, fontSize, height, width, horPadding, verPadding, paddingColor } = this.props
+    const { 
+      value, 
+      onChange, 
+      language, 
+      theme, 
+      wrapEnabled, 
+      showLineNumbers, 
+      fontSize, 
+      height, 
+      width, 
+      horPadding, 
+      verPadding, 
+      paddingColor,
+      colorMode,
+      textColor,
+      backgroundColor,
+    } = this.props
     const adjustedHeight = height-verPadding*2
     const adjustedWidth = width-horPadding*2
+    const shouldOverrideColor = colorMode === 'custom'
     return (
-      <Container paddingColor={paddingColor} horPadding={horPadding} verPadding={verPadding} className={`ace-${theme.replace('_', '-')}`}>
+      <Container 
+        paddingColor={paddingColor} 
+        horPadding={horPadding} 
+        verPadding={verPadding} 
+        className={`ace-${theme.replace('_', '-')}`}
+        textColor={shouldOverrideColor ? textColor : null}
+        backgroundColor={shouldOverrideColor ? backgroundColor : null}
+      >
         <AceEditor
           ref={(ref) => {
             if (ref) {

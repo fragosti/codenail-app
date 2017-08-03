@@ -8,6 +8,7 @@ import { colors } from '../style/utils';
 const ButtonBase = styled.a`
   background: ${props => props.color};
   cursor: pointer;
+  display: inline-block;
   font-size: ${props => props.fontScale ? modularScale(props.fontScale) : '1em'};
   &:hover {
     background: ${props => darken(0.1, props.color)};
@@ -34,7 +35,7 @@ export const CTA = ButtonBase.extend`
   border-radius: 4px;
   font-weight: 600;
   text-transform: uppercase;
-  padding: 10px 30px;
+  padding: 15px 30px;
   letter-spacing: .3px;
 `
 

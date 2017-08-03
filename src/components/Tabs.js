@@ -9,6 +9,7 @@ import {
 export const Tabs = styled(rTabs)`
   .react-tabs__tab-list {
     padding: 0;
+    margin-bottom: 15px;
   }
   .react-tabs__tab-panel {
     display: flex;

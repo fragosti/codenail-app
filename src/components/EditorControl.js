@@ -1,12 +1,10 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { SelectLabel, OptionContainer }  from './Select';
 import styled from 'styled-components';
-import { modularScale } from 'polished';
 
 import { zIndex } from '../style/utils';
 import { concatMap, flipAround } from '../lib/utils';
 
-import 'react-select/dist/react-select.css';
 
 export const languages = [
   'plain_text',
@@ -100,24 +98,6 @@ const EditorControlContainer = styled.div`
   z-index: ${zIndex.aboveEditor};
 `
 
-const StyledSelect = styled(Select)`
-  width: 100px;
-  input {
-    color: transparent;
-  }
-`
-
-const OptionContainer = styled.div`
-  margin: 10px 15px;
-  font-size: ${modularScale(-1)};
-`
-
-const SelectLabel = styled.label`
-  font-weight: 700;
-  padding: 6px 3px;
-  display: inline-block;
-`
-
 const boolOption = [
   { value: true, label: 'Yes'},
   { value: false, label: 'No'},
@@ -163,7 +143,7 @@ export const controls = (editorProps, onChange) => {
     return (
       <OptionContainer key={index}>
         <SelectLabel>{labelForKey[key]}</SelectLabel>
-        <StyledSelect 
+        <Select 
           name={key}
           clearable={false}
           value={editorProps[key]}

@@ -5,6 +5,7 @@ import { modularScale } from 'polished';
 
 import Editor from './Editor';
 import { controls } from './EditorControl';
+import ColorPicker from './ColorPicker';
 import { Tab, Tabs, TabList, TabPanel } from './Tabs';
 import Button, { CTA } from './Button';
 import Overlay from './Overlay';
@@ -78,10 +79,6 @@ const OverlayMessage = styled.div`
   margin-top: 20px;
 `
 
-const Action = styled.u`
-  cursor: pointer;
-`
-
 const EDITOR_WIDTH = isPhone() ? 350 : 500;
 
 class Create extends Component {
@@ -102,6 +99,9 @@ class Create extends Component {
       horPadding: 0,
       verPadding: 0,
       paddingColor: 'none',
+      backgroundColor: 'white',
+      textColor: 'black',
+      colorMode: 'editor',
     }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
@@ -128,7 +128,7 @@ class Create extends Component {
   render() {
     const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
-    const { language, fontSize, size, framed, mode, showLineNumbers, wrapEnabled, value, horPadding, verPadding, paddingColor, errorMessage } = this.state
+    const { language, fontSize, size, framed, mode, showLineNumbers, wrapEnabled, value, horPadding, verPadding, paddingColor, backgroundColor, textColor, colorMode, errorMessage } = this.state
     const { coupon } = getQueryParams(location.search)
     const price = priceForSize(size, framed, coupon)
     const description = framed ? `Framed ${size} poster` : `${size} poster`
@@ -176,6 +176,9 @@ class Create extends Component {
                 horPadding={horPadding}
                 verPadding={verPadding}
                 paddingColor={paddingColor}
+                colorMode={colorMode}
+                textColor={textColor}
+                backgroundColor={backgroundColor}
               />
             </EditorWrapper>
             <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
@@ -199,7 +202,10 @@ class Create extends Component {
               <h3> Style</h3>
               <Flex wrap={true} alignItems='baseline'>
                 <Flex maxWidth='275px'>
-                  <Tabs>
+                  <Tabs 
+                    selectedIndex={colorMode === 'editor' ? 0 : 1}
+                    onSelect={(index) => this.onSettingsChange('colorMode', index ? 'custom' : 'editor')}
+                  >
                     <TabList>
                       <Tab>Editor Color</Tab>
                       <Tab>Custom Color</Tab>
@@ -211,10 +217,16 @@ class Create extends Component {
                       }, this.onSettingsChange)}
                     </TabPanel>
                     <TabPanel>
-                      {controls({
-                        fontSize,
-                        mode,
-                      }, this.onSettingsChange)}
+                      <ColorPicker
+                        label='Background Color' 
+                        color={backgroundColor}
+                        onChange={({hex}) => this.onSettingsChange('backgroundColor', hex)}
+                      />
+                      <ColorPicker 
+                        label='Text Color'
+                        color={textColor}
+                        onChange={({hex}) => this.onSettingsChange('textColor', hex)}
+                      />
                     </TabPanel>
                   </Tabs>
                 </Flex>
