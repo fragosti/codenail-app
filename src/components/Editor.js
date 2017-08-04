@@ -38,7 +38,11 @@ const Container = styled.div`
     .ace_string,
     .ace_regexp,
     .ace_support,
-    .ace_function {
+    .ace_function,
+    .ace_storage,
+    .ace_type,
+    .ace_variable,
+    .ace_parameter {
       color: ${props => props.textColor} !important;
     }
   }

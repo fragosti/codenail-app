@@ -67,7 +67,7 @@ def dijsktra(graph, initial):
     `,
     mode: 'solarized_dark',
     language: 'python',
-    fontSize: 16,
+    fontSize: 11,
     showLineNumbers: true,
   },
   'BJ0op-9QW': {
@@ -75,7 +75,7 @@ def dijsktra(graph, initial):
   `\n\n\n\n\n\npublic class Me {\n    private Boolean alive = true;\n    public void run() {\n        while (this.alive) {\n            this.love(new You());\n        }\n    }\n}\n`,
     showLineNumbers: false,
     mode: 'eclipse',
-    fontSize: 30,
+    fontSize: 20,
     horPadding: 50,
     language: 'java',
     size: '10x10',
@@ -108,7 +108,7 @@ for X in j('BM'+P(M,v*x*3+26,26,12,v,x,1,24))or C:
     mode: 'solarized_light',
     size: '10x10',
     language: 'python',
-    fontSize: 20
+    fontSize: 15
   },
 
   'rJqG7YwQW': {
@@ -172,7 +172,7 @@ l.createElement=function(t,e,n){var i,s={},f=null,p=null;if(null!=e){r(e)&&(p=e.
 u.call(e,i)&&!c.hasOwnProperty(i)&&(s[i]=e[i])}var d=arguments.length-2;if(1===d)s.children=n;else if(d>1){for(var 
 `,
     mode: 'monokai',
-    fontSize: 14,
+    fontSize: 10,
     language: 'javascript',
     showLineNumbers: false,
   }
