@@ -32,7 +32,7 @@ const SectionContainer = styled.div`
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  margin: 0px 15px;
+  margin: 0px 15px 30px;
   height: 100%;
   width: ${props => props.width};
   ${media.giant`
@@ -61,8 +61,8 @@ const ControlSection = styled.div`
   margin-bottom: 20px;
 `
 
-const ButtonPanel = styled.div`
-  margin-top: 30px;
+const ActionButton = CTA.extend`
+  margin: 30px 15px 0px;
 `
 
 const EditorWrapper = styled.div`
@@ -192,7 +192,7 @@ class Create extends Component {
           >
             <ControlSection>
               <h3> Shape it like a logo? </h3>
-              <Flex>
+              <Flex justifyContent='center'>
                 <div> 1</div>
                 <div> 2</div>
                 <div> 3</div>
@@ -200,7 +200,7 @@ class Create extends Component {
             </ControlSection>
             <ControlSection>
               <h3> Style</h3>
-              <Flex wrap={true} alignItems='baseline'>
+              <Flex wrap={true} alignItems='baseline' justifyContent='center'>
                 <Flex maxWidth='275px'>
                   <Tabs 
                     selectedIndex={colorMode === 'editor' ? 0 : 1}
@@ -244,14 +244,16 @@ class Create extends Component {
             </ControlSection>
             <ControlSection>
               <h3> Dimensions and Frame</h3>
-              <Flex>
+              <Flex justifyContent='center'>
                 {controls({
                   size, 
                   framed,
                 }, this.onSettingsChange)}
               </Flex>
             </ControlSection>
-            <ButtonPanel> 
+            <Flex wrap={true} justifyContent='center'> 
+              <ActionButton>Preview</ActionButton>
+              <ActionButton>Share</ActionButton>
               <StripeCheckout 
                 token={(token, addresses) => {
                   startLoading()
@@ -304,9 +306,9 @@ class Create extends Component {
                 }}
                 closed={() => history.goBack()}
               >
-                <CTA color={colors.green}>{`Order for $${price}`}</CTA>
+                <ActionButton color={colors.green}>{`Order for $${price}`}</ActionButton>
               </StripeCheckout>
-            </ButtonPanel>
+            </Flex>
           </SectionContainer>
         </LayoutContainer>
       </Container>
