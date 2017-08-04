@@ -46,7 +46,11 @@ const Container = styled.div`
       color: ${props => props.textColor} !important;
     }
   }
-  .ace_content {
+  .ace_gutter-cell {
+    color: ${props => props.textColor} !important;
+  }
+
+  .ace_content, .ace_gutter, .ace_gutter-active-line {
     background-color: ${props => props.backgroundColor} !important;
   }
 `
