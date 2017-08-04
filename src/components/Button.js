@@ -1,12 +1,15 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import { darken } from 'polished';
 import { modularScale } from 'polished';
 
 import { colors } from '../style/utils';
+import Icon from './Icon';
 
 const ButtonBase = styled.a`
   background: ${props => props.color};
+  border-radius: 4px;
   cursor: pointer;
   display: inline-block;
   font-size: ${props => props.fontScale ? modularScale(props.fontScale) : '1em'};
@@ -24,7 +27,6 @@ ButtonBase.defaultProps = {
 
 const Button = ButtonBase.extend`
   border: 1px solid ${colors.gray};
-  border-radius: 4px;
   padding: 10px 15px;
   width: ${props => props.width};
 `
@@ -32,11 +34,16 @@ const Button = ButtonBase.extend`
 
 export const CTA = ButtonBase.extend`
   border: 2px solid black;
-  border-radius: 4px;
   font-weight: 600;
   text-transform: uppercase;
   padding: 15px 30px;
   letter-spacing: .3px;
 `
+
+const ButtonForIcon = Button.extend`
+  padding: 5px 10px;
+`
+export const IconButton = ({ name, onClick }) => ( <ButtonForIcon onClick={onClick}><Icon name={name}/></ButtonForIcon> )
+
 
 export default Button;

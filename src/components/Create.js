@@ -6,6 +6,7 @@ import { modularScale } from 'polished';
 import Editor from './Editor';
 import { controls } from './EditorControl';
 import ColorPicker from './ColorPicker';
+import ArrowControl from './ArrowControl';
 import { Tab, Tabs, TabList, TabPanel } from './Tabs';
 import Button, { CTA } from './Button';
 import Overlay from './Overlay';
@@ -115,6 +116,25 @@ class Create extends Component {
     }
   }
 
+  moveTextUp = () => {
+    const newValue = this.state.value.split('\n').slice(1).join('\n');
+    this.onSettingsChange('value', newValue)
+  }
+
+  moveTextDown = () => {
+    this.onSettingsChange('value', '\n' + this.state.value)
+  }
+
+  moveTextLeft = () => {
+    const newValue = this.state.value.split('\n').map(line => line.slice(1)).join('\n')
+    this.onSettingsChange('value', newValue)
+  }
+
+  moveTextRight = () => {
+    const newValue = this.state.value.split('\n').map(line => ' ' + line).join('\n')
+    this.onSettingsChange('value', newValue)
+  }
+
   onSettingsChange = (key, value) => {
     this.setState({
       [key]: value,
@@ -181,7 +201,15 @@ class Create extends Component {
                 backgroundColor={backgroundColor}
               />
             </EditorWrapper>
-            <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
+            <Flex justifyContent='space-around' wrap={true}>
+              <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
+              <ArrowControl
+                onUp={this.moveTextUp}
+                onDown={this.moveTextDown}
+                onLeft={this.moveTextLeft}
+                onRight={this.moveTextRight}
+              />
+            </Flex>
           </SectionContainer>
           <SectionContainer 
             width='575px'
