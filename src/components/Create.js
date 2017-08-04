@@ -71,16 +71,17 @@ const EditorWrapper = styled.div`
   border-radius: 3px;
   border: 2px solid #f5f5f5;
   position: relative;
-  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: ${props => props.framed ? 50 : 30}px;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
-  margin-right: ${props => props.framed ? 35 : 0}px;
 `
 
 const OverlayMessage = styled.div`
   margin-top: 20px;
 `
 
-const EDITOR_WIDTH = isPhone() ? 350 : 500;
+const EDITOR_WIDTH = isPhone() ? 300 : 450;
 
 class Create extends Component {
   constructor(props) {
@@ -96,7 +97,7 @@ class Create extends Component {
       value: '// Paste your code here!',
       fontSize: isPhone() ? 8 : 12,
       size: '12x16',
-      framed: false,
+      framed: true,
       horPadding: 0,
       verPadding: 0,
       paddingColor: 'none',
