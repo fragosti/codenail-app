@@ -29,6 +29,8 @@ const Container = styled.div`
     bottom: 0px !important;
   }
   .ace_content .ace_line {
+    color: ${props => props.textColor} !important;
+    
     .ace_keyword, 
     .ace_identifier, 
     .ace_paren,

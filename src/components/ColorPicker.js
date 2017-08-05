@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BlockPicker from 'react-color/lib/components/block/Block';
+import ChromePicker from 'react-color/lib/components/chrome/Chrome';
 import styled from 'styled-components';
 
 import { zIndex } from '../style/utils';
@@ -41,7 +41,7 @@ class ColorPicker extends Component {
         </AwareButton>
         {isOpen && (
           <PickerWrapper>
-            <BlockPicker color={color} onChangeComplete={onChange}/>
+            <ChromePicker color={color} onChangeComplete={onChange}/>
           </PickerWrapper>
         )}
       </OptionContainer>
