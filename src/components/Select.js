@@ -16,10 +16,14 @@ export const OptionContainer = styled.div`
 `
 
 export const SelectLabel = styled.label`
-  font-weight: 700;
+  font-weight: ${props => props.bold ? 700 : 500};
   font-size: ${modularScale(-1)};
   padding: 6px 3px;
   display: inline-block;
 `
+
+SelectLabel.defaultProps = {
+  bold: true,
+}
 
 export default StyledSelect

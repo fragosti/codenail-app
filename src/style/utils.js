@@ -20,6 +20,7 @@ export const isPhone = () => {
 
 export const colors = {
   gray: '#ccc',
+  lightGray: '#f5f5f7',
   green: 'rgba(160, 255, 113, 0.3)'
 }
 
