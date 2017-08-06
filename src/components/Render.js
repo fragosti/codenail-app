@@ -29,7 +29,21 @@ class Render extends Component {
   }
 
   render() {
-    const { language, mode, value, fontSize, showLineNumbers, wrapEnabled, width, height, horPadding, verPadding } = this.state 
+    const { 
+      language, 
+      mode, 
+      value, 
+      fontSize, 
+      showLineNumbers, 
+      wrapEnabled, 
+      width, 
+      height, 
+      horPadding, 
+      verPadding,
+      colorMode,
+      backgroundColor,
+      textColor,
+    } = this.state 
     const params = getQueryParams(this.props.location.search)
     const margin = params.margin || 6
     if (!language) {
@@ -51,6 +65,9 @@ class Render extends Component {
           height={height}
           horPadding={horPadding}
           verPadding={verPadding}
+          colorMode={colorMode}
+          backgroundColor={backgroundColor}
+          textColor={textColor}
         />
       </Container>
     )

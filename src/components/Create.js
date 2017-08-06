@@ -224,7 +224,7 @@ class Create extends Component {
             phoneMaxWidth='350px'
           >
             <ControlSection>
-              <h3> Shape it like a logo? </h3>
+              <h3> Shape your code into a logo? </h3>
               <ImageToTextControl
                 editorText={value}
                 onNewText={(text, charsPerRow) => this.setAndSaveState({
@@ -324,6 +324,9 @@ class Create extends Component {
                       paddingColor,
                       size,
                       framed,
+                      colorMode,
+                      backgroundColor,
+                      textColor,
                     }
                   })
                   .then(res => res.json())
