@@ -143,6 +143,10 @@ class Create extends Component {
     }, this.saveState)
   }
 
+  setAndSaveState = (state) => {
+    this.setState(state, this.saveState)
+  }
+
   onValueChange = (value) => {
     this.setState({ value }, this.saveState)
   }
@@ -224,7 +228,21 @@ class Create extends Component {
               <h3> Shape it like a logo? </h3>
               <ImageToTextControl
                 editorText={value}
-                onNewText={(text) => this.onSettingsChange('value', text)}
+                onNewText={(text, charsPerRow) => this.setAndSaveState({
+                  value: text,
+                  fontSize: (() => {
+                    switch(charsPerRow) {
+                      case 100: 
+                        return 8
+                      case 200: 
+                        return 4
+                      case 300: 
+                        return 2.5
+                      default:
+                        return fontSize
+                    }
+                  })()
+                })}
               />
             </ControlSection>
             <ControlSection>

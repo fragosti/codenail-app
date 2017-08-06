@@ -59,7 +59,7 @@ class ImageToTextControl extends Component {
       charForPixel: charForPixelGivenText(text, invertImage),
       async: true,
     })
-    .then(this.props.onNewText)
+    .then((text) => this.props.onNewText(text, charsPerRow))
     .catch(console.log)
   }
 
