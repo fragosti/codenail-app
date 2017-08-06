@@ -6,6 +6,7 @@ import Dropzone from './Dropzone';
 import TextAreaControl from './TextAreaControl';
 import CheckBoxOption from './CheckBoxOption';
 import Button from './Button';
+import { fileToText, isWhiteOrTransparent } from 'img-using-text';
 import Select, { SelectLabel, defaultOptionsForKey }  from './Select';
 import { modularScale } from 'polished';
 
@@ -19,6 +20,18 @@ const ButtonMessage = styled.div`
   font-style: italic;
   margin-top: 8px;
 `
+
+const charForPixelGivenText = (text, invertImage) => {
+  return (pixel, pixelIndex) => {
+    const { r, g, b, a } = pixel;
+    const isWhite = isWhiteOrTransparent(r, g, b, a)
+    if (invertImage ? isWhite : !isWhite) {
+      return text[pixelIndex % text.length];
+    } else {
+      return ' ';
+    }
+  }
+}
 
 class ImageToTextControl extends Component {
   constructor(props) {
@@ -36,13 +49,23 @@ class ImageToTextControl extends Component {
   onShowMePress = (disabled) => {
     if (disabled) {
       this.setState({ buttonMessage: 'Add an image first!' })
-    }
+      return
+    } 
+    const { file, invertImage, charsPerRow, useTextArea } = this.state
+    const text = (useTextArea ? 
+      this.state.text : this.props.editorText.replace(/\s+/g,' ')) || 'x'
+
+    fileToText(file, charsPerRow, 0.5, {
+      charForPixel: charForPixelGivenText(text, invertImage),
+      async: true,
+    })
+    .then(this.props.onNewText)
+    .catch(console.log)
   }
 
   render() {
     const { 
-      file, 
-      text,
+      file,
       useTextArea, 
       charsPerRow, 
       invertImage,
@@ -68,7 +91,7 @@ class ImageToTextControl extends Component {
               value={charsPerRow}
               clearable={false}
               options={defaultOptionsForKey([100,200,300])}
-              onChange={(charsPerRow) => this.setState({ charsPerRow })}
+              onChange={({value}) => this.setState({ charsPerRow: value })}
             />
           </div>
           <CheckBoxWrapper>

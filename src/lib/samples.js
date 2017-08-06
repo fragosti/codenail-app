@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { isPhone } from '../style/utils';
 
 const adjustForPhone = (samples) => {

@@ -222,7 +222,10 @@ class Create extends Component {
           >
             <ControlSection>
               <h3> Shape it like a logo? </h3>
-              <ImageToTextControl/>
+              <ImageToTextControl
+                editorText={value}
+                onNewText={(text) => this.onSettingsChange('value', text)}
+              />
             </ControlSection>
             <ControlSection>
               <h3> Style</h3>

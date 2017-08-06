@@ -7,7 +7,7 @@ import CheckBoxOption from './CheckBoxOption';
 const TextAreaControl = ({ disabled, onChange, onCheckToggle }) => (
   <div>
     <SelectLabel>Text to use</SelectLabel>
-    <TextArea disabled={disabled} onChange={onChange}/>
+    <TextArea disabled={disabled} onChange={(e) => onChange(e.target.value)}/>
     <CheckBoxOption
       label='Use text in editor'
       checked={disabled}
