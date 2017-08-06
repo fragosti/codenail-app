@@ -49,7 +49,21 @@ const icon = (name, size = 24, fill = "none") => {
         <line x1="4" y1="12" x2="20" y2="12"/>
         <polyline points="14 6 20 12 14 18"/>
       </svg>
-    )
+    ),
+    image: (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+    ),
+    upload: (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 17v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/>
+        <polyline points="16 6 12 2 8 6"/>
+        <line x1="12" y1="2" x2="12" y2="16"/>
+      </svg>
+    ),
   }[name]
 }
 

@@ -13,11 +13,11 @@ const StyledSelect = styled(Select)`
 
 export const OptionContainer = styled.div`
   margin: 10px 15px;
-  font-size: ${modularScale(-1)};
 `
 
 export const SelectLabel = styled.label`
   font-weight: 700;
+  font-size: ${modularScale(-1)};
   padding: 6px 3px;
   display: inline-block;
 `

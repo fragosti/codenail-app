@@ -7,6 +7,7 @@ import Editor from './Editor';
 import { controls } from './EditorControl';
 import ColorPicker from './ColorPicker';
 import ArrowControl from './ArrowControl';
+import ImageToTextControl from './ImageToTextControl';
 import { Tab, Tabs, TabList, TabPanel } from './Tabs';
 import Button, { CTA } from './Button';
 import Overlay from './Overlay';
@@ -221,11 +222,7 @@ class Create extends Component {
           >
             <ControlSection>
               <h3> Shape it like a logo? </h3>
-              <Flex justifyContent='center'>
-                <div> 1</div>
-                <div> 2</div>
-                <div> 3</div>
-              </Flex>
+              <ImageToTextControl/>
             </ControlSection>
             <ControlSection>
               <h3> Style</h3>
