@@ -183,7 +183,7 @@ class Create extends Component {
                 <Frame 
                   width={width} 
                   height={height} 
-                  thickness={isPhone() ? 35 : 70}
+                  thickness={EDITOR_WIDTH / 10}
                   borderColor1='#767676'
                   borderColor2='#666666'
                 />
