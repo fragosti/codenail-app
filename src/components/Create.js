@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import StripeCheckout from 'react-stripe-checkout';
 import { modularScale } from 'polished';
 
 import Editor from './Editor';
@@ -8,6 +7,7 @@ import { controls } from './EditorControl';
 import ColorPicker from './ColorPicker';
 import ArrowControl from './ArrowControl';
 import ImageToTextControl from './ImageToTextControl';
+import CheckoutButton from './CheckoutButton';
 import { Tab, Tabs, TabList, TabPanel } from './Tabs';
 import Button, { CTA } from './Button';
 import Overlay from './Overlay';
@@ -20,9 +20,7 @@ import { aspectRatioForSize } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
-import { createOrder, STRIPE_KEY, TEST_STRIPE_KEY } from '../lib/api';
-
-import logo from '../img/logo.png';
+import { createOrder } from '../lib/api';
 
 
 const LayoutContainer = Flex.extend`
@@ -152,9 +150,24 @@ class Create extends Component {
   }
 
   render() {
+    const { errorMessage, ...options } = this.state
+    const { 
+      language, 
+      fontSize, 
+      size, 
+      framed, 
+      mode, 
+      showLineNumbers, 
+      wrapEnabled, 
+      value, 
+      horPadding, 
+      verPadding, 
+      paddingColor, 
+      backgroundColor, 
+      textColor, 
+      colorMode } = options
     const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
-    const { language, fontSize, size, framed, mode, showLineNumbers, wrapEnabled, value, horPadding, verPadding, paddingColor, backgroundColor, textColor, colorMode, errorMessage } = this.state
     const { coupon } = getQueryParams(location.search)
     const price = priceForSize(size, framed, coupon)
     const description = framed ? `Framed ${size} poster` : `${size} poster`
@@ -303,10 +316,18 @@ class Create extends Component {
             </ControlSection>
             {errorMessage && <p><i> {errorMessage} </i></p>}
             <Flex wrap={true} justifyContent='center'> 
-              <ActionButton>Preview</ActionButton>
               <ActionButton>Share</ActionButton>
-              <StripeCheckout 
-                token={(token, addresses) => {
+              <CheckoutButton
+                price={500}
+                description='Print file download'
+                onToken={(token, addresses) => {
+
+                }}
+              >
+                <ActionButton color={colors.green}>Download - $5</ActionButton>
+              </CheckoutButton>
+              <CheckoutButton
+                onToken={(token, addresses) => {
                   startLoading()
                   createOrder({
                     token,
@@ -314,24 +335,7 @@ class Create extends Component {
                     price: price*100,
                     description,
                     isTest,
-                    options: {
-                      language,
-                      mode,
-                      value,
-                      fontSize,
-                      showLineNumbers,
-                      wrapEnabled,
-                      width,
-                      height,
-                      horPadding,
-                      verPadding,
-                      paddingColor,
-                      size,
-                      framed,
-                      colorMode,
-                      backgroundColor,
-                      textColor,
-                    }
+                    options
                   })
                   .then(res => res.json())
                   .then(({ id }) => {
@@ -343,14 +347,9 @@ class Create extends Component {
                     this.setState({ errorMessage: 'Sorry! Something went wrong please try again later.'})
                   })
                 }}
-                name="Codenail.com"
-                image={logo}
+                price={price*100}
                 description={description}
-                ComponentClass="span"
-                amount={price*100}
-                shippingAddress={true}
-                billingAddress={true}
-                stripeKey={isTest ? TEST_STRIPE_KEY : STRIPE_KEY}
+                isTest={isTest}
                 opened={() => {
                   if (location.search) {
                     history.push(`/create${location.search}&overlay=checkout`)
@@ -360,8 +359,8 @@ class Create extends Component {
                 }}
                 closed={() => history.goBack()}
               >
-                <ActionButton color={colors.green}>{`Order for $${price}`}</ActionButton>
-              </StripeCheckout>
+                <ActionButton color={colors.green}>{`Order - $${price}`}</ActionButton>
+              </CheckoutButton>
             </Flex>
           </SectionContainer>
         </LayoutContainer>
