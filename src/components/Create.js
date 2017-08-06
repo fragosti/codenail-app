@@ -233,8 +233,12 @@ class Create extends Component {
                     switch(charsPerRow) {
                       case 100: 
                         return 8
+                      case 150:
+                        return 5.5
                       case 200: 
                         return 4
+                      case 250:
+                        return 3
                       case 300: 
                         return 2.5
                       default:
