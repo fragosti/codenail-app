@@ -1,26 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import { SelectLabel } from './Select';
 import TextArea from './TextArea';
-import CheckBox from './CheckBox';
+import CheckBoxOption from './CheckBoxOption';
 
-const Toggle = styled.div`
-  label {
-    cursor: pointer;
-  }
-`
-
-const TextAreaControl = ({ disabled, onChange, onCheckToggle}) => (
+const TextAreaControl = ({ disabled, onChange, onCheckToggle }) => (
   <div>
     <SelectLabel>Text to use</SelectLabel>
     <TextArea disabled={disabled} onChange={onChange}/>
-    <Toggle onClick={() => onCheckToggle(!disabled)}>
-      <CheckBox checked={disabled}/>
-      <SelectLabel 
-        bold={false}
-      >Use text in editor</SelectLabel>
-    </Toggle>
+    <CheckBoxOption
+      label='Use text in editor'
+      checked={disabled}
+      onCheckToggle={onCheckToggle}
+    />
   </div>
 )
 

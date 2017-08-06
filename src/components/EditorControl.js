@@ -1,5 +1,5 @@
 import React from 'react';
-import Select, { SelectLabel, OptionContainer }  from './Select';
+import Select, { SelectLabel, OptionContainer, defaultOptionsForKey }  from './Select';
 import styled from 'styled-components';
 
 import { zIndex } from '../style/utils';
@@ -103,7 +103,6 @@ const boolOption = [
   { value: false, label: 'No'},
 ]
 
-const defaultOptionsForKey = (keys) => keys.map(x => ({ value: x, label: x}))
 const optionsForKey = {
   language: defaultOptionsForKey(languages),
   mode: defaultOptionsForKey(themes),

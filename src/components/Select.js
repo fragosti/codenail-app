@@ -26,4 +26,6 @@ SelectLabel.defaultProps = {
   bold: true,
 }
 
+export const defaultOptionsForKey = (keys) => keys.map(x => ({ value: x, label: x}))
+
 export default StyledSelect
