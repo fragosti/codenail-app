@@ -29,6 +29,8 @@ export const framedPrintCosts = {
   '24x36': 89,
 };
 
+export const inToCm = (inSize) => inSize.split('x').map(size => (parseInt(size, 10) * 2.54).toFixed(1)).join('x')
+
 export const costForSize = (size, framed) => {
   return framed ? 
     (framedPrintCosts[size] || framedPrintCosts[flipAround(size, 'x')]) : 
@@ -36,10 +38,10 @@ export const costForSize = (size, framed) => {
 }
 
 export const priceForSize = (size, framed, couponCode) => {
-  const price = costForSize(size, framed) + 25
+  const price = costForSize(size, framed)*1.50 + 10
   switch (couponCode) {
-    case '40off':
-      return Math.round((6/10)*price)
+    case '10off':
+      return Math.round((9/10)*price)
     default:
       return Math.round(price)
   }

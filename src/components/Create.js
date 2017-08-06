@@ -171,7 +171,6 @@ class Create extends Component {
           </Overlay>
           )
         }
-        {errorMessage && <p><i> {errorMessage} </i></p>}
         <LayoutContainer 
           maxWidth='1170px' 
           direction='row' 
@@ -298,6 +297,7 @@ class Create extends Component {
                 }, this.onSettingsChange)}
               </Flex>
             </ControlSection>
+            {errorMessage && <p><i> {errorMessage} </i></p>}
             <Flex wrap={true} justifyContent='center'> 
               <ActionButton>Preview</ActionButton>
               <ActionButton>Share</ActionButton>

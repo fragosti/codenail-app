@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Container, Description } from './Page';
-import { printPrices, framedPrintPrices } from '../lib/price';
+import { printPrices, framedPrintPrices, inToCm } from '../lib/price';
 
 const Table = styled.table`
-  width: 50%;
+  width: 350px;
   table-layout: fixed;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -26,6 +26,7 @@ const PriceTable = ({priceMap}) => (
     <thead>
       <tr> 
         <th><i>Size (inches)</i></th>
+        <th><i>Size (cm)</i></th>
         <th><i>Price</i></th>
       </tr> 
     </thead>
@@ -33,6 +34,7 @@ const PriceTable = ({priceMap}) => (
       {Object.keys(priceMap).map((size) => (
         <tr key={size}> 
           <td>{size}</td>
+          <td>{inToCm(size)}</td>
           <td>${priceMap[size]}.00</td>
         </tr> 
       ))}
