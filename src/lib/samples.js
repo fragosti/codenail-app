@@ -68,7 +68,7 @@ def dijsktra(graph, initial):
     `,
     mode: 'solarized_dark',
     language: 'python',
-    fontSize: 11,
+    fontSize: 10,
     showLineNumbers: true,
   },
   'BJ0op-9QW': {
@@ -76,7 +76,7 @@ def dijsktra(graph, initial):
   `\n\n\n\n\n\npublic class Me {\n    private Boolean alive = true;\n    public void run() {\n        while (this.alive) {\n            this.love(new You());\n        }\n    }\n}\n`,
     showLineNumbers: false,
     mode: 'eclipse',
-    fontSize: 20,
+    fontSize: 18,
     horPadding: 50,
     language: 'java',
     size: '10x10',
@@ -109,7 +109,7 @@ for X in j('BM'+P(M,v*x*3+26,26,12,v,x,1,24))or C:
     mode: 'solarized_light',
     size: '10x10',
     language: 'python',
-    fontSize: 15
+    fontSize: 13
   },
 
   'rJqG7YwQW': {
