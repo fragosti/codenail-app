@@ -22,7 +22,7 @@ import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
-import { createOrder } from '../lib/api';
+import { createOrder, getShare } from '../lib/api';
 
 
 const LayoutContainer = Flex.extend`
@@ -108,13 +108,28 @@ class Create extends Component {
     }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
+  componentWillMount() {
+    const { startLoading, stopLoading, location } = this.props
+    const { shareId } = getQueryParams(location.search)
+    if (shareId) {
+      startLoading('Fetching share...')
+      getShare(shareId).then(res => res.json()).then(({options}) => {
+        this.setState(options, stopLoading)
+      }).catch((error) => {
+        this.setState({ errorMessage: 'Sorry we were unable to fetch the share.'})
+      })
+    }
+  }
+
   saveState = () => {
     const { errorMessage, ...editorState} = this.state
     const { history, location } = this.props
-    const { sampleId } = getQueryParams(location.search)
-    window.localStorage && window.localStorage.setItem('createState', JSON.stringify(editorState))
+    const { sampleId, shareId } = getQueryParams(location.search)
+    if (!shareId) {
+      window.localStorage && window.localStorage.setItem('createState', JSON.stringify(editorState))
+    }
     if (sampleId) {
-      history.push(`/create${removeQueryParams(location.search, ['sampleId'])}`)
+      history.push(`/create${removeQueryParams(location.search, ['sampleId', 'shareId'])}`)
     }
   }
 
@@ -138,9 +153,9 @@ class Create extends Component {
   }
 
   onSettingsChange = (key, value) => {
-    this.setState({
+    this.setAndSaveState({
       [key]: value,
-    }, this.saveState)
+    })
   }
 
   setAndSaveState = (state) => {
@@ -148,7 +163,7 @@ class Create extends Component {
   }
 
   onValueChange = (value) => {
-    this.setState({ value }, this.saveState)
+    this.setAndSaveState({ value })
   }
 
   render() {
@@ -168,7 +183,7 @@ class Create extends Component {
       backgroundColor, 
       textColor, 
       colorMode } = options
-    const { location, history, isLoading, startLoading, stopLoading } = this.props
+    const { location, history, isLoading, startLoading, stopLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
     const { coupon, modal } = getQueryParams(location.search)
     const price = priceForSize(size, framed, coupon)
@@ -182,7 +197,7 @@ class Create extends Component {
             <div>          
               <Spinner scale={6}/>
             </div>
-            <OverlayMessage> Processing your order... </OverlayMessage>
+            <OverlayMessage> {loadingMessage} </OverlayMessage>
           </Overlay>
           )
         }
@@ -334,7 +349,7 @@ class Create extends Component {
               </CheckoutButton>
               <CheckoutButton
                 onToken={(token, addresses) => {
-                  startLoading()
+                  startLoading('Processing your order...')
                   createOrder({
                     token,
                     addresses,

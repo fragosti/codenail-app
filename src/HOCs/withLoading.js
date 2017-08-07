@@ -10,10 +10,11 @@ export default (Component, isLoading = false) => (
       super(props)
       this.state = {
         isLoading: isLoading,
+        loadingMessage: null,
       }
     }
 
-    startLoading = () => this.setState({isLoading: true})
+    startLoading = (loadingMessage) => this.setState({isLoading: true, loadingMessage})
 
     stopLoading = () => this.setState({isLoading: false})
 
@@ -22,6 +23,7 @@ export default (Component, isLoading = false) => (
         <Component 
           {...this.props}
           isLoading={this.state.isLoading}
+          loadingMessage={this.state.loadingMessage}
           startLoading={this.startLoading}
           stopLoading={this.stopLoading}
         />

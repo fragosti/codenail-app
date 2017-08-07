@@ -21,7 +21,7 @@ const ShareIconWrap = styled.div`
   }
 `
 
-const Message = styled.p`
+const Message = styled.section`
   margin: 15px 0px 20px;
   padding: 0px 20px;
   font-size: ${modularScale(0.5)};
@@ -36,18 +36,21 @@ class Share extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: 'flkfjlkf',
+      id: null,
       errorMessage: null,
     }
   }
 
   componentWillMount() {
-    // const { stopLoading, options } = this.props
-    // createShare({ options }).then(res => res.json())
-    // .then(({id}) => this.setState({id}))
-    // .catch(() => this.setState({
-    //   errorMessage: 'Sorry, something went wrong in creating your share link.'
-    // }))
+    const { stopLoading, options } = this.props
+    createShare({ options }).then(res => res.json())
+    .then(({id}) => {
+      this.setState({id})
+      stopLoading()
+    })
+    .catch(() => this.setState({
+      errorMessage: 'Sorry, something went wrong in creating your share link.'
+    }))
   }
 
   render() {
@@ -99,4 +102,4 @@ class Share extends Component {
   }
 }
 
-export default withLoading(Share, false)
+export default withLoading(Share, true)
