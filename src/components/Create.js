@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { modularScale } from 'polished';
 
+import Modal from './Modal';
 import Editor from './Editor';
 import { controls } from './EditorControl';
 import ColorPicker from './ColorPicker';
@@ -16,7 +17,7 @@ import Frame from './Frame';
 import Flex from './Flex';
 import { Container } from './Page';
 import { colors, isPhone, media } from '../style/utils';
-import { aspectRatioForSize } from '../lib/utils';
+import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForSize } from '../lib/price';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
@@ -168,7 +169,7 @@ class Create extends Component {
       colorMode } = options
     const { location, history, isLoading, startLoading, stopLoading } = this.props
     const isTest = location.search.includes('test')
-    const { coupon } = getQueryParams(location.search)
+    const { coupon, modal } = getQueryParams(location.search)
     const price = priceForSize(size, framed, coupon)
     const description = framed ? `Framed ${size} poster` : `${size} poster`
     const width = EDITOR_WIDTH
@@ -316,7 +317,11 @@ class Create extends Component {
             </ControlSection>
             {errorMessage && <p><i> {errorMessage} </i></p>}
             <Flex wrap={true} justifyContent='center'> 
-              <ActionButton>Share</ActionButton>
+              <ActionButton
+                onClick={() => {
+                  openModal(history, location, 'share', 'good')
+                }}
+              >Share</ActionButton>
               <CheckoutButton
                 price={500}
                 description='Print file download'
@@ -364,6 +369,13 @@ class Create extends Component {
             </Flex>
           </SectionContainer>
         </LayoutContainer>
+        {modal === 'share' && (
+          <Overlay>
+            <Modal title='Share for 10% Off' close={() => closeModal(history, location)}>
+              BLEP 
+            </Modal>  
+          </Overlay>
+        )}
       </Container>
     )
   }

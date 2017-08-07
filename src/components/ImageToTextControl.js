@@ -57,7 +57,7 @@ class ImageToTextControl extends Component {
 
     fileToText(file, charsPerRow, 0.5, {
       charForPixel: charForPixelGivenText(text, invertImage),
-      async: true,
+      async: false,
     })
     .then((text) => this.props.onNewText(text, charsPerRow))
     .catch(console.log)

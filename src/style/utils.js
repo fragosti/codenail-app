@@ -40,6 +40,8 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
 export const zIndex = {
   aboveEditor: 5,
   overlay: 6,
+  modal: 7,
+  clickOutside: 8,
 };
 
 export const lineHeight = {

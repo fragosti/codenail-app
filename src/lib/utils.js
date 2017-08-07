@@ -18,14 +18,32 @@ export const removeQueryParams = (search, paramList) => {
 }
 
 export const addQueryParams = (search, paramObject) => {
-  const stringParams = Object.keys(paramObject).reduce((acc, key) => {
-    acc += `${key}=${paramObject[key]}`
+  const stringParams = Object.keys(paramObject).reduce((acc, key, i) => {
+    if (paramObject[key]) {
+      if (i !== 0) {
+        acc += '&'
+      }
+      acc += `${key}=${paramObject[key]}`
+    }
     return acc
   }, '')
   if (search) {
     return `${search}&${stringParams}`
   }
   return `?${stringParams}`
+}
+
+export const closeModal = (history, location) => {
+  const { search, pathname } = location
+  history.push(`${pathname}${removeQueryParams(search, ['modal', 'data'])}`)
+}
+
+export const openModal = (history, location, name, data) => {
+  const { search, pathname } = location
+  history.push(`${pathname}${addQueryParams(search, {
+    modal: name,
+    data: data,
+  })}`)
 }
 
 export const concatMap = (arr, fn) => {
@@ -35,6 +53,6 @@ export const concatMap = (arr, fn) => {
 export const flipAround = (str, char) => {
   const sStr = str.split(char)
   return `${sStr[1]}${char}${sStr[0]}`
-} 
+}
 
 export const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)))
