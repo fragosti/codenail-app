@@ -15,6 +15,7 @@ import Overlay from './Overlay';
 import Spinner from './Spinner';
 import Frame from './Frame';
 import Flex from './Flex';
+import Share from './Share';
 import { Container } from './Page';
 import { colors, isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
@@ -371,8 +372,8 @@ class Create extends Component {
         </LayoutContainer>
         {modal === 'share' && (
           <Overlay>
-            <Modal title='Share for 10% Off' close={() => closeModal(history, location)}>
-              BLEP 
+            <Modal title='Share for 10% off' close={() => closeModal(history, location)}>
+              <Share options={options}/>
             </Modal>  
           </Overlay>
         )}

@@ -44,7 +44,7 @@ export const CTA = ButtonBase.extend`
 const ButtonForIcon = Button.extend`
   padding: 5px 10px;
 `
-export const IconButton = ({ name, onClick }) => ( <ButtonForIcon onClick={onClick}><Icon name={name}/></ButtonForIcon> )
+export const IconButton = ({ name, size, onClick }) => ( <ButtonForIcon onClick={onClick}><Icon size={size} name={name}/></ButtonForIcon> )
 
 
 export default Button;
