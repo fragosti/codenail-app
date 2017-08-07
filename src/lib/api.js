@@ -2,13 +2,29 @@ export const TEST_STRIPE_KEY = 'pk_test_lQYC49aP6fT12LuZv8ejgghF'
 export const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY
 export const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
-export const createOrder = (order) => {
-  return fetch(`${API_ENDPOINT}/order`, {
+const get = (path, id) => {
+  return fetch(`${API_ENDPOINT}/${path}/${id}`)
+}
+
+const post = (path, data) => {
+  return fetch(`${API_ENDPOINT}/${path}`, {
     method: 'post',
-    body: JSON.stringify(order),
+    body: JSON.stringify(data),
   })
 }
 
+export const createOrder = (order) => {
+  return post('order', order)
+}
+
 export const getOrder = (id) => {
-  return fetch(`${API_ENDPOINT}/order/${id}`)
+  return get('order', id)
+}
+
+export const createShare = (share) => {
+  return post('share', share)
+}
+
+export const getShare = (id) => {
+  return get('share', id)
 }

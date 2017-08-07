@@ -319,14 +319,14 @@ class Create extends Component {
             <Flex wrap={true} justifyContent='center'> 
               <ActionButton
                 onClick={() => {
-                  openModal(history, location, 'share', 'good')
+                  openModal(history, location, 'share')
                 }}
               >Share</ActionButton>
               <CheckoutButton
                 price={500}
                 description='Print file download'
                 onToken={(token, addresses) => {
-
+                  // TODO: Implement download
                 }}
               >
                 <ActionButton color={colors.green}>Download - $5</ActionButton>
