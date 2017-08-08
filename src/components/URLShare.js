@@ -4,9 +4,14 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import { modularScale } from 'polished';
 
 import { IconButton } from './Button';
+import { media } from '../style/utils';
 
 const URLDisplay = styled.span`
   font-size: ${modularScale(0)};
+  ${media.tablet`
+    font-size: ${modularScale(-1)};
+    padding: 17px 5px;
+  `}
   background: rgba(0,0,0,.05);
   padding: 15px 20px;
   border-radius: 4px;
