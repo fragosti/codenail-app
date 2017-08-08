@@ -20,6 +20,7 @@ import { Container } from './Page';
 import { colors, isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForSize } from '../lib/price';
+import { hasPersistedCoupon, persistCoupon } from '../lib/social';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { createOrder, getShare } from '../lib/api';
@@ -105,7 +106,7 @@ class Create extends Component {
       backgroundColor: 'white',
       textColor: 'black',
       colorMode: 'editor',
-    }, (sampleId ? samples[sampleId] : savedState) || {})
+    }, (sampleId ? samples[sampleId] : savedState) || {}, { hasCoupon: hasPersistedCoupon() })
   }
 
   componentWillMount() {
@@ -119,6 +120,13 @@ class Create extends Component {
         this.setState({ errorMessage: 'Sorry we were unable to fetch the share.'})
       })
     }
+  }
+
+  applyCoupon = () => {
+    persistCoupon()
+    this.setState({
+      hasCoupon: true,
+    })
   }
 
   saveState = () => {
@@ -167,7 +175,7 @@ class Create extends Component {
   }
 
   render() {
-    const { errorMessage, ...options } = this.state
+    const { errorMessage, hasCoupon, ...options } = this.state
     const { 
       language, 
       fontSize, 
@@ -185,8 +193,8 @@ class Create extends Component {
       colorMode } = options
     const { location, history, isLoading, startLoading, stopLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
-    const { coupon, modal } = getQueryParams(location.search)
-    const price = priceForSize(size, framed, coupon)
+    const { modal } = getQueryParams(location.search)
+    const price = priceForSize(size, framed, hasCoupon && '10off')
     const description = framed ? `Framed ${size} poster` : `${size} poster`
     const width = EDITOR_WIDTH
     const height = aspectRatioForSize(size)*EDITOR_WIDTH 
@@ -337,15 +345,15 @@ class Create extends Component {
                 onClick={() => {
                   openModal(history, location, 'share')
                 }}
-              >Share</ActionButton>
+              >{`Share ${hasCoupon ? '' : '= 10% off'}`}</ActionButton>
               <CheckoutButton
-                price={500}
+                price={hasCoupon ? 450 : 500}
                 description='Print file download'
                 onToken={(token, addresses) => {
                   // TODO: Implement download
                 }}
               >
-                <ActionButton color={colors.green}>Download - $5</ActionButton>
+                <ActionButton color={colors.green}>{`Download ${hasCoupon ? '$4.50 (10% off)' : '$5'}`}</ActionButton>
               </CheckoutButton>
               <CheckoutButton
                 onToken={(token, addresses) => {
@@ -380,15 +388,19 @@ class Create extends Component {
                 }}
                 closed={() => history.goBack()}
               >
-                <ActionButton color={colors.green}>{`Order - $${price}`}</ActionButton>
+                <ActionButton color={colors.green}>{`Order $${price} ${hasCoupon ? '(10% off)' : ''}`}</ActionButton>
               </CheckoutButton>
             </Flex>
           </SectionContainer>
         </LayoutContainer>
         {modal === 'share' && (
           <Overlay>
-            <Modal title='Share for 10% off' close={() => closeModal(history, location)}>
-              <Share options={options}/>
+            <Modal title={hasCoupon ? 'Share' : 'Share for 10% off'} close={() => closeModal(history, location)}>
+              <Share 
+                options={options} 
+                hasCoupon={hasCoupon}
+                applyCoupon={this.applyCoupon}
+              />
             </Modal>  
           </Overlay>
         )}

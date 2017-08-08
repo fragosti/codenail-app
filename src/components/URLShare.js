@@ -38,7 +38,7 @@ class URLShare extends Component {
             this.setState({copied: true})
             setTimeout(() => {
               this.setState({copied: false})
-            }, 5000)
+            }, 3000)
           }}
         >
           <IconButton name='link' size={31}/>

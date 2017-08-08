@@ -8,7 +8,9 @@ import Spinner from './Spinner';
 import Icon from './Icon';
 import URLShare from './URLShare';
 import Flex from './Flex';
+import { CTA } from './Button';
 import { createShare } from '../lib/api';
+import { didShareOnFB } from '../lib/social';
 import { colors } from '../style/utils';
 
 const ShareIconWrap = styled.div`
@@ -30,7 +32,23 @@ const Message = styled.section`
   }
 `
 
+const ConfirmContainer = Flex.extend`
+  margin-top: 30px;
+`
+
+const ConfirmButton = CTA.extend`
+  min-width: 150px;
+`
+
+const ConfirmMessage = styled.div`
+  margin-bottom: 25px;
+  font-style: italic;
+  text-align: center;
+`
+
 const { FacebookShareButton, TwitterShareButton } = ShareButtons
+
+const buttonCopy = 'Check & Claim';
 
 class Share extends Component {
   constructor(props) {
@@ -38,7 +56,21 @@ class Share extends Component {
     this.state = {
       id: null,
       errorMessage: null,
+      buttonContent: buttonCopy,
+      confirmMessage: props.hasCoupon ? `Thanks for sharing!` : `Click 'Check & Claim' once you've shared to claim a 10% discount!`,
     }
+  }
+
+  startLoadingButton = () => {
+    this.setState({
+      buttonContent: <Spinner scale={2} rgbaColor={colors.gray}/>,
+    })
+  }
+
+  stopLoadingButton = () => {
+    this.setState({
+      buttonContent: buttonCopy,
+    })
   }
 
   componentWillMount() {
@@ -54,8 +86,8 @@ class Share extends Component {
   }
 
   render() {
-    const { id } = this.state;
-    const { isLoading } = this.props;
+    const { id, confirmMessage, buttonContent } = this.state;
+    const { isLoading, applyCoupon, hasCoupon  } = this.props;
     const url = `https://codenail.com/create?shareId=${id}`;
     const social = {
       title: "Codenail",
@@ -70,19 +102,47 @@ class Share extends Component {
             The link will allow your friends to see exactly what you have in the 
             editor right now.
           </p>
-          <p>
-            Share the link below on Twitter or Facebook to automatically get
-            10% off your purchase!
-          </p>
+          {!hasCoupon && (
+            <p>
+              Share the link below on <strong>Facebook</strong> to get
+              10% off any purchase!
+            </p>
+          )}
         </Message>
+        <ConfirmMessage>{confirmMessage}</ConfirmMessage>
         <URLShare url={url} displayText={`codenail.com/create?shareId=${id}`}/>
+        {!hasCoupon && (
+          <ConfirmContainer direction='column' alignItems='center'> 
+          <ConfirmButton
+            onClick={() => {
+              didShareOnFB(url).then((didShare) => {
+                if (didShare) {
+                  applyCoupon()
+                  this.setState({ 
+                    confirmMessage: `Thank you for sharing! Your coupon has been applied.`
+                  })
+                } else {
+                  this.setState({ 
+                    confirmMessage: `We could not find your share. Are you sure you shared the link?`
+                  })
+                }
+              })
+            }}
+            >{buttonContent}</ConfirmButton>
+          </ConfirmContainer>
+        )}
         <Flex justifyContent='center'> 
           <FacebookShareButton 
             title={social.title}
             description={social.description}
             url={social.url}
           >
-            <ShareIconWrap hoverColor='#3B5998'>
+            <ShareIconWrap hoverColor='#3B5998'
+              onClick={() => this.setState({
+                showConfirmationButton: true,
+                confirmMessage: 'Click below to claim your coupon!',
+              })}
+            >
               <Icon name='facebook' size={40}/>
             </ShareIconWrap>
           </FacebookShareButton>
