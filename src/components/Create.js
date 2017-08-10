@@ -190,14 +190,14 @@ class Create extends Component {
       paddingColor, 
       backgroundColor, 
       textColor, 
-      colorMode } = options
+      colorMode } = options;
+    const width = EDITOR_WIDTH
+    const height = aspectRatioForSize(size)*EDITOR_WIDTH 
     const { location, history, isLoading, startLoading, stopLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
     const { modal } = getQueryParams(location.search)
     const price = priceForSize(size, framed, hasCoupon && '10off')
     const description = framed ? `Framed ${size} poster` : `${size} poster`
-    const width = EDITOR_WIDTH
-    const height = aspectRatioForSize(size)*EDITOR_WIDTH 
     return (
       <Container>
         {isLoading && (
@@ -364,7 +364,7 @@ class Create extends Component {
                     price: price*100,
                     description,
                     isTest,
-                    options
+                    options: Object.assign({}, options, { width, height }),
                   })
                   .then(res => res.json())
                   .then(({ id }) => {
