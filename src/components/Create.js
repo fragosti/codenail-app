@@ -374,6 +374,7 @@ class Create extends Component {
                     price: price*100,
                     description,
                     isTest,
+                    isPhone: isPhone(),
                     options: Object.assign({}, options, { width, height }),
                   })
                   .then(res => res.json())
