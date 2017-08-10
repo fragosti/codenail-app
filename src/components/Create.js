@@ -19,7 +19,7 @@ import Share from './Share';
 import { Container } from './Page';
 import { colors, isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
-import { priceForSize } from '../lib/price';
+import { priceForSize, priceForDownload } from '../lib/price';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { createOrder, getShare } from '../lib/api';
@@ -83,6 +83,24 @@ const OverlayMessage = styled.div`
 `
 
 const EDITOR_WIDTH = isPhone() ? 300 : 450;
+
+const textForCoupon = (hasCoupon, orderPrice) => {
+  if (hasCoupon) {
+    return {
+      shareButtonText: 'Share',
+      downloadButtonText: 'Download $4.50 (10% off)',
+      orderButtonText: `Order $${orderPrice} (10% off)`,
+      shareModalTitle: 'Share',
+    }
+  } else {
+    return {
+      shareButtonText: 'Share = 10% off',
+      downloadButtonText: 'Download $5',
+      orderButtonText: `Order $${orderPrice}`,
+      shareModalTitle: 'Share for 10% off',
+    }
+  }
+}
 
 class Create extends Component {
   constructor(props) {
@@ -196,7 +214,14 @@ class Create extends Component {
     const isTest = location.search.includes('test')
     const { modal } = getQueryParams(location.search)
     const price = priceForSize(size, framed, hasCoupon && '10off')
+    const downloadPrice = priceForDownload(hasCoupon && '10off')
     const description = framed ? `Framed ${size} poster` : `${size} poster`
+    const {
+      shareButtonText,
+      downloadButtonText,
+      orderButtonText,
+      shareModalTitle
+    } = textForCoupon(hasCoupon, price)
     return (
       <Container>
         {isLoading && (
@@ -344,15 +369,15 @@ class Create extends Component {
                 onClick={() => {
                   openModal(history, location, 'share')
                 }}
-              >{`Share ${hasCoupon ? '' : '= 10% off'}`}</ActionButton>
+              >{shareButtonText}</ActionButton>
               <CheckoutButton
-                price={hasCoupon ? 450 : 500}
+                price={downloadPrice}
                 description='Print file download'
                 onToken={(token, addresses) => {
                   // TODO: Implement download
                 }}
               >
-                <ActionButton color={colors.green}>{`Download ${hasCoupon ? '$4.50 (10% off)' : '$5'}`}</ActionButton>
+                <ActionButton color={colors.green}>{downloadButtonText}</ActionButton>
               </CheckoutButton>
               <CheckoutButton
                 onToken={(token, addresses) => {
@@ -387,14 +412,14 @@ class Create extends Component {
                 }}
                 closed={() => history.goBack()}
               >
-                <ActionButton color={colors.green}>{`Order $${price} ${hasCoupon ? '(10% off)' : ''}`}</ActionButton>
+                <ActionButton color={colors.green}>{orderButtonText}</ActionButton>
               </CheckoutButton>
             </Flex>
           </SectionContainer>
         </LayoutContainer>
         {modal === 'share' && (
           <Overlay>
-            <Modal title={hasCoupon ? 'Share' : 'Share for 10% off'} close={() => closeModal(history, location)}>
+            <Modal title={shareModalTitle} close={() => closeModal(history, location)}>
               <Share 
                 options={options} 
                 hasCoupon={hasCoupon}

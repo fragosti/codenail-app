@@ -47,6 +47,16 @@ export const priceForSize = (size, framed, couponCode) => {
   }
 }
 
+export const priceForDownload = (couponCode) => {
+  const price = 500
+  switch (couponCode) {
+    case '10off':
+      return Math.round((9/10)*price)
+    default:
+      return Math.round(price)
+  }
+}
+
 export const printPrices = Object.keys(printCosts).reduce((acc, size) => {
   acc[size] = priceForSize(size, false)
   return acc
