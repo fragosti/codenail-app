@@ -365,20 +365,6 @@ class Create extends Component {
             </ControlSection>
             {errorMessage && <p><i> {errorMessage} </i></p>}
             <Flex wrap={true} justifyContent='center'> 
-              <ActionButton
-                onClick={() => {
-                  openModal(history, location, 'share')
-                }}
-              >{shareButtonText}</ActionButton>
-              <CheckoutButton
-                price={downloadPrice}
-                description='Print file download'
-                onToken={(token, addresses) => {
-                  // TODO: Implement download
-                }}
-              >
-                <ActionButton color={colors.green}>{downloadButtonText}</ActionButton>
-              </CheckoutButton>
               <CheckoutButton
                 onToken={(token, addresses) => {
                   startLoading('Processing your order...')
@@ -414,6 +400,25 @@ class Create extends Component {
               >
                 <ActionButton color={colors.green}>{orderButtonText}</ActionButton>
               </CheckoutButton>
+              <CheckoutButton
+                price={downloadPrice}
+                description='Print file download'
+                onToken={(token, addresses) => {
+                  // TODO: Implement download
+                }}
+              >
+                <ActionButton color={colors.green}>{downloadButtonText}</ActionButton>
+              </CheckoutButton>
+              <ActionButton
+                onClick={() => {
+                  openModal(history, location, 'share')
+                }}
+              >{shareButtonText}</ActionButton>
+              <ActionButton
+                onClick={() => {
+                  openModal(history, location, 'preview')
+                }}
+              >Preview</ActionButton>
             </Flex>
           </SectionContainer>
         </LayoutContainer>
