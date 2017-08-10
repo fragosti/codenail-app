@@ -20,7 +20,6 @@ import { Container } from './Page';
 import { colors, isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForSize } from '../lib/price';
-import { hasPersistedCoupon, persistCoupon } from '../lib/social';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { createOrder, getShare } from '../lib/api';
@@ -93,6 +92,7 @@ class Create extends Component {
     this.state = Object.assign({
       errorMessage: null,
       language: 'javascript',
+      hasCoupon: false,
       mode: 'monokai',
       showLineNumbers: true,
       wrapEnabled: false,
@@ -106,7 +106,7 @@ class Create extends Component {
       backgroundColor: 'white',
       textColor: 'black',
       colorMode: 'editor',
-    }, (sampleId ? samples[sampleId] : savedState) || {}, { hasCoupon: hasPersistedCoupon() })
+    }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
   componentWillMount() {
@@ -123,8 +123,7 @@ class Create extends Component {
   }
 
   applyCoupon = () => {
-    persistCoupon()
-    this.setState({
+    this.setAndSaveState({
       hasCoupon: true,
     })
   }
