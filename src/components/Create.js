@@ -434,6 +434,13 @@ class Create extends Component {
             </Modal>  
           </Overlay>
         )}
+        {modal === 'preview' && (
+          <Overlay>
+            <Modal title='Order Preview' close={() => closeModal(history, location)}>
+              
+            </Modal>  
+          </Overlay>
+        )}
       </Container>
     )
   }

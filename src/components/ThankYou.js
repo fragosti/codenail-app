@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ShareButtons } from 'react-share';
 
-import OrderPreview from './OrderPreview';
+import OrderPreviewImg from './OrderPreviewImg';
 import Spinner from './Spinner';
 import Icon from './Icon';
 import { getOrder } from '../lib/api';
@@ -103,7 +103,7 @@ class ThankYou extends Component {
           </SocialShares>
           <Container>
             <p>Don't forget to share!</p>
-            <OrderPreview id={id}/>
+            <OrderPreviewImg id={id}/>
           </Container>
         </Description>
       </Container>
