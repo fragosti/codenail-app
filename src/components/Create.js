@@ -16,6 +16,7 @@ import Spinner from './Spinner';
 import Frame from './Frame';
 import Flex from './Flex';
 import Share from './Share';
+import OrderPreview from './OrderPreview';
 import { Container } from './Page';
 import { colors, isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
@@ -437,7 +438,7 @@ class Create extends Component {
         {modal === 'preview' && (
           <Overlay>
             <Modal title='Order Preview' close={() => closeModal(history, location)}>
-              
+              <OrderPreview/>
             </Modal>  
           </Overlay>
         )}
