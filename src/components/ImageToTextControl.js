@@ -6,7 +6,7 @@ import Dropzone from './Dropzone';
 import TextAreaControl from './TextAreaControl';
 import CheckBoxOption from './CheckBoxOption';
 import Button from './Button';
-import { fileToText, isWhiteOrTransparent } from 'img-using-text';
+import { fileToText } from 'img-using-text';
 import Select, { SelectLabel, defaultOptionsForKey }  from './Select';
 import { modularScale } from 'polished';
 
@@ -20,6 +20,8 @@ const ButtonMessage = styled.div`
   font-style: italic;
   margin-top: 8px;
 `
+
+const isWhiteOrTransparent = (r, g, b, a) => (a < 0.1) || (r > 220 && g > 220 && b > 220);
 
 const charForPixelGivenText = (text, invertImage) => {
   return (pixel, pixelIndex) => {
