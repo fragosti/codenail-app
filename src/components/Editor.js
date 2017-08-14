@@ -44,6 +44,7 @@ const Container = styled.div`
     .ace_storage,
     .ace_type,
     .ace_variable,
+    .ace_comment,
     .ace_parameter {
       color: ${props => props.textColor} !important;
     }
