@@ -8,7 +8,6 @@ import { CTA } from './Button';
 import OrderPreviewImg from './OrderPreviewImg';
 import { createPreview } from '../lib/api';
 import { colors } from '../style/utils';
-import { openModal } from '../lib/utils';
 
 const CTAs = Flex.extend`
   margin-top: 25px;
@@ -35,7 +34,7 @@ class Preview extends Component {
   }
 
   render() {
-    const { isLoading } = this.props
+    const { isLoading, openModal } = this.props
     const { previewId } = this.state
     return (
       <Flex direction='column' alignItems='center'>

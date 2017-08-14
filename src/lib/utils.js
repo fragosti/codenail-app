@@ -40,7 +40,8 @@ export const closeModal = (history, location) => {
 
 export const openModal = (history, location, name, data) => {
   const { search, pathname } = location
-  history.push(`${pathname}${addQueryParams(search, {
+  const bareSearch = removeQueryParams(search, ['modal', 'data'])
+  history.push(`${pathname}${addQueryParams(bareSearch, {
     modal: name,
     data: data,
   })}`)

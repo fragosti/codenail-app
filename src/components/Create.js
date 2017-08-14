@@ -442,6 +442,7 @@ class Create extends Component {
               <Preview
                 options={orderOptions}
                 isPhone={isPhone()}
+                openModal={(name) => openModal(history, location, name)}
               />
             </Modal>  
           </Overlay>
