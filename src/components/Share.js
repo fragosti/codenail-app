@@ -39,7 +39,7 @@ const ConfirmMessage = styled.div`
 
 const { FacebookShareButton, TwitterShareButton } = ShareButtons
 
-const buttonCopy = 'Check & Claim';
+const buttonCopy = 'Claim';
 
 class Share extends Component {
   constructor(props) {
