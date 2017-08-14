@@ -46,9 +46,6 @@ class Preview extends Component {
             Any order placed is guaranteed to be laid out like the image below 
             (there may be some small differences in the editor).
           </p>
-          <p> 
-            Like what you see?
-          </p>
         </Message>
         {isLoading && <Spinner scale={6} rgbaColor={colors.gray}/>}
         {previewId && <OrderPreviewImg width={345} id={previewId}/>}     
