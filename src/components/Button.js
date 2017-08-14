@@ -46,5 +46,10 @@ const ButtonForIcon = Button.extend`
 `
 export const IconButton = ({ name, size, onClick }) => ( <ButtonForIcon onClick={onClick}><Icon size={size} name={name}/></ButtonForIcon> )
 
+export const Callout = styled.span`
+  text-decoration: underline;
+  font-weight: 600; 
+  cursor: pointer;
+`
 
 export default Button;

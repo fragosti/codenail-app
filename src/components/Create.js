@@ -17,13 +17,14 @@ import Frame from './Frame';
 import Flex from './Flex';
 import Share from './Share';
 import Preview from './Preview';
+import Order from './Order';
 import { Container } from './Page';
-import { colors, isPhone, media } from '../style/utils';
+import { isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForSize, priceForDownload } from '../lib/price';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
-import { createOrder, getShare } from '../lib/api';
+import { getShare } from '../lib/api';
 
 
 const LayoutContainer = Flex.extend`
@@ -212,7 +213,7 @@ class Create extends Component {
     const width = EDITOR_WIDTH
     const height = aspectRatioForSize(size)*EDITOR_WIDTH 
     const orderOptions = Object.assign({}, options, { width, height })
-    const { location, history, isLoading, startLoading, stopLoading, loadingMessage } = this.props
+    const { location, history, isLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
     const { modal } = getQueryParams(location.search)
     const price = priceForSize(size, framed, hasCoupon && '10off')
@@ -367,42 +368,11 @@ class Create extends Component {
             </ControlSection>
             {errorMessage && <p><i> {errorMessage} </i></p>}
             <Flex wrap={true} justifyContent='center'> 
-              <CheckoutButton
-                onToken={(token, addresses) => {
-                  startLoading('Processing your order...')
-                  createOrder({
-                    token,
-                    addresses,
-                    price: price*100,
-                    description,
-                    isTest,
-                    isPhone: isPhone(),
-                    options: orderOptions,
-                  })
-                  .then(res => res.json())
-                  .then(({ id }) => {
-                    stopLoading()
-                    history.push(`/thankyou/${id}`)
-                  })
-                  .catch(() => {
-                    stopLoading()
-                    this.setState({ errorMessage: 'Sorry! Something went wrong please try again later.'})
-                  })
+              <ActionButton 
+                onClick={() => {
+                  openModal(history, location, 'order')
                 }}
-                price={price*100}
-                description={description}
-                isTest={isTest}
-                opened={() => {
-                  if (location.search) {
-                    history.push(`/create${location.search}&overlay=checkout`)
-                  } else {
-                    history.push(`/create?overlay=checkout`)
-                  }
-                }}
-                closed={() => history.goBack()}
-              >
-                <ActionButton color={colors.green}>{orderButtonText}</ActionButton>
-              </CheckoutButton>
+              >{orderButtonText}</ActionButton>
               <CheckoutButton
                 price={downloadPrice}
                 description='Print file download'
@@ -410,7 +380,7 @@ class Create extends Component {
                   // TODO: Implement download
                 }}
               >
-                <ActionButton color={colors.green}>{downloadButtonText}</ActionButton>
+                <ActionButton>{downloadButtonText}</ActionButton>
               </CheckoutButton>
               <ActionButton
                 onClick={() => {
@@ -442,6 +412,21 @@ class Create extends Component {
               <Preview
                 options={orderOptions}
                 isPhone={isPhone()}
+                openModal={(name) => openModal(history, location, name)}
+              />
+            </Modal>  
+          </Overlay>
+        )}
+        {modal === 'order' && (
+          <Overlay>
+            <Modal title='Order Summary' close={() => closeModal(history, location)}>
+              <Order
+                price={price}
+                description={description}
+                isTest={isTest}
+                options={orderOptions}
+                history={history}
+                search={location.search}
                 openModal={(name) => openModal(history, location, name)}
               />
             </Modal>  

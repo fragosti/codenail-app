@@ -47,7 +47,7 @@ class Preview extends Component {
             (there may be some small differences in the editor).
           </p>
           <p> 
-            Like what you see? Download or Order!
+            Like what you see?
           </p>
         </Message>
         {isLoading && <Spinner scale={6} rgbaColor={colors.gray}/>}

@@ -46,6 +46,7 @@ export const Message = styled.section`
   font-size: ${modularScale(0.5)};
   p {
     margin-bottom: 15px;
+    line-height: 1.05em;
   }
 `
 
