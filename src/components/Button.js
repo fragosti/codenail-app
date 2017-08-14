@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { darken } from 'polished';
 import { modularScale, grayscale } from 'polished';
@@ -13,6 +14,7 @@ const ButtonBase = styled.a`
   border-radius: 4px;
   cursor: ${props => props.disabled ? 'default' : 'pointer'};
   display: inline-block;
+  text-align: center;
   font-size: ${props => props.fontScale ? modularScale(props.fontScale) : '1em'};
   &:hover {
     background: ${props => !props.disabled && darken(0.1, props.color)};
@@ -51,5 +53,7 @@ export const Callout = styled.span`
   font-weight: 600; 
   cursor: pointer;
 `
+
+export const CTALink = CTA.withComponent(Link)
 
 export default Button;

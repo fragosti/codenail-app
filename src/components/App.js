@@ -4,7 +4,6 @@ import { compose } from '../lib/utils';
 import Landing from './Landing';
 import Create from './Create';
 import Render from './Render';
-import ThankYou from './ThankYou';
 import Pricing from './Pricing';
 import Privacy from './Privacy';
 import FAQ from './FAQ';
@@ -18,7 +17,6 @@ import {
 
 const LandingPage = withHeaderFooter(Landing)
 const CreatePage = compose(withLoading, withHeaderFooter)(Create)
-const ThankYouPage = withLoading(withHeaderFooter(ThankYou), true)
 const PrivacyPage = withHeaderFooter(Privacy)
 const FAQPage = withHeaderFooter(FAQ)
 const PricingPage = withHeaderFooter(Pricing)
@@ -30,7 +28,6 @@ class App extends Component {
         <div>
           <Route exact path="/" component={withTitle(LandingPage, 'Codenail - Order a poster of your code in seconds!')}/>
           <Route path="/create" component={withTitle(CreatePage, 'Codenail - Create your poster')}/>
-          <Route path="/thankyou/:id" component={withTitle(ThankYouPage, 'Codenail - Thank you for ordering')}/>
           <Route path="/render/:id" component={Render}/>
           <Route path="/privacy" component={withTitle(PrivacyPage, 'Codenail - Privacy Policy')}/>
           <Route path="/faq" component={withTitle(FAQPage, 'Codenail - Frequently Asked Questions')}/>

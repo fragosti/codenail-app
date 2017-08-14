@@ -18,6 +18,7 @@ import Flex from './Flex';
 import Share from './Share';
 import Preview from './Preview';
 import Order from './Order';
+import ThankYou from './ThankYou';
 import { Container } from './Page';
 import { isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
@@ -90,14 +91,14 @@ const textForCoupon = (hasCoupon, orderPrice) => {
   if (hasCoupon) {
     return {
       shareButtonText: 'Share',
-      downloadButtonText: 'Download $4.50 (10% off)',
+      downloadButtonText: 'Download Only $4.50 (10% off)',
       orderButtonText: `Order $${orderPrice} (10% off)`,
       shareModalTitle: 'Share',
     }
   } else {
     return {
       shareButtonText: 'Share = 10% off',
-      downloadButtonText: 'Download $5',
+      downloadButtonText: 'Download Only $5',
       orderButtonText: `Order $${orderPrice}`,
       shareModalTitle: 'Share for 10% off',
     }
@@ -215,7 +216,7 @@ class Create extends Component {
     const orderOptions = Object.assign({}, options, { width, height })
     const { location, history, isLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
-    const { modal } = getQueryParams(location.search)
+    const { modal, data } = getQueryParams(location.search)
     const price = priceForSize(size, framed, hasCoupon && '10off')
     const downloadPrice = priceForDownload(hasCoupon && '10off')
     const description = framed ? `Framed ${size} poster` : `${size} poster`
@@ -427,7 +428,16 @@ class Create extends Component {
                 options={orderOptions}
                 history={history}
                 search={location.search}
-                openModal={(name) => openModal(history, location, name)}
+                openModal={(name, data) => openModal(history, location, name, data)}
+              />
+            </Modal>  
+          </Overlay>
+        )}
+        {modal === 'thankyou' && (
+          <Overlay>
+            <Modal title='Thank You! 🎉 🎉 🎉 ' close={() => closeModal(history, location)}>
+              <ThankYou
+                id={data}
               />
             </Modal>  
           </Overlay>

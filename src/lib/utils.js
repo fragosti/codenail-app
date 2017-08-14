@@ -30,7 +30,10 @@ export const addQueryParams = (search, paramObject) => {
   if (search) {
     return `${search}&${stringParams}`
   }
-  return `?${stringParams}`
+  if (stringParams) {
+    return `?${stringParams}`
+  }
+  return ''
 }
 
 export const closeModal = (history, location) => {

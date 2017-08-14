@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { ShareButtons } from 'react-share';
 
 import withLoading from '../HOCs/withLoading';
 import Spinner from './Spinner';
-import Icon from './Icon';
 import URLShare from './URLShare';
 import Flex from './Flex';
 import { Message } from './Modal';
+import Social from './Social';
 import { CTA } from './Button';
 import { createShare } from '../lib/api';
 import { didShareOnFB } from '../lib/social';
 import { colors } from '../style/utils';
 
-const ShareIconWrap = styled.div`
-  margin-top: 40px;
-  margin-right: 25px;
-  margin-left: 25px;
-  cursor: pointer;
-  &:hover path {
-    fill: ${props => props.hoverColor};
-  }
-`
 
 const ConfirmContainer = Flex.extend`
   margin-top: 30px;
@@ -37,8 +27,6 @@ const ConfirmMessage = styled.div`
   text-align: center;
 `
 
-const { FacebookShareButton, TwitterShareButton } = ShareButtons
-
 const buttonCopy = 'Claim';
 
 class Share extends Component {
@@ -48,7 +36,7 @@ class Share extends Component {
       id: null,
       errorMessage: null,
       buttonContent: buttonCopy,
-      confirmMessage: props.hasCoupon ? `Thanks for sharing!` : `Click 'Check & Claim' once you've shared to claim a 10% discount!`,
+      confirmMessage: props.hasCoupon ? `Thanks for sharing!` : `Click 'Claim' once you've shared to claim a 10% discount!`,
     }
   }
 
@@ -80,12 +68,6 @@ class Share extends Component {
     const { id, confirmMessage, buttonContent } = this.state;
     const { isLoading, applyCoupon, hasCoupon  } = this.props;
     const url = `https://codenail.com/create?shareId=${id}`;
-    const social = {
-      title: "Codenail",
-      description: "Just created this awesome poster on Codenail!",
-      hashtags: ['art', 'code', 'poster'],
-      url,
-    }
     return (isLoading ? (<Spinner scale={6} rgbaColor={colors.gray}/>) : (
       <Flex direction='column' alignItems='center'>
         <Message>
@@ -122,32 +104,7 @@ class Share extends Component {
             >{buttonContent}</ConfirmButton>
           </ConfirmContainer>
         )}
-        <Flex justifyContent='center'> 
-          <FacebookShareButton 
-            title={social.title}
-            description={social.description}
-            url={social.url}
-          >
-            <ShareIconWrap hoverColor='#3B5998'
-              onClick={() => this.setState({
-                showConfirmationButton: true,
-                confirmMessage: 'Click below to claim your coupon!',
-              })}
-            >
-              <Icon name='facebook' size={40}/>
-            </ShareIconWrap>
-          </FacebookShareButton>
-          <TwitterShareButton 
-            title={social.title}
-            url={social.url}
-            via='codenail'
-            hashtags={social.hashtags}
-          >
-            <ShareIconWrap hoverColor='#00aced'>
-              <Icon name='twitter' size={40}/>
-            </ShareIconWrap>
-          </TwitterShareButton>
-        </Flex>
+        <Social url={url}/> 
       </Flex>
     ))
   }

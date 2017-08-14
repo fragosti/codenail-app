@@ -70,6 +70,9 @@ class Order extends Component {
         <Message>
           <SummaryTable summaryMap={summaryMap}/>
           <p>
+            Once you order you'll receive a confirmation e-mail with an order receipt and more information.
+          </p>
+          <p>
             Want a preview? <Callout onClick={() => openModal('preview')}>Click here.</Callout> 
           </p>
           <p>
@@ -90,11 +93,11 @@ class Order extends Component {
             })
             .then(res => res.json())
             .then(({ id }) => {
-              stopLoading()
               openModal('thankyou', id)
             })
-            .catch(() => {
+            .catch((error) => {
               stopLoading()
+              console.log(error)
               this.setState({ errorMessage: 'Sorry, something went wrong. Please try again later.'})
             })
           }}

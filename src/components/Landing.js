@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Tweet } from 'react-twitter-widgets';
 
 import Editor from './Editor';
-import { CTA } from './Button'; 
+import { CTALink } from './Button'; 
 import Samples from './Samples';
 import Gallery from './Gallery';
 import SubscribeForm from './SubscribeForm';
@@ -20,8 +19,6 @@ const Center = styled.div`
 const EditorDemo = PosterBack.extend`
   margin: 35px 0px;
 `
-
-const CTALink = CTA.withComponent(Link)
 
 const Landing = () => {
   return (
