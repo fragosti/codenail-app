@@ -44,7 +44,7 @@ const SummaryTable = ({ summaryMap }) => (
   </Table>
 )
 
-class Order extends Component {
+class Download extends Component {
   state = {
     errorMessage: null,
   }
@@ -52,11 +52,9 @@ class Order extends Component {
   render() {
     const { price, description, isTest, options, history, search, openModal, isLoading, loadingMessage, startLoading, stopLoading } = this.props
     const summaryMap = {
-      'Order Type': 'printed poster',
+      'Order Type': 'high resolution poster PNG file',
       'Order Price': `$${price}`,
-      'Shipping Price': 'free',
-      'Shipping Time': '3-5 business days',
-      'Framed': options.framed ? 'yes' : 'no',
+      'Delivery Method': 'download link',
       'Dimensions': `${options.size} inches`,
     }
     const { errorMessage } = this.state
@@ -71,7 +69,7 @@ class Order extends Component {
         <Message>
           <SummaryTable summaryMap={summaryMap}/>
           <p>
-            Once you order you'll receive a confirmation e-mail with an order receipt and more information.
+            Once you order you'll receive a confirmation e-mail with an order receipt and download link.
           </p>
           <p>
             Want a preview? <Callout onClick={() => openModal('preview')}>Click here.</Callout> 
@@ -91,6 +89,7 @@ class Order extends Component {
               isTest,
               isPhone: isPhone(),
               options,
+              justDownload: true,
             })
             .then(res => res.json())
             .then(({ id }) => {
@@ -122,4 +121,4 @@ class Order extends Component {
 }
 
 
-export default withLoading(Order)
+export default withLoading(Download)

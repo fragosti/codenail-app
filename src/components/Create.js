@@ -8,7 +8,6 @@ import { controls } from './EditorControl';
 import ColorPicker from './ColorPicker';
 import ArrowControl from './ArrowControl';
 import ImageToTextControl from './ImageToTextControl';
-import CheckoutButton from './CheckoutButton';
 import { Tab, Tabs, TabList, TabPanel } from './Tabs';
 import Button, { CTA } from './Button';
 import Overlay from './Overlay';
@@ -18,6 +17,7 @@ import Flex from './Flex';
 import Share from './Share';
 import Preview from './Preview';
 import Order from './Order';
+import Download from './Download';
 import ThankYou from './ThankYou';
 import { Container } from './Page';
 import { isPhone, media } from '../style/utils';
@@ -374,15 +374,11 @@ class Create extends Component {
                   openModal(history, location, 'order')
                 }}
               >{orderButtonText}</ActionButton>
-              <CheckoutButton
-                price={downloadPrice}
-                description='Print file download'
-                onToken={(token, addresses) => {
-                  // TODO: Implement download
+              <ActionButton
+                onClick={() => {
+                  openModal(history, location, 'download')
                 }}
-              >
-                <ActionButton>{downloadButtonText}</ActionButton>
-              </CheckoutButton>
+              >{downloadButtonText}</ActionButton>
               <ActionButton
                 onClick={() => {
                   openModal(history, location, 'share')
@@ -438,6 +434,21 @@ class Create extends Component {
             <Modal title='Thank You! 🎉 🎉 🎉 ' close={() => closeModal(history, location)}>
               <ThankYou
                 id={data}
+              />
+            </Modal>  
+          </Overlay>
+        )}
+        {modal === 'download' && (
+          <Overlay>
+            <Modal title='Download' close={() => closeModal(history, location)}>
+              <Download
+                price={downloadPrice}
+                description={`${size} Poster File`}
+                isTest={isTest}
+                options={orderOptions}
+                history={history}
+                search={location.search}
+                openModal={(name, data) => openModal(history, location, name, data)}
               />
             </Modal>  
           </Overlay>
