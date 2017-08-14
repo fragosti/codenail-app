@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ShareButtons } from 'react-share';
-import { modularScale } from 'polished';
 
 import withLoading from '../HOCs/withLoading';
 import Spinner from './Spinner';
 import Icon from './Icon';
 import URLShare from './URLShare';
 import Flex from './Flex';
+import { Message } from './Modal';
 import { CTA } from './Button';
 import { createShare } from '../lib/api';
 import { didShareOnFB } from '../lib/social';
@@ -20,15 +20,6 @@ const ShareIconWrap = styled.div`
   cursor: pointer;
   &:hover path {
     fill: ${props => props.hoverColor};
-  }
-`
-
-const Message = styled.section`
-  margin: 15px 0px 20px;
-  padding: 0px 20px;
-  font-size: ${modularScale(0.5)};
-  p {
-    margin-bottom: 15px;
   }
 `
 

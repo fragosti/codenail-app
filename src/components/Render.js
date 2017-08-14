@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Editor from './Editor';
-import { getOrder } from '../lib/api';
+import { getShare } from '../lib/api';
 import { getQueryParams } from '../lib/utils';
 
 const Container = styled.div`
@@ -21,7 +21,7 @@ class Render extends Component {
 
   componentWillMount() {
     const { id } = this.props.match.params
-    getOrder(id).then(res => res.json()).then(({ options }) => this.setState(options))
+    getShare(id).then(res => res.json()).then(({ options }) => this.setState(options))
   }
 
   componentDidMount() {

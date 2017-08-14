@@ -40,6 +40,15 @@ const Body = styled.div`
   
 `
 
+export const Message = styled.section`
+  margin: 15px 0px 20px;
+  padding: 0px 20px;
+  font-size: ${modularScale(0.5)};
+  p {
+    margin-bottom: 15px;
+  }
+`
+
 const Modal = ({title, close, children}) => (
   <Container>
     <Header>

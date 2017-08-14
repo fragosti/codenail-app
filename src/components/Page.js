@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { modularScale } from 'polished';
 
 import { lineHeight } from '../style/utils';
-import { modularScale } from 'polished';
 
 export const Container = styled.div`
   display: flex;

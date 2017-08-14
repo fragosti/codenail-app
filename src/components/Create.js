@@ -16,7 +16,7 @@ import Spinner from './Spinner';
 import Frame from './Frame';
 import Flex from './Flex';
 import Share from './Share';
-import OrderPreview from './OrderPreview';
+import Preview from './Preview';
 import { Container } from './Page';
 import { colors, isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
@@ -211,6 +211,7 @@ class Create extends Component {
       colorMode } = options;
     const width = EDITOR_WIDTH
     const height = aspectRatioForSize(size)*EDITOR_WIDTH 
+    const orderOptions = Object.assign({}, options, { width, height })
     const { location, history, isLoading, startLoading, stopLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
     const { modal } = getQueryParams(location.search)
@@ -376,7 +377,7 @@ class Create extends Component {
                     description,
                     isTest,
                     isPhone: isPhone(),
-                    options: Object.assign({}, options, { width, height }),
+                    options: orderOptions,
                   })
                   .then(res => res.json())
                   .then(({ id }) => {
@@ -438,7 +439,10 @@ class Create extends Component {
         {modal === 'preview' && (
           <Overlay>
             <Modal title='Order Preview' close={() => closeModal(history, location)}>
-              <OrderPreview/>
+              <Preview
+                options={orderOptions}
+                isPhone={isPhone()}
+              />
             </Modal>  
           </Overlay>
         )}

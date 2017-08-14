@@ -28,3 +28,7 @@ export const createShare = (share) => {
 export const getShare = (id) => {
   return get('share', id)
 }
+
+export const createPreview = (options, isPhone) => {
+  return post('preview', { options, isPhone })
+}
