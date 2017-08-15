@@ -39,19 +39,47 @@ const Landing = () => {
             <Center>
               <EditorDemo>
                 <Editor
-                  value={`
-
-const tryItOut = () => {
-    console.log('A Poster!');
-}`}
+                  value={`        
+        
+        
+                                         o(t){                                          
+                                      ,n),o}retu                                        
+                                    ar ),u=t(8), s                                      
+                                  rops=t,   .prototy                                    
+                                ,"$&/")}      unc=t,th                                  
+                              ll!=n&&(          );var c=                                
+                            xt=null,              {forEac                               
+                          rcle:o("              ath:o("c                                
+                        n:o("pat              :o("polyg                                 
+                      :8}],8:[              ){"use st                                   
+                    d 0!==t.              :!0,__sou                                     
+                  f:n,prop              ; l. f=""                                       
+                __source              .call(e,i                                         
+              AndRepla              {if(null=                                           
+            is.resul              =x}, ,20:                                             
+          ,canvas:              ails:o("d                                               
+          inp ),              nuitem:o(                                                 
+          ),sou             "str ,tfo                                                   
+          e:o("p          dient"),r                                                     
+          id 0==        r e) u.ca                                                       
+          tu (a,!0);var c=new +                                                         
+          ){var }var i={escap                                                           
+          return new ,e,n,r                                                             
+                                                                                        
+                                                                                        
+                                                                                        
+                                                                                        
+           ar x={forEach:a,map:l,mapIn {"use strict";var r=t(8),                        
+          lipPath:o("clipPath"),defs:o("defs"),ellipse:o("ellipse                       
+          on:o("polygon"),polyline:o("polyline"),radialGradient:o                       `}
                   theme='monokai'
                   language='javascript'
-                  fontSize={isPhone() ? 18 : 25}
+                  fontSize={isPhone() ? 6 : 7}
                   showLineNumbers={false}
                   width={Math.min(500, viewPort.width() - 50)}
                   height={300}
-                  horPadding={isPhone() ? 5 : 25}
-                  verPadding={isPhone() ? 70: 30}
+                  horPadding={isPhone() ? 25 : 100}
+                  verPadding={isPhone() ? 20 : 0}
                 />
               </EditorDemo>
             </Center>
