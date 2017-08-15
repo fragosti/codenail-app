@@ -24,7 +24,7 @@ class Render extends Component {
     getShare(id).then(res => res.json()).then(({ options }) => this.setState(options))
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     window.callPhantom && window.callPhantom('takeShot')
   }
 
