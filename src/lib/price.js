@@ -38,7 +38,7 @@ export const costForSize = (size, framed) => {
 }
 
 export const priceForSize = (size, framed, couponCode) => {
-  const price = costForSize(size, framed)*1.50 + 10
+  const price = costForSize(size, framed)*1.50 + 15
   switch (couponCode) {
     case '10off':
       return Math.round((9/10)*price)
