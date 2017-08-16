@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Flex from './Flex';
 import withLoading from '../HOCs/withLoading';
 import CheckoutButton from './CheckoutButton';
-import { CTA, Callout } from './Button';
+import { Callout } from './Button';
 import { createOrder } from '../lib/api';
 import Spinner from './Spinner';
 import { isPhone, colors } from '../style/utils';
@@ -15,7 +15,7 @@ const Table = styled.table`
   border: 2px dashed ${colors.gray};
   margin-bottom: 25px;
   border-radius: 4px;
-  width: 340px;
+  width: 325px;
   margin-left: auto;
   margin-right: auto;
   tr {
