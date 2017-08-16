@@ -45,7 +45,8 @@ const Container = styled.div`
     .ace_type,
     .ace_variable,
     .ace_comment,
-    .ace_parameter {
+    .ace_parameter,
+    .ace_punctuation {
       color: ${props => props.textColor} !important;
     }
   }
