@@ -105,7 +105,7 @@ const Landing = () => {
           </div>
           <div className="col-4">
             <b className="emoji">
-              <span role='img' aria-label='laptop'>🎨</span>
+              <span role='img' aria-label='paint'>🎨</span>
             </b>
             <h3 className="subheading">
               Shape your code into a logo
@@ -116,7 +116,7 @@ const Landing = () => {
           </div>
           <div className="col-4">
             <b className="emoji">
-              <span role='img' aria-label='frame'>🚀</span>
+              <span role='img' aria-label='rocket'>🚀</span>
             </b>
             <h3 className="subheading">
               Free shipping worldwide

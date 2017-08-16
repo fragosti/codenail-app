@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import withLoading from '../HOCs/withLoading';
 import Spinner from './Spinner';
@@ -14,6 +15,9 @@ const CTAs = Flex.extend`
 `
 const MarginCTA = CTA.extend`
   margin: 0px 15px;
+`
+const Disclaimer = styled.div`
+  margin-top: 20px;
 `
 
 class Preview extends Component {
@@ -47,7 +51,12 @@ class Preview extends Component {
             (there may be some small differences in the editor).
           </p>
         </Message>
-        {isLoading && <Spinner scale={6} rgbaColor={colors.gray}/>}
+        {isLoading && (
+          <div>
+            <Spinner scale={6} rgbaColor={colors.gray}/>
+            <Disclaimer><i>It's worth the wait...</i><span role='img' aria-label='grin'>😁</span></Disclaimer>
+          </div>
+        )}
         {previewId && <OrderPreviewImg width={345} id={previewId}/>}     
         <CTAs justifyContent='center'> 
           <MarginCTA onClick={() => openModal('order')}> Order </MarginCTA>
