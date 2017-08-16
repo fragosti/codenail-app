@@ -27,14 +27,14 @@ const Landing = () => {
         <div className="container-sml text-center">
           <div className="col-12">
             <h1 className="heading">
-              Create a poster of your code in seconds
+              Create a poster of your code
             </h1>
           </div>
         </div>
         <div className="container-lrg flex">
           <div className="col-12 centervertical">
             <div className="ctas text-center">
-              <CTALink fontScale={1} to="/create"> Try it now </CTALink>
+              <CTALink fontScale={1} to="/create"> Create your own </CTALink>
             </div>
             <Center>
               <EditorDemo>
@@ -84,7 +84,7 @@ const Landing = () => {
               </EditorDemo>
             </Center>
             <h2 className="paragraph">
-              Whether you've written code you're proud of, are a fan of a famous algorithm, stumbled upon some funny comments, or even just like all the pretty colors: 
+              Whether you've written code you're proud of, have a personal project you want to commemorate, want a parting gift for your intern, or even just like all the pretty colors: 
               this is the place to order a poster of it!
             </h2>
           </div>
@@ -94,35 +94,35 @@ const Landing = () => {
         <div className="container-lrg flex">
           <div className="col-4">
             <b className="emoji">
-              <span role='img' aria-label='laptop'>💻</span>
-            </b>
-            <h3 className="subheading">
-              Choose any language or theme 
-            </h3>
-            <p className="paragraph">
-              We support many programming languages and syntax highlighting themes out of the box, and are constantly adding more. 
-            </p>
-          </div>
-          <div className="col-4">
-            <b className="emoji">
               <span role='img' aria-label='decorations'>💅</span>
             </b>
             <h3 className="subheading">
               Tons of options and sizes
             </h3>
             <p className="paragraph">
-              Add line numbers, choose the poster dimensions, font-size and adjust it all with padding. We provide the tools you need to create the poster you want!
+              Choose whether you would like your poster framed, along with its dimensions, editor theme, font-size and more. We provide the tools you need to create the poster you want!
             </p>
           </div>
           <div className="col-4">
             <b className="emoji">
-              <span role='img' aria-label='frame'>🖼</span>
+              <span role='img' aria-label='laptop'>🎨</span>
             </b>
             <h3 className="subheading">
-              With or without a frame
+              Shape your code into a logo
             </h3>
             <p className="paragraph">
-              Have your poster delivered framed and ready to be mounted on a wall. Every poster dimension can optionally be framed in a gorgeous black wood frame.
+              Upload your logo, paste some code and automatically format your code into the shape of your logo. You can even pick how many characters to use and whether to invert the image.
+            </p>
+          </div>
+          <div className="col-4">
+            <b className="emoji">
+              <span role='img' aria-label='frame'>🚀</span>
+            </b>
+            <h3 className="subheading">
+              Free shipping worldwide
+            </h3>
+            <p className="paragraph">
+              Shipping is completely free worldwide. All U.S. orders are guaranteed to arrive 3-5 business days after fulfillment, which usually occurs 1 or 2 days after your order is received. 
             </p>
           </div>
         </div>
