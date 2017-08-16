@@ -191,7 +191,11 @@ class Create extends Component {
   }
 
   onValueChange = (value) => {
-    this.setAndSaveState({ value })
+    if (value && this.state.value !== value) {
+      this.setAndSaveState({ value })
+    } else {
+      this.setState({ value })
+    }
   }
 
   render() {
