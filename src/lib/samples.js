@@ -8,9 +8,9 @@ const adjustForPhone = (samples) => {
       const sample = samples[key]
       const { fontSize, horPadding, verPadding } = sample
       acc[key] = Object.assign({}, sample, {
-        fontSize: fontSize ? fontSize / 2 : undefined,
-        horPadding: horPadding ? horPadding / 2 : undefined,
-        verPadding: verPadding ? verPadding / 2 : undefined,
+        fontSize: fontSize ? fontSize / 1.5 : undefined,
+        horPadding: horPadding ? horPadding / 1.5 : undefined,
+        verPadding: verPadding ? verPadding / 1.5 : undefined,
       })
       return acc
     }
