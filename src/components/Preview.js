@@ -4,18 +4,16 @@ import styled from 'styled-components';
 import withLoading from '../HOCs/withLoading';
 import Spinner from './Spinner';
 import Flex from './Flex';
-import { Message } from './Modal';
-import { CTA } from './Button';
+import { Message, SpacedCTA } from './Modal';
 import OrderPreviewImg from './OrderPreviewImg';
 import { createPreview } from '../lib/api';
 import { colors } from '../style/utils';
 
 const CTAs = Flex.extend`
   margin-top: 25px;
+  justify-content: center;
 `
-const MarginCTA = CTA.extend`
-  margin: 0px 15px;
-`
+
 const Disclaimer = styled.div`
   margin-top: 20px;
 `
@@ -59,8 +57,8 @@ class Preview extends Component {
         )}
         {previewId && <OrderPreviewImg width={345} id={previewId}/>}     
         <CTAs justifyContent='center'> 
-          <MarginCTA onClick={() => openModal('order')}> Order </MarginCTA>
-          <MarginCTA onClick={() => openModal('download')}> Download </MarginCTA>
+          <SpacedCTA onClick={() => openModal('order')}> Order </SpacedCTA>
+          <SpacedCTA onClick={() => openModal('download')}> Download </SpacedCTA>
         </CTAs>   
       </Flex>
     )

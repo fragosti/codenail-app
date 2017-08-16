@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { modularScale } from 'polished';
 
 import Icon from './Icon';
+import Flex from './Flex';
+import { CTA } from './Button';
 import { zIndex } from '../style/utils';
 
 const Container = styled.div`
@@ -38,6 +40,14 @@ const Header = styled.section`
 
 const Body = styled.div`
   
+`
+
+export const CTAs = Flex.extend`
+  margin-top: 25px;
+  justify-content: center;
+`
+export const SpacedCTA = CTA.extend`
+  margin: 0px 15px;
 `
 
 export const Message = styled.section`

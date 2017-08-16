@@ -9,7 +9,7 @@ import { CTA, Callout } from './Button';
 import { createOrder } from '../lib/api';
 import Spinner from './Spinner';
 import { isPhone, colors } from '../style/utils';
-import { Message } from './Modal';
+import { Message, SpacedCTA } from './Modal';
 
 const Table = styled.table`
   border: 2px dashed ${colors.gray};
@@ -72,49 +72,49 @@ class Download extends Component {
             Once you order you'll receive a confirmation e-mail with an order receipt and download link.
           </p>
           <p>
-            Want a preview? <Callout onClick={() => openModal('preview')}>Click here.</Callout> 
-          </p>
-          <p>
             More questions? Visit our <Link to='faq'><Callout>FAQ</Callout></Link> page. 
           </p>
         </Message>
-        <CheckoutButton
-          onToken={(token, addresses) => {
-            startLoading('Processing your order...')
-            createOrder({
-              token,
-              addresses,
-              price: price*100,
-              description,
-              isTest,
-              isPhone: isPhone(),
-              options,
-              justDownload: true,
-            })
-            .then(res => res.json())
-            .then(({ id }) => {
-              openModal('thankyou', id)
-            })
-            .catch((error) => {
-              stopLoading()
-              console.log(error)
-              this.setState({ errorMessage: 'Sorry, something went wrong. Please try again later.'})
-            })
-          }}
-          price={price*100}
-          description={description}
-          isTest={isTest}
-          opened={() => {
-            if (search) {
-              history.push(`/create${search}&overlay=checkout`)
-            } else {
-              history.push(`/create?overlay=checkout`)
-            }
-          }}
-          closed={() => history.goBack()}
-        >
-          <CTA color={colors.green}>Purchase</CTA>
-        </CheckoutButton>
+        <Flex justifyContent='center'>
+          <SpacedCTA onClick={() => openModal('preview')}> Preview </SpacedCTA>
+          <CheckoutButton
+            onToken={(token, addresses) => {
+              startLoading('Processing your order...')
+              createOrder({
+                token,
+                addresses,
+                price: price*100,
+                description,
+                isTest,
+                isPhone: isPhone(),
+                options,
+                justDownload: true,
+              })
+              .then(res => res.json())
+              .then(({ id }) => {
+                openModal('thankyou', id)
+              })
+              .catch((error) => {
+                stopLoading()
+                console.log(error)
+                this.setState({ errorMessage: 'Sorry, something went wrong. Please try again later.'})
+              })
+            }}
+            price={price*100}
+            description={description}
+            isTest={isTest}
+            opened={() => {
+              if (search) {
+                history.push(`/create${search}&overlay=checkout`)
+              } else {
+                history.push(`/create?overlay=checkout`)
+              }
+            }}
+            closed={() => history.goBack()}
+          >
+            <SpacedCTA color={colors.green}>Purchase</SpacedCTA>
+          </CheckoutButton>
+        </Flex>
       </Flex>
     ))
   }
