@@ -85,13 +85,16 @@ class GenericOrder extends Component {
                 justDownload,
               })
               .then(res => res.json())
-              .then(({ id }) => {
-                openModal('thankyou', id)
+              .then((data) => {
+                if (data.error) {
+                  this.setState({ 'errorMessage': data.error.message}, () => stopLoading())
+                } else {
+                  openModal('thankyou', data.id)
+                }
               })
               .catch((error) => {
-                stopLoading()
                 console.log(error)
-                this.setState({ errorMessage: 'Sorry, something went wrong. Please try again later.'})
+                this.setState({ errorMessage: 'Sorry, something went wrong. Please try again later.'}, () => stopLoading())
               })
             }}
             price={price*100}
