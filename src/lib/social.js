@@ -1,4 +1,4 @@
-const FB_COUNT = 'http://graph.facebook.com/?id='
+const FB_COUNT = 'https://graph.facebook.com/?id='
 
 export const didShareOnFB = (url) => {
   return fetch(`${FB_COUNT}${url}`).then(res => res.json())
