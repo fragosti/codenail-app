@@ -50,6 +50,8 @@ export const openModal = (history, location, name, data) => {
   })}`)
 }
 
+export const range = (n) => Array.from(new Array(n), (val, index) => index + 1);
+
 export const concatMap = (arr, fn) => {
   return arr.concat(arr.map(fn))
 }

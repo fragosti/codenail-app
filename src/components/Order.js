@@ -5,7 +5,7 @@ import GenericOrder from './GenericOrder';
 
 const Order = ({ price, description, isTest, options, history, search, openModal}) => {
   const summaryMap = {
-    'Order Type': 'printed poster',
+    'Order Type': `${options.amount} poster${options.amount > 1 ? 's' : ''}`,
     'Order Price': `$${price}`,
     'Shipping Price': 'free',
     'Shipping Time': '3-5 business days',

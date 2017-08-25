@@ -105,6 +105,14 @@ const textForCoupon = (hasCoupon, orderPrice) => {
   }
 }
 
+const orderDescription = (size, framed, amount) => {
+  const many = amount > 1
+  let desc = framed ? 'Framed' : ''
+  const poster = many ? 'posters' : 'poster'
+  const quant = many ? amount : ''
+  return `${quant} ${desc} ${size} ${poster}`
+}
+
 class Create extends Component {
   constructor(props) {
     super(props)
@@ -127,6 +135,7 @@ class Create extends Component {
       backgroundColor: 'white',
       textColor: 'black',
       colorMode: 'editor',
+      amount: 1,
     }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
@@ -214,16 +223,18 @@ class Create extends Component {
       paddingColor, 
       backgroundColor, 
       textColor, 
-      colorMode } = options;
+      colorMode,
+      amount,
+    } = options;
     const width = EDITOR_WIDTH
     const height = aspectRatioForSize(size)*EDITOR_WIDTH 
     const orderOptions = Object.assign({}, options, { width, height })
     const { location, history, isLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
     const { modal, data } = getQueryParams(location.search)
-    const price = priceForSize(size, framed, hasCoupon && '10off')
+    const price = priceForSize(size, framed, hasCoupon && '10off')*amount
     const downloadPrice = priceForDownload(hasCoupon && '10off')
-    const description = framed ? `Framed ${size} poster` : `${size} poster`
+    const description = orderDescription(size, framed, amount)
     const {
       shareButtonText,
       downloadButtonText,
@@ -368,6 +379,7 @@ class Create extends Component {
                 {controls({
                   size, 
                   framed,
+                  amount,
                 }, this.onSettingsChange)}
               </Flex>
             </ControlSection>

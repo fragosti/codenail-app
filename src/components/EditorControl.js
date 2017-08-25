@@ -3,7 +3,7 @@ import Select, { SelectLabel, OptionContainer, defaultOptionsForKey }  from './S
 import styled from 'styled-components';
 
 import { zIndex } from '../style/utils';
-import { concatMap, flipAround } from '../lib/utils';
+import { concatMap, flipAround, range } from '../lib/utils';
 
 
 export const languages = [
@@ -69,6 +69,8 @@ export const themes = [
 
 export const fontSizes = [2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50];
 
+export const amountOptions = range(20);
+
 export const paddingOptions = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200];
 
 export const paddingColors = ['none', 'white', 'black'];
@@ -114,6 +116,7 @@ const optionsForKey = {
   verPadding: defaultOptionsForKey(paddingOptions),
   paddingColor: defaultOptionsForKey(paddingColors),
   wrapEnabled: boolOption,
+  amount: defaultOptionsForKey(amountOptions),
 }
 
 const labelForKey = {
@@ -127,6 +130,7 @@ const labelForKey = {
   verPadding: 'Y-Axis Padding',
   paddingColor: 'Padding Color',
   wrapEnabled: 'Wrap lines?',
+  amount: 'Amount',
 }
 
 const EditorControl = ({editorProps, onChange, className}) => {
