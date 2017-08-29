@@ -27,7 +27,7 @@ const Landing = () => {
         <div className="container-sml text-center">
           <div className="col-12">
             <h1 className="heading">
-              Create a poster of your code
+              Create art with your code
             </h1>
           </div>
         </div>
