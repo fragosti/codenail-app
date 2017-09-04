@@ -4,7 +4,11 @@ const shirtPng = (name) => {
 const SRC1 = shirtPng('front-shadows')
 const SRC2 = shirtPng('front-shadows2')
 
-export const shirts = [
+const deepHeatherPattern = shirtPng('deep-heather-pattern')
+const athleticHeatherPattern = shirtPng('athletic-heather-pattern')
+const heatherNavyPattern = shirtPng('heather-navy-pattern')
+
+export const shirts = {
   'white': {
     src: SRC2,
     color: 'rgb(255, 255, 255)',
@@ -27,15 +31,15 @@ export const shirts = [
   },
   'deep-heather': {
     src: SRC1,
-    'backgroundImage': shirtPng('deep-heather-pattern'),
+    backgroundImage: deepHeatherPattern,
   },
   'athletic-heather': {
     src: SRC1,
-    'backgroundImage': shirtPng('athletic-heather-pattern'),
+    backgroundImage: athleticHeatherPattern,
   },
   'heather-navy': {
     src: SRC1,
-    'backgroundImage': shirtPng('heather-navy-pattern'),
+    backgroundImage: heatherNavyPattern,
   },
   'asphalt': {
     src: SRC2,
@@ -53,4 +57,4 @@ export const shirts = [
     src: SRC1,
     color: 'rgb(0, 107, 73)',
   }
-]
+}

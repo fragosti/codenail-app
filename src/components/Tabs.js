@@ -10,11 +10,13 @@ export const Tabs = styled(rTabs)`
   .react-tabs__tab-list {
     padding: 0;
     margin-bottom: 15px;
+    text-align: center;
   }
   .react-tabs__tab-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
   }
   .react-tabs__tab {
     display: inline-block;

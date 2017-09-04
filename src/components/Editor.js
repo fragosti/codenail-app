@@ -17,7 +17,7 @@ const Container = styled.div`
   ${props => props.paddingColor !== 'none' && `background-color: ${props.paddingColor} !important;`} 
 
   background-color: ${props => props.backgroundColor} !important;
-  
+
   .ace_editor, .ace_scroller {
     background-color: ${props => props.backgroundColor} !important;
   }
@@ -80,6 +80,13 @@ class Editor extends Component {
     }
   }
 
+  backgroundColor = (productType, colorMode, color) => {
+    if (productType === 'shirt') {
+      return 'transparent'
+    }
+    return colorMode === 'custom'? color : null
+  }
+
   render() {
     const { hasForceUpdated } = this.state
     const { 
@@ -98,10 +105,12 @@ class Editor extends Component {
       colorMode,
       textColor,
       backgroundColor,
+      productType
     } = this.props
     const adjustedHeight = height-verPadding*2
     const adjustedWidth = width-horPadding*2
     const shouldOverrideColor = colorMode === 'custom'
+
     return (
       <Container 
         paddingColor={paddingColor} 
@@ -109,7 +118,7 @@ class Editor extends Component {
         verPadding={verPadding} 
         className={`ace-${theme.replace('_', '-')}`}
         textColor={shouldOverrideColor ? textColor : null}
-        backgroundColor={shouldOverrideColor ? backgroundColor : null}
+        backgroundColor={this.backgroundColor(productType, colorMode, backgroundColor)}
       >
         <AceEditor
           ref={(ref) => {

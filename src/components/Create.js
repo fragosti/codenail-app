@@ -19,6 +19,7 @@ import Preview from './Preview';
 import Order from './Order';
 import Download from './Download';
 import ThankYou from './ThankYou';
+import Shirt from './Shirt';
 import { Container } from './Page';
 import { isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
@@ -54,6 +55,10 @@ const SectionContainer = styled.div`
   `}
 ` 
 
+const TitleText = styled.h3`
+  font-size: ${modularScale(1)};
+`
+
 const ControlSection = styled.div`
   width: 100%;
   h3 {
@@ -78,11 +83,21 @@ const EditorWrapper = styled.div`
   margin-left: 30px;
   margin-right: 30px;
   margin-bottom: ${props => props.framed ? 50 : 30}px;
+  margin-top: ${props => props.framed ? 15 : 0}px;
   box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
+`
+
+const ShirtEditorWrapper = styled.div`
+  position: absolute;
+  top: 100px;
 `
 
 const OverlayMessage = styled.div`
   margin-top: 20px;
+`
+
+const StyledShirt = styled(Shirt)`
+  width: 525px;
 `
 
 const EDITOR_WIDTH = isPhone() ? 300 : 450;
@@ -137,6 +152,8 @@ class Create extends Component {
       colorMode: 'editor',
       amount: 1,
       productType: 'shirt',
+      shirtColor: 'white',
+      shirtSize: 'L',
     }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
@@ -227,6 +244,8 @@ class Create extends Component {
       colorMode,
       amount,
       productType,
+      shirtColor,
+      shirtSize
     } = options;
     const width = EDITOR_WIDTH
     const height = aspectRatioForSize(size)*EDITOR_WIDTH 
@@ -263,11 +282,13 @@ class Create extends Component {
           <SectionContainer>
             <Tabs 
               selectedIndex={productType === 'poster' ? 0 : 1}
-              onSelect={(index) => this.onSettingsChange('productType', index ? 'shirt' : 'poster')}
+              onSelect={(index) => {
+                this.onSettingsChange('productType', index ? 'shirt' : 'poster')
+              }}
             >
               <TabList>
-                <Tab>Poster</Tab>
-                <Tab>Shirt</Tab>
+                <Tab><TitleText>Poster </TitleText></Tab>
+                <Tab><TitleText>Shirt </TitleText></Tab>
               </TabList>
               <TabPanel>
                 <EditorWrapper framed={framed}> 
@@ -296,27 +317,33 @@ class Create extends Component {
                     colorMode={colorMode}
                     textColor={textColor}
                     backgroundColor={backgroundColor}
+                    productType={productType}
                   />
                 </EditorWrapper>
               </TabPanel>
               <TabPanel>
-                <Editor 
-                  language={language}
-                  theme={mode}
-                  value={value}
-                  fontSize={fontSize}
-                  onChange={this.onValueChange}
-                  showLineNumbers={showLineNumbers}
-                  wrapEnabled={wrapEnabled}
-                  width={width}
-                  height={height}
-                  horPadding={horPadding}
-                  verPadding={verPadding}
-                  paddingColor={paddingColor}
-                  colorMode={colorMode}
-                  textColor={textColor}
-                  backgroundColor={'transparent'}
+                <StyledShirt 
+                  colorKey={shirtColor}
                 />
+                <ShirtEditorWrapper>
+                  <Editor 
+                    language={language}
+                    theme={mode}
+                    value={value}
+                    fontSize={fontSize}
+                    onChange={this.onValueChange}
+                    showLineNumbers={showLineNumbers}
+                    wrapEnabled={wrapEnabled}
+                    width={290}
+                    height={400}
+                    horPadding={horPadding}
+                    verPadding={verPadding}
+                    paddingColor={paddingColor}
+                    colorMode={colorMode}
+                    textColor={textColor}
+                    productType={productType}
+                  />
+                </ShirtEditorWrapper>
               </TabPanel>
             </Tabs>
             <Flex justifyContent='space-around' wrap={true}>
@@ -380,11 +407,11 @@ class Create extends Component {
                       }, this.onSettingsChange)}
                     </TabPanel>
                     <TabPanel>
-                      <ColorPicker
+                      {productType === 'poster' && <ColorPicker
                         label='Background Color' 
                         color={backgroundColor}
                         onChange={({hex}) => this.onSettingsChange('backgroundColor', hex)}
-                      />
+                      />}
                       <ColorPicker 
                         label='Text Color'
                         color={textColor}
@@ -394,25 +421,41 @@ class Create extends Component {
                   </Tabs>
                 </Flex>
                 <Flex maxWidth='275px' wrap={true}>
-                  {controls({
-                    fontSize,
-                    showLineNumbers,
-                    wrapEnabled,
-                    paddingColor,
-                    verPadding,
-                    horPadding,
-                  }, this.onSettingsChange)}
+                  {(() => {
+                    const availableControls = {
+                      fontSize,
+                      showLineNumbers,
+                      wrapEnabled,
+                      verPadding,
+                      horPadding,
+                    }
+                    if (productType === 'poster') {
+                      availableControls.paddingColor = paddingColor
+                    }
+                    return controls(availableControls, this.onSettingsChange)
+                  })()}
                 </Flex>
               </Flex>
             </ControlSection>
             <ControlSection>
-              <h3> Dimensions and Frame</h3>
+              <h3> Dimensions and Quantity </h3>
               <Flex justifyContent='center'>
-                {controls({
-                  size, 
-                  framed,
-                  amount,
-                }, this.onSettingsChange)}
+                {(() => {
+                  switch(productType) {
+                    case 'shirt':
+                      return controls({
+                        shirtSize,
+                        amount
+                      }, this.onSettingsChange)
+                    default:
+                    case 'poster':
+                      return controls({
+                        size,
+                        framed,
+                        amount
+                      }, this.onSettingsChange)
+                  }                  
+                })()}
               </Flex>
             </ControlSection>
             {errorMessage && <p><i> {errorMessage} </i></p>}
@@ -422,11 +465,11 @@ class Create extends Component {
                   openModal(history, location, 'order')
                 }}
               >{orderButtonText}</ActionButton>
-              <ActionButton
+              {productType === 'poster' && <ActionButton
                 onClick={() => {
                   openModal(history, location, 'download')
                 }}
-              >{downloadButtonText}</ActionButton>
+              >{downloadButtonText}</ActionButton>}
               <ActionButton
                 onClick={() => {
                   openModal(history, location, 'share')
@@ -486,7 +529,7 @@ class Create extends Component {
             </Modal>  
           </Overlay>
         )}
-        {modal === 'download' && (
+        {modal === 'download' &&(
           <Overlay>
             <Modal title='Download' close={() => closeModal(history, location)}>
               <Download

@@ -67,13 +67,15 @@ export const themes = [
   'dawn',
 ].sort();
 
-export const fontSizes = [2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50];
+export const fontSizes = [1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50];
 
 export const amountOptions = range(20);
 
 export const paddingOptions = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200];
 
 export const paddingColors = ['none', 'white', 'black'];
+
+export const shirtSizes = ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'];
 
 export const sizes = concatMap([
   '8x10',
@@ -117,6 +119,7 @@ const optionsForKey = {
   paddingColor: defaultOptionsForKey(paddingColors),
   wrapEnabled: boolOption,
   amount: defaultOptionsForKey(amountOptions),
+  shirtSize: defaultOptionsForKey(shirtSizes),
 }
 
 const labelForKey = {
@@ -131,6 +134,7 @@ const labelForKey = {
   paddingColor: 'Padding Color',
   wrapEnabled: 'Wrap lines?',
   amount: 'Amount',
+  shirtSize: 'Shirt Size'
 }
 
 const EditorControl = ({editorProps, onChange, className}) => {
