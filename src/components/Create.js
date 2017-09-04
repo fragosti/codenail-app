@@ -23,7 +23,7 @@ import Shirt from './Shirt';
 import { Container } from './Page';
 import { isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
-import { priceForSize, priceForDownload } from '../lib/price';
+import { priceForProduct, priceForDownload } from '../lib/price';
 import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { getShare } from '../lib/api';
@@ -253,7 +253,7 @@ class Create extends Component {
     const { location, history, isLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
     const { modal, data } = getQueryParams(location.search)
-    const price = priceForSize(size, framed, hasCoupon && '10off')*amount
+    const price = priceForProduct(productType, size, shirtSize, framed, hasCoupon && '10off')*amount
     const downloadPrice = priceForDownload(hasCoupon && '10off')
     const description = orderDescription(size, framed, amount)
     const {

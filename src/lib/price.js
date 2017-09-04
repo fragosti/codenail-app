@@ -30,13 +30,13 @@ export const framedPrintCosts = {
 };
 
 export const shirtCosts = {
-  's': 12.95,
-  'm': 12.95,
-  'l': 12.95,
-  'xl': 12.95,
-  '2xl': 14.45,
-  '3xl': 15.55,
-  '4xl': 17.45,
+  'S': 12.95,
+  'M': 12.95,
+  'L': 12.95,
+  'XL': 12.95,
+  '2XL': 14.45,
+  '3XL': 15.55,
+  '4XL': 17.45,
 };
 
 export const inToCm = (inSize) => inSize.split('x').map(size => (parseInt(size, 10) * 2.54).toFixed(1)).join('x')
@@ -49,6 +49,15 @@ export const costForSize = (size, framed) => {
 
 export const priceForSize = (size, framed, couponCode) => {
   const price = costForSize(size, framed)*1.50 + 15
+  return priceForCoupon(price, couponCode)
+}
+
+export const priceForShirt = (size, couponCode) => {
+  const price = shirtCosts[size]*1.50 + 11
+  return priceForCoupon(price, couponCode)
+}
+
+const priceForCoupon = (price, couponCode) => {
   switch (couponCode) {
     case '10off':
       return Math.round((9/10)*price)
@@ -64,6 +73,15 @@ export const priceForDownload = (couponCode) => {
       return Math.round((9/10)*price)
     default:
       return Math.round(price)
+  }
+}
+
+export const priceForProduct = (productType, size, shirtSize, framed, couponCode) => {
+  switch(productType) {
+    case 'poster':
+      return priceForSize(size, framed, couponCode)
+    case 'shirt':
+      return priceForShirt(shirtSize, couponCode)
   }
 }
 
