@@ -4,14 +4,28 @@ import GenericOrder from './GenericOrder';
 
 
 const Order = ({ price, description, isTest, options, history, search, openModal}) => {
-  const summaryMap = {
-    'Order Type': `${options.amount} poster${options.amount > 1 ? 's' : ''}`,
+  const summaryMapBase = {
+    'Order Type': `${options.amount} ${options.productType}${options.amount > 1 ? 's' : ''}`,
     'Order Price': `$${price}`,
     'Shipping Price': 'free',
     'Shipping Time': '3-5 business days',
-    'Framed': options.framed ? 'yes' : 'no',
-    'Dimensions': `${options.size} inches`,
   }
+  let summaryOverrides = {}
+  switch(options.productType) {
+    case 'shirt':
+      summaryOverrides = {
+        'Size': `${options.shirtSize}`,
+      }
+      break
+    default:
+    case 'poster':
+      summaryOverrides = {
+        'Framed': options.framed ? 'yes' : 'no',
+        'Dimensions': `${options.size} inches`,
+      }
+      break
+  }
+  const summaryMap = Object.assign({}, summaryMapBase, summaryOverrides)
   return (
     <GenericOrder
       summaryMap={summaryMap}

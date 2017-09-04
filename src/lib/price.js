@@ -78,6 +78,7 @@ export const priceForDownload = (couponCode) => {
 
 export const priceForProduct = (productType, size, shirtSize, framed, couponCode) => {
   switch(productType) {
+    default:
     case 'poster':
       return priceForSize(size, framed, couponCode)
     case 'shirt':

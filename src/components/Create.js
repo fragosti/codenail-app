@@ -120,12 +120,18 @@ const textForCoupon = (hasCoupon, orderPrice) => {
   }
 }
 
-const orderDescription = (size, framed, amount) => {
+const orderDescription = (productType, size, shirtSize, framed, amount) => {
   const many = amount > 1
-  let desc = framed ? 'Framed' : ''
-  const poster = many ? 'posters' : 'poster'
-  const quant = many ? amount : ''
-  return `${quant} ${desc} ${size} ${poster}`
+  if (productType === 'shirt') {
+    const shirt = many ? 'shirts' : 'shirt'
+    return `${amount} ${shirt} (${shirtSize})`
+  }
+  if (productType === 'poster') {
+    let desc = framed ? 'Framed' : ''
+    const poster = many ? 'posters' : 'poster'
+    const quant = many ? amount : ''
+    return `${quant} ${desc} ${size} ${poster}`
+  }
 }
 
 class Create extends Component {
@@ -255,7 +261,7 @@ class Create extends Component {
     const { modal, data } = getQueryParams(location.search)
     const price = priceForProduct(productType, size, shirtSize, framed, hasCoupon && '10off')*amount
     const downloadPrice = priceForDownload(hasCoupon && '10off')
-    const description = orderDescription(size, framed, amount)
+    const description = orderDescription(productType, size, shirtSize, framed, amount)
     const {
       shareButtonText,
       downloadButtonText,
