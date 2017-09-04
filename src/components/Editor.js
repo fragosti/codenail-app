@@ -16,6 +16,12 @@ const Container = styled.div`
   padding: ${props => props.verPadding}px ${props => props.horPadding}px;
   ${props => props.paddingColor !== 'none' && `background-color: ${props.paddingColor} !important;`} 
 
+  background-color: ${props => props.backgroundColor} !important;
+  
+  .ace_editor, .ace_scroller {
+    background-color: ${props => props.backgroundColor} !important;
+  }
+
   .ace_scrollbar-h, .ace_scrollbar-v {
     visibility: hidden;
   }

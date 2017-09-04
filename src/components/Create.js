@@ -136,6 +136,7 @@ class Create extends Component {
       textColor: 'black',
       colorMode: 'editor',
       amount: 1,
+      productType: 'shirt',
     }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
@@ -225,6 +226,7 @@ class Create extends Component {
       textColor, 
       colorMode,
       amount,
+      productType,
     } = options;
     const width = EDITOR_WIDTH
     const height = aspectRatioForSize(size)*EDITOR_WIDTH 
@@ -259,34 +261,64 @@ class Create extends Component {
           justifyContent='center'
         >
           <SectionContainer>
-            <EditorWrapper framed={framed}> 
-              {framed && ( 
-                <Frame 
-                  width={width} 
-                  height={height} 
-                  thickness={EDITOR_WIDTH / 10}
-                  borderColor1='#767676'
-                  borderColor2='#666666'
+            <Tabs 
+              selectedIndex={productType === 'poster' ? 0 : 1}
+              onSelect={(index) => this.onSettingsChange('productType', index ? 'shirt' : 'poster')}
+            >
+              <TabList>
+                <Tab>Poster</Tab>
+                <Tab>Shirt</Tab>
+              </TabList>
+              <TabPanel>
+                <EditorWrapper framed={framed}> 
+                  {framed && ( 
+                    <Frame 
+                      width={width} 
+                      height={height} 
+                      thickness={EDITOR_WIDTH / 10}
+                      borderColor1='#767676'
+                      borderColor2='#666666'
+                    />
+                  )}
+                  <Editor 
+                    language={language}
+                    theme={mode}
+                    value={value}
+                    fontSize={fontSize}
+                    onChange={this.onValueChange}
+                    showLineNumbers={showLineNumbers}
+                    wrapEnabled={wrapEnabled}
+                    width={width}
+                    height={height}
+                    horPadding={horPadding}
+                    verPadding={verPadding}
+                    paddingColor={paddingColor}
+                    colorMode={colorMode}
+                    textColor={textColor}
+                    backgroundColor={backgroundColor}
+                  />
+                </EditorWrapper>
+              </TabPanel>
+              <TabPanel>
+                <Editor 
+                  language={language}
+                  theme={mode}
+                  value={value}
+                  fontSize={fontSize}
+                  onChange={this.onValueChange}
+                  showLineNumbers={showLineNumbers}
+                  wrapEnabled={wrapEnabled}
+                  width={width}
+                  height={height}
+                  horPadding={horPadding}
+                  verPadding={verPadding}
+                  paddingColor={paddingColor}
+                  colorMode={colorMode}
+                  textColor={textColor}
+                  backgroundColor={'transparent'}
                 />
-              )}
-              <Editor 
-                language={language}
-                theme={mode}
-                value={value}
-                fontSize={fontSize}
-                onChange={this.onValueChange}
-                showLineNumbers={showLineNumbers}
-                wrapEnabled={wrapEnabled}
-                width={width}
-                height={height}
-                horPadding={horPadding}
-                verPadding={verPadding}
-                paddingColor={paddingColor}
-                colorMode={colorMode}
-                textColor={textColor}
-                backgroundColor={backgroundColor}
-              />
-            </EditorWrapper>
+              </TabPanel>
+            </Tabs>
             <Flex justifyContent='space-around' wrap={true}>
               <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
               <ArrowControl
