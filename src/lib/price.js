@@ -29,6 +29,16 @@ export const framedPrintCosts = {
   '24x36': 89,
 };
 
+export const shirtCosts = {
+  's': 12.95,
+  'm': 12.95,
+  'l': 12.95,
+  'xl': 12.95,
+  '2xl': 14.45,
+  '3xl': 15.55,
+  '4xl': 17.45,
+};
+
 export const inToCm = (inSize) => inSize.split('x').map(size => (parseInt(size, 10) * 2.54).toFixed(1)).join('x')
 
 export const costForSize = (size, framed) => {

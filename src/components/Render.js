@@ -26,7 +26,7 @@ class Render extends Component {
 
   componentDidUpdate() {
     if (window.callPhantom && this.state.language) {
-      window.callPhantom && window.callPhantom('takeShot')
+      window.callPhantom('takeShot')
     }
   }
 
