@@ -143,12 +143,13 @@ const widthAndHeight = (productType, size) => {
         width: SHIRT_EDITOR_WIDTH,
         height: SHIRT_EDITOR_HEIGHT,
       }
-    default:
     case 'poster':
       return {
         width: EDITOR_WIDTH,
         height: aspectRatioForSize(size)*EDITOR_WIDTH,
       }
+    default:
+      throw new Error(`Provided an invalid productType:${productType}`)
   }
 }
 
@@ -470,13 +471,14 @@ class Create extends Component {
                         shirtSize,
                         amount
                       }, this.onSettingsChange)
-                    default:
                     case 'poster':
                       return controls({
                         size,
                         framed,
                         amount
                       }, this.onSettingsChange)
+                    default:
+                      throw new Error(`Provided an invalid productType:${productType}`)
                   }                  
                 })()}
               </Flex>
