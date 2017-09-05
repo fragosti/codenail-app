@@ -28,6 +28,9 @@ import samples from '../lib/samples';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { getShare } from '../lib/api';
 
+const EDITOR_WIDTH = isPhone() ? 300 : 450;
+const SHIRT_EDITOR_WIDTH = 290;
+const SHIRT_EDITOR_HEIGHT = 400;
 
 const LayoutContainer = Flex.extend`
   padding-bottom: 30px;
@@ -100,7 +103,6 @@ const StyledShirt = styled(Shirt)`
   width: 525px;
 `
 
-const EDITOR_WIDTH = isPhone() ? 300 : 450;
 
 const textForCoupon = (hasCoupon, orderPrice) => {
   if (hasCoupon) {
@@ -131,6 +133,22 @@ const orderDescription = (productType, size, shirtSize, framed, amount) => {
     const poster = many ? 'posters' : 'poster'
     const quant = many ? amount : ''
     return `${quant} ${desc} ${size} ${poster}`
+  }
+}
+
+const widthAndHeight = (productType, size) => {
+  switch(productType) {
+    case 'shirt':
+      return {
+        width: SHIRT_EDITOR_WIDTH,
+        height: SHIRT_EDITOR_HEIGHT,
+      }
+    default:
+    case 'poster':
+      return {
+        width: EDITOR_WIDTH,
+        height: aspectRatioForSize(size)*EDITOR_WIDTH,
+      }
   }
 }
 
@@ -253,8 +271,7 @@ class Create extends Component {
       shirtColor,
       shirtSize
     } = options;
-    const width = EDITOR_WIDTH
-    const height = aspectRatioForSize(size)*EDITOR_WIDTH 
+    const { width, height } = widthAndHeight(productType, size)
     const orderOptions = Object.assign({}, options, { width, height })
     const { location, history, isLoading, loadingMessage } = this.props
     const isTest = location.search.includes('test')
@@ -340,8 +357,8 @@ class Create extends Component {
                     onChange={this.onValueChange}
                     showLineNumbers={showLineNumbers}
                     wrapEnabled={wrapEnabled}
-                    width={290}
-                    height={400}
+                    width={width}
+                    height={height}
                     horPadding={horPadding}
                     verPadding={verPadding}
                     paddingColor={paddingColor}
