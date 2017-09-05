@@ -55,7 +55,7 @@ class ImageToTextControl extends Component {
     } 
     const { file, invertImage, charsPerRow, useTextArea } = this.state
     const text = (useTextArea ? 
-      this.state.text : this.props.editorText.replace(/\s+/g,' ')) || 'x'
+      this.state.text.replace(/\s+/g,' ') : this.props.editorText.replace(/\s+/g,' ')) || 'x'
 
     fileToText(file, charsPerRow, 0.5, {
       charForPixel: charForPixelGivenText(text, invertImage),

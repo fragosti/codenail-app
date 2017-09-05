@@ -33,6 +33,7 @@ const Container = styled.div`
   .ace_scroller {
     right: 0px !important;
     bottom: 0px !important;
+    box-shadow: none !important;
   }
   .ace_content .ace_line {
     color: ${props => props.textColor} !important;
