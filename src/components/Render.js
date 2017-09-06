@@ -49,25 +49,26 @@ class Render extends Component {
     } = this.state 
     const params = getQueryParams(this.props.location.search)
     const margin = params.margin || 6
+    const scale = params.scale || 1
     if (!language) {
       return (
         <div> ...Loading </div>
       )
     }
     return (
-      <Container xMargin={margin} yMargin={(height/width)*margin} width={width}>
+      <Container xMargin={margin} yMargin={(height/width)*margin} width={width*scale}>
         <Editor 
           language={language}
           theme={mode}
           value={value}
-          fontSize={fontSize}
+          fontSize={fontSize*scale}
           onChange={() => {}}
           showLineNumbers={showLineNumbers}
           wrapEnabled={wrapEnabled}
-          width={width}
-          height={height}
-          horPadding={horPadding}
-          verPadding={verPadding}
+          width={width*scale}
+          height={height*scale}
+          horPadding={horPadding*scale}
+          verPadding={verPadding*scale}
           colorMode={colorMode}
           backgroundColor={backgroundColor}
           textColor={textColor}

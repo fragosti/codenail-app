@@ -29,8 +29,8 @@ import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { getShare } from '../lib/api';
 
 const EDITOR_WIDTH = isPhone() ? 300 : 450;
-const SHIRT_EDITOR_WIDTH = 290;
-const SHIRT_EDITOR_HEIGHT = 400;
+const SHIRT_EDITOR_WIDTH = 200;
+const SHIRT_EDITOR_HEIGHT = 275;
 
 const LayoutContainer = Flex.extend`
   padding-bottom: 30px;
