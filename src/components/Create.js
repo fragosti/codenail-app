@@ -20,11 +20,13 @@ import Order from './Order';
 import Download from './Download';
 import ThankYou from './ThankYou';
 import Shirt from './Shirt';
+import ColorOptions from './ColorOptions';
 import { Container } from './Page';
 import { isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForProduct, priceForDownload } from '../lib/price';
 import samples from '../lib/samples';
+import { shirtColors } from '../lib/products';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { getShare } from '../lib/api';
 
@@ -76,6 +78,10 @@ const ControlSection = styled.div`
 
 const ActionButton = CTA.extend`
   margin: 30px 15px 0px;
+`
+
+const SpacedColorOptions = styled(ColorOptions)`
+  margin-bottom: 20px;
 `
 
 const EditorWrapper = styled.div`
@@ -370,7 +376,13 @@ class Create extends Component {
                 </ShirtEditorWrapper>
               </TabPanel>
             </Tabs>
-            <Flex justifyContent='space-around' wrap={true}>
+            <Flex justifyContent='space-around' wrap={true} maxWidth='500px'>
+              {productType === 'shirt' && (
+                  <SpacedColorOptions 
+                    colors={shirtColors} 
+                    onSelect={(color) => this.onSettingsChange('shirtColor', color)}
+                  />
+              )}
               <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
               <ArrowControl
                 onUp={this.moveTextUp}
@@ -413,7 +425,7 @@ class Create extends Component {
               />
             </ControlSection>
             <ControlSection>
-              <h3> Style</h3>
+              <h3> Text Style</h3>
               <Flex wrap={true} alignItems='baseline' justifyContent='center'>
                 <Flex maxWidth='275px'>
                   <Tabs 

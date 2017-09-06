@@ -32,14 +32,17 @@ export const shirts = {
   'deep-heather': {
     src: SRC1,
     backgroundImage: deepHeatherPattern,
+    pickerColor: 'rgb(155, 154, 159)',
   },
   'athletic-heather': {
     src: SRC1,
     backgroundImage: athleticHeatherPattern,
+    pickerColor: 'rgb(168, 171, 178)',
   },
   'heather-navy': {
     src: SRC1,
     backgroundImage: heatherNavyPattern,
+    pickerColor: 'rgb(105, 106, 136)'
   },
   'asphalt': {
     src: SRC2,
@@ -58,3 +61,12 @@ export const shirts = {
     color: 'rgb(0, 107, 73)',
   }
 }
+
+export const shirtColors = Object.keys(shirts).map((colorName) => {
+  const { pickerColor, color } = shirts[colorName]
+  return {
+    colorName,
+    color: pickerColor || color 
+  }
+})
+

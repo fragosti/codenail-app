@@ -5,7 +5,7 @@ import { shirts } from '../lib/products';
 
 const ShirtImage = styled.img`
   background-color: ${props => props.color};
-  background-image: ${props => props.backgroundImage};
+  background-image: ${props => `url(${props.backgroundImage})`};
   background-size: contain;
 `
 
