@@ -75,7 +75,7 @@ export const paddingOptions = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,
 
 export const paddingColors = ['none', 'white', 'black'];
 
-export const shirtSizes = ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'];
+export const shirtSizes = ['S', 'M', 'L', 'XL', '2XL'];
 
 export const sizes = concatMap([
   '8x10',
