@@ -66,11 +66,15 @@ export const shirts = {
   }
 }
 
-export const shirtColors = Object.keys(shirts).map((colorName) => {
+export const colorForName = (colorName) => {
   const { pickerColor, color } = shirts[colorName]
+  return pickerColor || color
+}
+
+export const shirtColors = Object.keys(shirts).map((colorName) => {
   return {
     colorName,
-    color: pickerColor || color 
+    color: colorForName(colorName) 
   }
 })
 

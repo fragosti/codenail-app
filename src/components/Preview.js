@@ -8,6 +8,7 @@ import { Message, SpacedCTA } from './Modal';
 import OrderPreviewImg from './OrderPreviewImg';
 import { createPreview } from '../lib/api';
 import { colors } from '../style/utils';
+import { shirts } from '../lib/products';
 
 const CTAs = Flex.extend`
   margin-top: 25px;
@@ -36,7 +37,10 @@ class Preview extends Component {
   }
 
   render() {
-    const { isLoading, openModal } = this.props
+    const { isLoading, openModal, options } = this.props
+    const { productType, shirtColor } = options
+    const isShirtPreview = productType === 'shirt'
+    const { color, backgroundImage } = shirts[shirtColor]
     const { previewId } = this.state
     return (
       <Flex direction='column' alignItems='center'>
@@ -55,7 +59,14 @@ class Preview extends Component {
             <Disclaimer><i>It's worth the wait...</i><span role='img' aria-label='grin'>😁</span></Disclaimer>
           </div>
         )}
-        {previewId && <OrderPreviewImg width={345} id={previewId}/>}     
+        {previewId && 
+          <OrderPreviewImg 
+            width={345} 
+            id={previewId} 
+            backgroundImage={isShirtPreview && backgroundImage}
+            backgroundColor={isShirtPreview && color}
+          />
+        }     
         <CTAs justifyContent='center'> 
           <SpacedCTA onClick={() => openModal('order')}> Order </SpacedCTA>
           <SpacedCTA onClick={() => openModal('download')}> Download </SpacedCTA>

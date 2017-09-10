@@ -45,7 +45,7 @@ class Render extends Component {
       colorMode,
       backgroundColor,
       textColor,
-      productType
+      productType,
     } = this.state 
     const params = getQueryParams(this.props.location.search)
     const margin = params.margin || 6

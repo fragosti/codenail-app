@@ -106,7 +106,7 @@ class Editor extends Component {
       colorMode,
       textColor,
       backgroundColor,
-      productType
+      productType,
     } = this.props
     const adjustedHeight = height-verPadding*2
     const adjustedWidth = width-horPadding*2
