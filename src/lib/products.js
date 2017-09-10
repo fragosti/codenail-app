@@ -59,6 +59,10 @@ export const shirts = {
   'kelly': {
     src: SRC1,
     color: 'rgb(0, 107, 73)',
+  },
+  'navy': {
+    src: SRC1,
+    color: 'rgb(55, 56, 74)',
   }
 }
 
