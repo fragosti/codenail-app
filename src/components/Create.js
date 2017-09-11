@@ -169,7 +169,7 @@ class Create extends Component {
       language: 'javascript',
       hasCoupon: false,
       mode: 'monokai',
-      showLineNumbers: true,
+      showLineNumbers: false,
       wrapEnabled: false,
       value: '// Paste your code here!',
       fontSize: isPhone() ? 8 : 12,
