@@ -35,8 +35,6 @@ export const shirtCosts = {
   'L': 12.95,
   'XL': 12.95,
   '2XL': 14.45,
-  '3XL': 15.55,
-  '4XL': 17.45,
 };
 
 export const inToCm = (inSize) => inSize.split('x').map(size => (parseInt(size, 10) * 2.54).toFixed(1)).join('x')
@@ -87,12 +85,13 @@ export const priceForProduct = (productType, size, shirtSize, framed, couponCode
   }
 }
 
-export const printPrices = Object.keys(printCosts).reduce((acc, size) => {
-  acc[size] = priceForSize(size, false)
+const costsToPrices = (costs, costToPriceFn) => Object.keys(costs).reduce((acc, size) => {
+  acc[size] = costToPriceFn(size)
   return acc
 }, {})
 
-export const framedPrintPrices = Object.keys(framedPrintCosts).reduce((acc, size) => {
-  acc[size] = priceForSize(size, true)
-  return acc
-}, {})
+export const printPrices = costsToPrices(printCosts, size => priceForSize(size, false))
+
+export const framedPrintPrices = costsToPrices(framedPrintCosts, size => priceForSize(size, true))
+
+export const shirtPrices = costsToPrices(shirtCosts, priceForShirt)
