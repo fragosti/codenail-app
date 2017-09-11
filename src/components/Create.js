@@ -376,7 +376,7 @@ class Create extends Component {
                 </ShirtEditorWrapper>
               </TabPanel>
             </Tabs>
-            <Flex justifyContent='space-around' wrap={true} maxWidth='500px'>
+            <Flex justifyContent='space-around' wrap={true} maxWidth={`${EDITOR_WIDTH}px`} margin={'0px auto'}>
               {productType === 'shirt' && (
                   <SpacedColorOptions 
                     colors={shirtColors} 
