@@ -182,7 +182,7 @@ class Create extends Component {
       textColor: 'black',
       colorMode: 'editor',
       amount: 1,
-      productType: 'shirt',
+      productType: 'poster',
       shirtColor: 'white',
       shirtSize: 'L',
     }, (sampleId ? samples[sampleId] : savedState) || {})
@@ -311,7 +311,7 @@ class Create extends Component {
         >
           <SectionContainer>
             <Tabs 
-              selectedIndex={productType === 'poster' ? 0 : 1}
+              selectedIndex={productType && productType === 'shirt' ? 1 : 0}
               onSelect={(index) => {
                 this.onSettingsChange('productType', index ? 'shirt' : 'poster')
               }}
