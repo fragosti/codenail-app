@@ -5,13 +5,20 @@ import Editor from './Editor';
 import { getShare } from '../lib/api';
 import { getQueryParams } from '../lib/utils';
 
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: ${props => props.color};
+  overflow: auto;
+`;
+
 const Container = styled.div`
   margin: ${props => `${props.yMargin}px ${props.xMargin}px`};
   width: ${props => props.width}px;
   .ace_cursor-layer {
     display: none;
   }
-`
+`;
 
 class Render extends Component {
   constructor(props) {
@@ -55,26 +62,33 @@ class Render extends Component {
         <div> ...Loading </div>
       )
     }
+    
     return (
-      <Container xMargin={margin} yMargin={(height/width)*margin} width={width*scale}>
-        <Editor 
-          language={language}
-          theme={mode}
-          value={value}
-          fontSize={fontSize*scale}
-          onChange={() => {}}
-          showLineNumbers={showLineNumbers}
-          wrapEnabled={wrapEnabled}
+      <Background color={productType === 'shirt' ? null : 'white'}>
+        <Container 
+          xMargin={margin} 
+          yMargin={(height/width)*margin} 
           width={width*scale}
-          height={height*scale}
-          horPadding={horPadding*scale}
-          verPadding={verPadding*scale}
-          colorMode={colorMode}
-          backgroundColor={backgroundColor}
-          textColor={textColor}
-          productType={productType}
-        />
-      </Container>
+        >
+          <Editor 
+            language={language}
+            theme={mode}
+            value={value}
+            fontSize={fontSize*scale}
+            onChange={() => {}}
+            showLineNumbers={showLineNumbers}
+            wrapEnabled={wrapEnabled}
+            width={width*scale}
+            height={height*scale}
+            horPadding={horPadding*scale}
+            verPadding={verPadding*scale}
+            colorMode={colorMode}
+            backgroundColor={backgroundColor}
+            textColor={textColor}
+            productType={productType}
+          />
+        </Container>
+      </Background>
     )
   }
 }

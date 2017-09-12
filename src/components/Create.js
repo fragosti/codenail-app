@@ -524,7 +524,7 @@ class Create extends Component {
           <Overlay>
             <Modal title={shareModalTitle} close={() => closeModal(history, location)}>
               <Share 
-                options={options} 
+                options={orderOptions} 
                 hasCoupon={hasCoupon}
                 applyCoupon={this.applyCoupon}
               />

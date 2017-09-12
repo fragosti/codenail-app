@@ -12,6 +12,7 @@ themes.forEach((theme) => {
   require(`brace/theme/${theme}`)
 })
 
+
 const Container = styled.div`
   padding: ${props => props.verPadding}px ${props => props.horPadding}px;
   ${props => props.paddingColor !== 'none' && `background-color: ${props.paddingColor} !important;`} 
@@ -85,7 +86,7 @@ class Editor extends Component {
     if (productType === 'shirt') {
       return 'transparent'
     }
-    return colorMode === 'custom'? color : null
+    return colorMode === 'custom' ? color : null;
   }
 
   render() {
