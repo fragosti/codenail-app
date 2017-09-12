@@ -159,6 +159,18 @@ const widthAndHeight = (productType, size) => {
   }
 }
 
+const fontSizeForCharactersPerRow = {
+  100: 8,
+  125: 6,
+  150: 5.5,
+  175: 4.5,
+  200: 3.6,
+  225: 3.2,
+  250: 2.7,
+  275: 2.5,
+  300: 2.3,
+};
+
 class Create extends Component {
   constructor(props) {
     super(props)
@@ -405,22 +417,7 @@ class Create extends Component {
                 editorText={value}
                 onNewText={(text, charsPerRow) => this.setAndSaveState({
                   value: text,
-                  fontSize: (() => {
-                    switch(charsPerRow) {
-                      case 100: 
-                        return 8
-                      case 150:
-                        return 5.5
-                      case 200: 
-                        return 4
-                      case 250:
-                        return 3
-                      case 300: 
-                        return 2.5
-                      default:
-                        return fontSize
-                    }
-                  })()
+                  fontSize: fontSizeForCharactersPerRow[charsPerRow] || fontSize
                 })}
               />
             </ControlSection>

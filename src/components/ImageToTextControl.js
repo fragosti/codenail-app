@@ -92,7 +92,7 @@ class ImageToTextControl extends Component {
               name='characters-per-row'
               value={charsPerRow}
               clearable={false}
-              options={defaultOptionsForKey([100,150,200,250,300])}
+              options={defaultOptionsForKey([100,125,150,175,200,225,250,275,300])}
               onChange={({value}) => this.setState({ charsPerRow: value })}
             />
           </div>
