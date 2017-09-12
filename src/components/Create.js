@@ -325,7 +325,11 @@ class Create extends Component {
             <Tabs 
               selectedIndex={productType && productType === 'shirt' ? 1 : 0}
               onSelect={(index) => {
-                this.onSettingsChange('productType', index ? 'shirt' : 'poster')
+                const goingTo = index ? 'shirt' : 'poster'
+                this.setAndSaveState({
+                  productType: goingTo,
+                  fontSize: +(goingTo === 'shirt' ? fontSize/2 : fontSize*2).toFixed(1)
+                })
               }}
             >
               <TabList>
