@@ -18,10 +18,16 @@ const FAQ = () => (
       <p> We use whichever shipping is necessary to get the order to you in 3-5 days or less after fulfillment. 
           This usually ends up being USPS Priority Mail or DHL Expedited.
       </p>
-      <h2> What kind of paper do you use?</h2>
+      <h2> What kind of paper do you use for posters?</h2>
       <p> 
         Our museum-quality posters are made on thick, durable, matte paper. 
         Printed on archival, acid-free paper.
+      </p>
+      <h2> What kind of shirts do you provide?</h2>
+      <p>
+        For now we offer a unisex short sleeve shirt from
+        <a rel='noopener noreferrer' target='_blank' href='https://www.bellacanvas.com/product/3001/Unisex-Jersey-Short-Sleeve-Tee.html'> <u>Bella+Canvas</u></a>.
+        The shirt comes in a wide range of colors and sizes S, M, L, XL, and XXL.
       </p>
       <h2> What is your return policy?</h2>
       <p> We do not offer returns but offer full refunds for any product that is 
@@ -38,7 +44,7 @@ const FAQ = () => (
           your order is still being fulfilled. 
       </p>
       <h2> How much does it cost?</h2>
-      <p> In the footer of the page you'll see a link to the <Link to='pricing'><u>Pricing</u></Link> page which provides all the prices for our posters.
+      <p> In the footer of the page you'll see a link to the <Link to='pricing'><u>Pricing</u></Link> page which provides all the prices for our posters and shirts.
       </p>
       <h2> What happens if my code doesn't fit into the editor and I can scroll?</h2>
       <p> We will clip the image as if you were scrolled all the way up. We don't take your scroll position into account.
