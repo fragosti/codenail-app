@@ -3,6 +3,8 @@ import AceEditor from 'react-ace';
 
 import styled from 'styled-components';
 import { languages, themes } from './EditorControl';
+import { zIndex } from '../style/utils';
+import { shirts } from '../lib/products';
 
 languages.forEach((lang) => {
   require(`brace/mode/${lang}`)
@@ -112,7 +114,6 @@ class Editor extends Component {
     const adjustedHeight = height-verPadding*2
     const adjustedWidth = width-horPadding*2
     const shouldOverrideColor = colorMode === 'custom'
-
     return (
       <Container 
         paddingColor={paddingColor} 
@@ -168,5 +169,49 @@ Editor.defaultProps = {
   verPadding: 0,
   horPadding: 0,
 };
+
+const Magnifier = styled.div`
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid white;
+  width: 150px;
+  height: 150px;
+  z-index: ${zIndex.aboveEditor};
+  background-color: ${props => props.bgColor};
+  background-image: ${props => `url(${props.bgImage})`};
+
+`
+
+export const EditorWithMagnification = ({ 
+  zoom,
+  shirtColor,
+  fontSize,
+  ...rest
+}) => {
+  const isShirtPreview = rest.productType === 'shirt'
+  const { effectiveColor, backgroundImage } = shirts[shirtColor]
+  return (
+    <div>
+      <Magnifier
+        bgImage={isShirtPreview && backgroundImage}
+        bgColor={isShirtPreview ? effectiveColor : rest.colorMode === 'custom' ? rest.backgroundColor : null }
+      >
+        <Editor
+          fontSize={fontSize*zoom}
+          {...rest}
+        /> 
+      </Magnifier>
+      <Editor 
+        fontSize={fontSize}
+        {...rest}
+      />
+    </div>
+  )
+}
+
+EditorWithMagnification.defaultProps = {
+  zoom: 5,
+}
+
 
 export default Editor

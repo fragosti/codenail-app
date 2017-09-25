@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { modularScale } from 'polished';
 
 import Modal from './Modal';
-import Editor from './Editor';
+import Editor, { EditorWithMagnification } from './Editor';
 import { controls } from './EditorControl';
 import ColorPicker from './ColorPicker';
 import ArrowControl from './ArrowControl';
 import ImageToTextControl from './ImageToTextControl';
 import { Tab, Tabs, TabList, TabPanel } from './Tabs';
-import Button, { CTA } from './Button';
+import Button, { CTA, IconButton } from './Button';
 import Overlay from './Overlay';
 import Spinner from './Spinner';
 import Frame from './Frame';
@@ -197,6 +197,7 @@ class Create extends Component {
       productType: 'poster',
       shirtColor: 'white',
       shirtSize: 'L',
+      isZoomActive: false,
     }, (sampleId ? samples[sampleId] : savedState) || {})
   }
 
@@ -269,7 +270,7 @@ class Create extends Component {
   }
 
   render() {
-    const { errorMessage, hasCoupon, ...options } = this.state
+    const { errorMessage, hasCoupon, isZoomActive, ...options } = this.state
     const { 
       language, 
       fontSize, 
@@ -304,6 +305,28 @@ class Create extends Component {
       orderButtonText,
       shareModalTitle
     } = textForCoupon(hasCoupon, price)
+    const EditorComponentCLass = isZoomActive ? EditorWithMagnification : Editor;
+    const editorComponent = (
+      <EditorComponentCLass 
+        language={language}
+        theme={mode}
+        value={value}
+        fontSize={fontSize}
+        onChange={this.onValueChange}
+        showLineNumbers={showLineNumbers}
+        wrapEnabled={wrapEnabled}
+        width={width}
+        height={height}
+        horPadding={horPadding}
+        verPadding={verPadding}
+        paddingColor={paddingColor}
+        colorMode={colorMode}
+        textColor={textColor}
+        productType={productType}
+        backgroundColor={backgroundColor}
+        shirtColor={shirtColor}
+      />
+    )
     return (
       <Container>
         {isLoading && (
@@ -347,24 +370,7 @@ class Create extends Component {
                       borderColor2='#666666'
                     />
                   )}
-                  <Editor 
-                    language={language}
-                    theme={mode}
-                    value={value}
-                    fontSize={fontSize}
-                    onChange={this.onValueChange}
-                    showLineNumbers={showLineNumbers}
-                    wrapEnabled={wrapEnabled}
-                    width={width}
-                    height={height}
-                    horPadding={horPadding}
-                    verPadding={verPadding}
-                    paddingColor={paddingColor}
-                    colorMode={colorMode}
-                    textColor={textColor}
-                    backgroundColor={backgroundColor}
-                    productType={productType}
-                  />
+                  {editorComponent}
                 </EditorWrapper>
               </TabPanel>
               <TabPanel>
@@ -372,23 +378,7 @@ class Create extends Component {
                   colorKey={shirtColor}
                 />
                 <ShirtEditorWrapper>
-                  <Editor 
-                    language={language}
-                    theme={mode}
-                    value={value}
-                    fontSize={fontSize}
-                    onChange={this.onValueChange}
-                    showLineNumbers={showLineNumbers}
-                    wrapEnabled={wrapEnabled}
-                    width={width}
-                    height={height}
-                    horPadding={horPadding}
-                    verPadding={verPadding}
-                    paddingColor={paddingColor}
-                    colorMode={colorMode}
-                    textColor={textColor}
-                    productType={productType}
-                  />
+                  {editorComponent}
                 </ShirtEditorWrapper>
               </TabPanel>
             </Tabs>
@@ -399,6 +389,7 @@ class Create extends Component {
                     onSelect={(color) => this.onSettingsChange('shirtColor', color)}
                   />
               )}
+              <IconButton name='zoom_in' active={isZoomActive} onClick={() => this.setState({ isZoomActive: !isZoomActive })}/>
               <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
               <ArrowControl
                 onUp={this.moveTextUp}

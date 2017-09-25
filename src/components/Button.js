@@ -9,7 +9,7 @@ import { colors } from '../style/utils';
 import Icon from './Icon';
 
 const ButtonBase = styled.a`
-  background: ${props => props.disabled ? grayscale(props.color) : props.color};
+  background: ${props => props.disabled ? grayscale(props.color) : props.active ? darken(0.3, props.color) : props.color };
   color: ${props => props.disabled ? colors.gray : 'black'};
   border-radius: 4px;
   cursor: ${props => props.disabled ? 'default' : 'pointer'};
@@ -46,7 +46,9 @@ export const CTA = ButtonBase.extend`
 const ButtonForIcon = Button.extend`
   padding: 5px 10px;
 `
-export const IconButton = ({ name, size, onClick }) => ( <ButtonForIcon onClick={onClick}><Icon size={size} name={name}/></ButtonForIcon> )
+export const IconButton = ({ name, size, onClick, active, className }) => ( 
+  <ButtonForIcon active={active} className={className} onClick={onClick}><Icon size={size} name={name}/></ButtonForIcon> 
+)
 
 export const Callout = styled.span`
   text-decoration: underline;
