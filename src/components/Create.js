@@ -389,7 +389,7 @@ class Create extends Component {
                     onSelect={(color) => this.onSettingsChange('shirtColor', color)}
                   />
               )}
-              <IconButton name='zoom_in' active={isZoomActive} onClick={() => this.setState({ isZoomActive: !isZoomActive })}/>
+              {!isPhone() && <IconButton name='zoom_in' active={isZoomActive} onClick={() => this.setState({ isZoomActive: !isZoomActive })}/>}
               <Button onClick={() => this.setState({ value: this.state.value.replace(/\s+/g,' ') })}>Remove whitespace</Button>
               <ArrowControl
                 onUp={this.moveTextUp}

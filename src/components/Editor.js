@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import AceEditor from 'react-ace';
-
 import styled from 'styled-components';
+
+import withCursorPosition from '../HOCs/withCursorPosition';
 import { languages, themes } from './EditorControl';
 import { zIndex } from '../style/utils';
 import { shirts } from '../lib/products';
@@ -170,24 +171,40 @@ Editor.defaultProps = {
   horPadding: 0,
 };
 
+
+const magWidth = 300;
+const magHeight = 300;
 const Magnifier = styled.div`
   position: absolute;
   overflow: hidden;
-  border: 1px solid white;
-  width: 150px;
-  height: 150px;
+  border: 2px solid white;
+  width: ${magWidth}px;
+  height: ${magHeight}px;
   z-index: ${zIndex.aboveEditor};
   background-color: ${props => props.bgColor};
   background-image: ${props => `url(${props.bgImage})`};
-
+  left: ${props => props.left}px;
+  top: ${props => props.top}px;
+  pointer-events: none;
+  border-radius: 100%;
+  box-shadow: 0px 3px 15px 1px rgba(0,0,0,.2);
 `
 
-export const EditorWithMagnification = ({ 
+const Positioner = styled.div`
+  position: absolute;
+  left: ${props => props.left}px;
+  top: ${props => props.top}px;
+`
+export const EditorWithMagnification = withCursorPosition(({ 
   zoom,
   shirtColor,
   fontSize,
+  position,
+  height,
+  width,
   ...rest
 }) => {
+  const { x, y } = position
   const isShirtPreview = rest.productType === 'shirt'
   const { effectiveColor, backgroundImage } = shirts[shirtColor]
   return (
@@ -195,22 +212,33 @@ export const EditorWithMagnification = ({
       <Magnifier
         bgImage={isShirtPreview && backgroundImage}
         bgColor={isShirtPreview ? effectiveColor : rest.colorMode === 'custom' ? rest.backgroundColor : null }
+        left={x - magWidth / 2}
+        top={y - magHeight / 2}
       >
-        <Editor
-          fontSize={fontSize*zoom}
-          {...rest}
-        /> 
+        <Positioner
+          left={-x*zoom + magWidth / 2}
+          top={-y*zoom + magHeight / 2}
+        >
+          <Editor
+            fontSize={fontSize*zoom}
+            height={height*zoom}
+            width={width*zoom}
+            {...rest}
+          /> 
+        </Positioner>
       </Magnifier>
       <Editor 
         fontSize={fontSize}
+        height={height}
+        width={width}
         {...rest}
       />
     </div>
   )
-}
+})
 
 EditorWithMagnification.defaultProps = {
-  zoom: 5,
+  zoom: 4,
 }
 
 
