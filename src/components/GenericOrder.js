@@ -66,6 +66,9 @@ class GenericOrder extends Component {
             Once you order you'll receive a confirmation e-mail with an order receipt and more information.
           </p>
           <p>
+            Don't forget to press <strong onClick={() => openModal('preview')}>Preview</strong> to make sure everything looks correct. 
+          </p>
+          <p>
             More questions? Visit our <Link to='faq'><Callout>FAQ</Callout></Link> page. 
           </p>
         </Message>
