@@ -19,6 +19,83 @@ const adjustForPhone = (samples) => {
   }, {})
 }
 
+
+export const genericLogoText = `                                                                  Hello World');co                                                                   
+                                                       o World');console.log('Hello World');c                                                        
+                                                 ;console.log('Hello World');console.log('Hello Worl                                                 
+                                            og('Hello World');console.log('Hello World');console.log('Hel                                            
+                                        orld');console.log('Hello World');console.log('Hello World');console.                                        
+                                    ole.log('Hello World');console.log('Hello World');console.log('Hello World')                                     
+                                 lo World');console.log('Hello World');console.log('Hello World');console.log('Hell                                  
+                              onsole.log('Hello World');console.log('Hello World');console.log('Hello World');console.                               
+                           Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World')                            
+                         ;console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hel                          
+                       'Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console                       
+                     );console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World                     
+                   ('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('                    
+                 ');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');con                  
+               g('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello W                
+              ');console.log('      World')    sole.lo           rld');cons    log('Hell    rld')            ('Hello World');console.l               
+            g('Hello World');co    e.log('    o Worl               ('Hello     d');conso    og('H              onsole.log('Hello World')             
+           ');console.log('Hello     d');    ole.l      llo Wor      onsole    ('Hello W    ');co    e.log(     o World');console.log('He            
+          ('Hello World');console     'H     Worl     onsole.log(     o Wor    ;console.    'Hell    rld');c    le.log('Hello World');cons           
+         );console.log('Hello Worl         le.log    llo World');     le.lo    ello Worl    conso    og('He     orld');console.log('Hello W          
+        'Hello World');console.log(       World')    sole.log('He     orld'    nsole.log    llo W              .log('Hello World');console.lo        
+       ;console.log('Hello World');co    e.log('H     World');con     log('    o World')    sole.           World');console.log('Hello World')       
+      Hello World');console.log('Hel     rld');con     log('Hell     ld');c    le.log('      Worl    cons    log('Hello World');console.log('He      
+     console.log('Hello World');cons     og('Hello       );con      og('Hel       d')      le.log    llo W     );console.log('Hello World');con      
+    ello World');console.log('Hello      ');console.              ld');consol             World')    sole.l     ello World');console.log('Hello      
+   onsole.log('Hello World');console.    'Hello World');       .log('Hello World      sole.log('H     World'     sole.log('Hello World');console.    
+   lo World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello Worl    
+  sole.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log(   
+   World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');c  
+ le.log('Hello World');console.lo    ello World');con           ello World');c            Hello Worl           .log('Hello World');console.log('Hel  
+ orld');console.log('Hello World'    nsole.log('He                ole.log('               onsole.l                );console.log('Hello World');cons  
+.log('Hello World');console.log('    o World');co     .log('He     orld');      e.log('Hello Worl     onsole.l     ello World');console.log('Hello W 
+ld');console.log('Hello World');c    le.log('Hel     rld');cons     og('H     World');console.lo     llo World'     sole.log('Hello World');console. 
+g('Hello World');console.log('Hel    orld');con     log('Hello W     );co    e.log('Hello World     nsole.log('H     World');console.log('Hello Worl 
+);console.log('Hello World');cons    log('Hello     d');console.     Hell    rld');        log(     o World');co     .log('Hello World');console.log(
+Hello World');console.log('Hello     d');console    ('Hello Worl    conso    og('He        d');     le.log('Hell    rld');console.log('Hello World');
+onsole.log('Hello World');console    ('Hello Wor     console.lo     llo W      ;console    ('Hel     rld');cons     og('Hello World');console.log('He
+lo World');console.log('Hello Wor            .log        Wor       nsole.lo       o Wo     ;conso       'Hel       d');console.log('Hello World');con
+ole.log('Hello World');console.lo            ld');c              llo World');              ello Wor              og('Hello World');console.log('Hello
+World');console.log('Hello World'            g('Hello W      ;console.log('Hello       );console.log('H      orld');console.log('Hello World');consol
+.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello Wo
+ld');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console. 
+g('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello Worl 
+);console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log 
+ ello World');console.log      o World');co      log('He                 le.log(                onsole.log                 onsole.log('Hello World') 
+ nsole.log('Hello World')      le.log('Hell      d');con                 orld');                   World')                 lo World');console.log('  
+   World');console.log('H      orld');conso      ('Hello                 log('He      rld')        .log('H                 ole.log('Hello World');c  
+  e.log('Hello World');co      log('Hello W      ;consol      'Hello World');con      og('Hel       d');co      log('Hello World');console.log('He   
+   ld');console.log('Hell      d');console.      ello Wo      console.log('Hello      ');conso      ('Hell      d');console.log('Hello World');con   
+   g('Hello World');conso                        nsole.l                );consol      'Hello       );conso                rld');console.log('Hell    
+    ;console.log('Hello W                        o World                Hello Wo      cons         Hello W                og('Hello World');cons     
+     llo World');console.                        le.log(                onsole.l                 ;console.                ');console.log('Hello      
+      ole.log('Hello Worl      nsole.log('H      orld');      e.log('Hello World               'Hello Worl      nsole.log('Hello World');consol      
+       orld');console.log      o World');co      log('He      rld');console.log(       Wor      onsole.log      o World');console.log('Hello W       
+        og('Hello World')      le.log('Hell      d');con      og('Hello World');      e.log      o World')      le.log('Hello World');console        
+         );console.log('H      orld');conso      ('Hello                 log('He      rld');       .log('H                 ole.log('Hello Wo         
+          ello World');co      log('Hello W      ;consol                 d');con      og('Hel       d');co                 World');console           
+           sole.log('Hell      d');console.      ello Wo                 ('Hello      ');consol      'Hell                 .log('Hello Wo            
+            World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.             
+              og('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello Wor              
+               );console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.                
+                 llo World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello Wo                  
+                   le.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.                   
+                     ld');console.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello Wo                     
+                       'Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello World');console                       
+                         nsole.log('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hello                           
+                           World');console.log('Hello World');console.log('Hello World');console.log('Hello World');conso                            
+                              g('Hello World');console.log('Hello World');console.log('Hello World');console.log('Hell                               
+                                 onsole.log('Hello World');console.log('Hello World');console.log('Hello World');con                                 
+                                    World');console.log('Hello World');console.log('Hello World');console.log('H                                     
+                                       g('Hello World');console.log('Hello World');console.log('Hello World')                                        
+                                            sole.log('Hello World');console.log('Hello World');console.lo                                            
+                                                ld');console.log('Hello World');console.log('Hello W                                                 
+                                                       o World');console.log('Hello World');c                                                        
+                                                                 llo World');consol                                                                  `
+
 const samples = adjustForPhone({
   '1': {
     value: `

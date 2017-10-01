@@ -25,7 +25,7 @@ import { Container } from './Page';
 import { isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForProduct, priceForDownload } from '../lib/price';
-import samples from '../lib/samples';
+import samples, { genericLogoText } from '../lib/samples';
 import { shirtColors } from '../lib/products';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { getShare } from '../lib/api';
@@ -183,9 +183,9 @@ class Create extends Component {
       mode: 'monokai',
       showLineNumbers: false,
       wrapEnabled: false,
-      value: '// Paste your code here!',
-      fontSize: isPhone() ? 8 : 12,
-      size: '12x16',
+      value: genericLogoText,
+      fontSize: isPhone() ? 2.5 : 5,
+      size: '12x12',
       framed: true,
       horPadding: 0,
       verPadding: 0,
@@ -195,7 +195,7 @@ class Create extends Component {
       colorMode: 'editor',
       amount: 1,
       productType: 'poster',
-      shirtColor: 'white',
+      shirtColor: 'black',
       shirtSize: 'L',
       isZoomActive: false,
     }, (sampleId ? samples[sampleId] : savedState) || {})
@@ -351,7 +351,7 @@ class Create extends Component {
                 const goingTo = index ? 'shirt' : 'poster'
                 this.setAndSaveState({
                   productType: goingTo,
-                  fontSize: +(goingTo === 'shirt' ? fontSize/2 : fontSize*2).toFixed(1)
+                  fontSize: +(goingTo === 'shirt' ? fontSize/2.25 : fontSize*2.25).toFixed(1)
                 })
               }}
             >
