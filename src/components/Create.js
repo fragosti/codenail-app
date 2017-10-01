@@ -305,9 +305,9 @@ class Create extends Component {
       orderButtonText,
       shareModalTitle
     } = textForCoupon(hasCoupon, price)
-    const EditorComponentCLass = isZoomActive ? EditorWithMagnification : Editor;
+    const EditorComponentClass = isZoomActive ? EditorWithMagnification : Editor;
     const editorComponent = (
-      <EditorComponentCLass 
+      <EditorComponentClass 
         language={language}
         theme={mode}
         value={value}

@@ -22,13 +22,13 @@ const CenterHeader = styled.h2`
 `
 
 const PriceTable = ({ priceMap, productType }) => {
-  const isShirt = productType === 'shirt'
+  const isPoster = productType === 'poster'
   return (
     <Table>
       <thead>
         <tr> 
-          <th><i>Size {`${!isShirt ? '(inches)' : ''}`}</i></th>
-          {!isShirt && <th><i>Size (cm)</i></th>}
+          <th><i>Size {`${isPoster ? '(inches)' : ''}`}</i></th>
+          {isPoster && <th><i>Size (cm)</i></th>}
           <th><i>Price</i></th>
         </tr> 
       </thead>
@@ -36,7 +36,7 @@ const PriceTable = ({ priceMap, productType }) => {
         {Object.keys(priceMap).map((size) => (
           <tr key={size}> 
             <td>{size}</td>
-            {!isShirt && <td>{inToCm(size)}</td>}
+            {isPoster && <td>{inToCm(size)}</td>}
             <td>${priceMap[size]}.00</td>
           </tr> 
         ))}
@@ -53,14 +53,16 @@ const Pricing = () => (
         It's possible to order posters with inverted aspect ratios (36x24 instead of 24x36 for example). 
         In that case, the pricing is the same - it's the total dimensions that count. 
       </p>
+      <CenterHeader> Print File Downloads: </CenterHeader>
+      <PriceTable priceMap={{ Any: 5 }} productType='download'/>
       <CenterHeader> Shirts: </CenterHeader>
       <PriceTable priceMap={shirtPrices} productType='shirt'/> 
       <br/>
       <CenterHeader> Poster Prints: </CenterHeader>
-      <PriceTable priceMap={printPrices} /> 
+      <PriceTable priceMap={printPrices} productType='poster'/> 
       <br/>
       <CenterHeader> Framed Poster Prints: </CenterHeader>
-      <PriceTable priceMap={framedPrintPrices} /> 
+      <PriceTable priceMap={framedPrintPrices} productType='poster'/> 
     </Description>
   </Container>
 )

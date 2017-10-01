@@ -100,7 +100,7 @@ const Landing = () => {
               Tons of options and sizes
             </h3>
             <p className="paragraph">
-              Choose whether you would like your poster framed, along with its dimensions, editor theme, font-size and more. We provide the tools you need to create the poster you want!
+              Choose the color of your shirt, whether you would like your poster framed, its dimensions, editor theme, font-size and more. We provide the tools you need to create the product you want!
             </p>
           </div>
           <div className="col-4">
