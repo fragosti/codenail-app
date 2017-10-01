@@ -85,7 +85,7 @@ const Landing = () => {
             </Center>
             <h2 className="paragraph">
               Whether you've written code you're proud of, have a personal project you want to commemorate, want a parting gift for your intern, or even just like all the pretty colors: 
-              this is the place to order a poster of it!
+              this is the place to order a poster or shirt of it!
             </h2>
           </div>
         </div>

@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import Zone from 'react-dropzone';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Icon from './Icon';
+import { isMobile } from '../lib/utils';
 import { colors } from '../style/utils';
 import { SelectLabel } from './Select';
+
+const mobileCSS = css`
+  input {
+    display: block !important;
+    width: 100%;
+    margin: 5px;
+  }
+  span {
+    display: none;
+  }
+`
 
 const StyledZone = styled(Zone)`
   width: 100px;
@@ -22,6 +34,7 @@ const StyledZone = styled(Zone)`
   &:hover {
     border-color: black;
   }
+  ${isMobile.any() && mobileCSS}
 `
 const Preview = styled.img`
   width: 100px;
