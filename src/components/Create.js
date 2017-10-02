@@ -25,7 +25,7 @@ import { Container } from './Page';
 import { isPhone, media } from '../style/utils';
 import { aspectRatioForSize, closeModal, openModal } from '../lib/utils';
 import { priceForProduct, priceForDownload } from '../lib/price';
-import samples, { genericLogoText } from '../lib/samples';
+import { genericLogoText, getSample } from '../lib/samples';
 import { shirtColors } from '../lib/products';
 import { getQueryParams, removeQueryParams } from '../lib/utils';
 import { getShare } from '../lib/api';
@@ -162,7 +162,7 @@ const widthAndHeight = (productType, size) => {
 class Create extends Component {
   constructor(props) {
     super(props)
-    const { sampleId } = getQueryParams(props.location.search)
+    const { sampleId, productType } = getQueryParams(props.location.search)
     const savedState = JSON.parse(window.localStorage ? window.localStorage.getItem('createState') : null)
     this.state = Object.assign({
       errorMessage: null,
@@ -182,11 +182,11 @@ class Create extends Component {
       textColor: 'black',
       colorMode: 'editor',
       amount: 1,
-      productType: 'poster',
+      productType: productType || 'poster',
       shirtColor: 'black',
       shirtSize: 'L',
       isZoomActive: false,
-    }, (sampleId ? samples[sampleId] : savedState) || {})
+    }, (sampleId ? getSample(sampleId, productType) : savedState) || {})
   }
 
   componentWillMount() {
@@ -216,7 +216,7 @@ class Create extends Component {
       window.localStorage && window.localStorage.setItem('createState', JSON.stringify(editorState))
     }
     if (sampleId) {
-      history.push(`/create${removeQueryParams(location.search, ['sampleId', 'shareId'])}`)
+      history.push(`/create${removeQueryParams(location.search, ['sampleId', 'shareId', 'productType'])}`)
     }
   }
 

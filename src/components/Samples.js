@@ -84,6 +84,10 @@ class Sample extends Component {
     return `https://s3-us-west-2.amazonaws.com/codenail-order-samples/${id}s.png`
   };
 
+  linkUrl = () => {
+    return `/create?sampleId=${this.props.id}&productType=${this.state.productType}`
+  }
+
   render() {
     const { isOpen, productType } = this.state
     const { id } = this.props
@@ -127,7 +131,7 @@ class Sample extends Component {
           </TabPanel>
         </Tabs>
         <CTAWrap>
-          <CTALink to={`/create?sampleId=${id}`}> See in Editor </CTALink>
+          <CTALink to={this.linkUrl()}> See in Editor </CTALink>
         </CTAWrap>
       </SampleWrap>
     )
