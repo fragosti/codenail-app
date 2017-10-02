@@ -172,8 +172,8 @@ Editor.defaultProps = {
 };
 
 
-const magWidth = 300;
-const magHeight = 300;
+const magWidth = 350;
+const magHeight = 350;
 const Magnifier = styled.div`
   position: absolute;
   overflow: hidden;

@@ -159,18 +159,6 @@ const widthAndHeight = (productType, size) => {
   }
 }
 
-const fontSizeForCharactersPerRow = {
-  100: 8,
-  125: 6,
-  150: 5.5,
-  175: 4.5,
-  200: 3.6,
-  225: 3.2,
-  250: 2.7,
-  275: 2.5,
-  300: 2.3,
-};
-
 class Create extends Component {
   constructor(props) {
     super(props)
@@ -267,6 +255,22 @@ class Create extends Component {
     } else {
       this.setState({ value })
     }
+  }
+
+  fontSizeForCharactersPerRow = (charsPerRow) => {
+    const posterFontSize = {
+      100: 8,
+      125: 6,
+      150: 5.5,
+      175: 4.5,
+      200: 3.6,
+      225: 3.2,
+      250: 2.7,
+      275: 2.5,
+      300: 2.3,
+    }[charsPerRow];
+    const { productType } = this.state;
+    return productType === 'shirt' ? +(posterFontSize / 2.25).toFixed(1) : posterFontSize;
   }
 
   render() {
@@ -412,7 +416,7 @@ class Create extends Component {
                 editorText={value}
                 onNewText={(text, charsPerRow) => this.setAndSaveState({
                   value: text,
-                  fontSize: fontSizeForCharactersPerRow[charsPerRow] || fontSize
+                  fontSize: this.fontSizeForCharactersPerRow(charsPerRow) || fontSize
                 })}
               />
             </ControlSection>
