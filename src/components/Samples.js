@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { modularScale } from 'polished';
 
 import { isPhone } from '../style/utils';
 import Overlay from './Overlay';
@@ -22,6 +23,10 @@ const CTAWrap = styled.div`
   left: 0;
   width: 100%;
   text-align: center;
+`
+
+const TabTitleText = styled.span`
+  font-size: ${modularScale(1)}
 `
 
 const CTALink = CTA.withComponent(Link)
@@ -93,6 +98,7 @@ class Sample extends Component {
         </Overlay>
         }
         <Tabs 
+          forceRenderTabPanel={true}
           selectedIndex={productType === 'shirt' ? 1 : 0}
           onSelect={(index) => {
             const goingTo = index ? 'shirt' : 'poster';
@@ -100,14 +106,24 @@ class Sample extends Component {
           }}
         >
           <TabList>
-            <Tab> Poster </Tab>
-            <Tab> Shirt </Tab>
+            <Tab><TabTitleText>Poster</TabTitleText></Tab>
+            <Tab><TabTitleText>Shirt</TabTitleText></Tab>
           </TabList>
           <TabPanel>
-            <Image onClick={this.open} src={this.urlForPoster(id)} alt='A code poster sample.'/>
+            <Image 
+              onClick={this.open} 
+              src={this.urlForPoster(id)} 
+              alt='A code poster sample.'
+              display={productType === 'poster' ? 'block' : 'none'}
+            />
           </TabPanel>
           <TabPanel>
-            <Image onClick={this.open} src={this.urlForShirt(id)} alt='A code shirt sample.'/>
+            <Image 
+              onClick={this.open} 
+              src={this.urlForShirt(id)} 
+              alt='A code shirt sample.'
+              display={productType === 'shirt' ? 'block' : 'none'}
+            />
           </TabPanel>
         </Tabs>
         <CTAWrap>
