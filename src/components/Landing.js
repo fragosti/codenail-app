@@ -154,7 +154,22 @@ const Landing = () => {
           </div>
         </div>
         <div className="container-lrg centerdevices col-12">
-          <Gallery/>
+          <Gallery images={[1,2,3,4,5,6].map((num) => ({ src: `https://s3-us-west-2.amazonaws.com/codenail-gallery/${num}.JPG`}))}/>
+        </div>
+      </section>
+      <section className="feature1">
+        <div className="container-sml">
+          <div className="col-12 text-center">
+            <h3 className="heading">
+              Don't forget the shirts!
+            </h3>
+            <p className="paragraph">
+              Pictures of an actual order from  <strong>Code at Uni</strong>.
+            </p>
+          </div>
+        </div>
+        <div className="container-lrg centerdevices col-12">
+          <Gallery images={[1,2,3,4].map((num) => ({ src: `https://s3-us-west-2.amazonaws.com/codenail-gallery/${num}s.JPG`}))}/>
         </div>
       </section>
       <section className="socialproof">

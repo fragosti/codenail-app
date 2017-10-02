@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 import { sizes, media } from '../style/utils';
 
-const images = [1,2,3,4,5,6].map((num) => ({ src: `https://s3-us-west-2.amazonaws.com/codenail-gallery/${num}.JPG`}))
-
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -55,6 +53,7 @@ class Gallery extends Component {
 
   render() {
     const { isLightBoxOpen, imgIndex } = this.state
+    const { images } = this.props
     return (
       <Container>
         {images.map((imgInfo, i) => (
