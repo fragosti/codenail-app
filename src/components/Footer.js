@@ -24,6 +24,9 @@ const Footer = () => (
           <Link to="/privacy" className="nav-link">
             Privacy
           </Link>
+          <a className="nav-link" href="https://www.etsy.com/shop/Codenail">
+            Etsy Store
+          </a>
         </div>
         <br/>
         <div>
